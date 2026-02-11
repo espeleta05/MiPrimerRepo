@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Tarea - Portafolio Académico</title>
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/futuristic.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA FORMATO ACADÉMICO */
+        .task-detail-page {
+            padding-top: 70px;
+            background: var(--color-bg-darker);
+        }
+
+        .tarea-container {
+            background: rgba(10, 14, 39, 0.7);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .tarea-header {
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tarea-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tarea-meta {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tarea-divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-primary), 
+                transparent
+            );
+            margin: 2.5rem 0;
+            border: none;
+        }
+
+        /* SE ACCIÓN NÚMERADAS */
+        .tarea-section {
+            margin-bottom: 3rem;
+            counter-increment: section;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+        }
+
+        .section-title::before {
+            content: counter(section) ". ";
+            color: var(--color-primary);
+            font-weight: 900;
+            margin-right: 0.5rem;
+        }
+
+        /* SUBSECCIONES */
+        .subsection {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .subsection::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent,
+                var(--color-primary),
+                transparent
+            );
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subsection-content {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .subsection-content ul {
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 1.5rem;
+        }
+
+        .subsection-content li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .subsection-content li::before {
+            content: "→";
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* CONCEPTOS */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .concept-card {
+            background: rgba(20, 0, 40, 0.4);
+            border: 1px solid rgba(100, 0, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            transition: all var(--transition-normal);
+        }
+
+        .concept-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(100, 0, 255, 0.2);
+        }
+
+        .concept-title {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        /* EVIDENCIA */
+        .evidencia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .imagen-container {
+            background: rgba(0, 10, 30, 0.5);
+            border: 1px solid rgba(0, 150, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .imagen-container:hover {
+            border-color: var(--color-primary);
+            transform: scale(1.02);
+        }
+
+        .imagen-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(20, 0, 60, 0.6), rgba(0, 20, 60, 0.8));
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imagen-placeholder::after {
+            content: "🖼️";
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .imagen-caption {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        /* TABLAS */
+        .tabla-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            background: rgba(0, 10, 30, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            background: rgba(0, 20, 40, 0.5);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            font-family: var(--font-display);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            color: var(--color-text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        /* CÓDIGO */
+        .codigo-container {
+            background: rgba(10, 0, 30, 0.7);
+            border: 1px solid rgba(100, 0, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .codigo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(100, 0, 255, 0.2);
+        }
+
+        .codigo-titulo {
+            color: var(--color-accent);
+            font-weight: 500;
+            font-size: 0.9rem;
+            font-family: var(--font-display);
+        }
+
+        .codigo-copiar {
+            background: rgba(100, 0, 255, 0.2);
+            color: var(--color-text-primary);
+            border: 1px solid rgba(100, 0, 255, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all var(--transition-fast);
+        }
+
+        .codigo-copiar:hover {
+            background: rgba(100, 0, 255, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        code {
+            color: var(--color-accent);
+        }
+
+        .comando {
+            color: #81e6d9;
+        }
+
+        .comentario {
+            color: #718096;
+            font-style: italic;
+        }
+
+        /* CONCLUSIONES */
+        .conclusiones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .conclusion-card {
+            background: rgba(0, 40, 20, 0.3);
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+            transition: all var(--transition-normal);
+        }
+
+        .conclusion-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+        }
+
+        .conclusion-title {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .conclusion-title::before {
+            font-size: 1.2rem;
+        }
+
+        .conclusion-card:nth-child(1) .conclusion-title::before {
+            content: "📚";
+        }
+
+        .conclusion-card:nth-child(2) .conclusion-title::before {
+            content: "🔧";
+        }
+
+        .conclusion-card:nth-child(3) .conclusion-title::before {
+            content: "🚀";
+        }
+
+        /* ENTREGABLES */
+        .entregables-container {
+            background: rgba(0, 20, 40, 0.4);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-descargar {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+            margin-top: 1rem;
+            font-family: var(--font-display);
+        }
+
+        .btn-descargar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* BOTONES */
+        .tarea-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .volver-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            transition: all var(--transition-fast);
+            font-family: var(--font-display);
+        }
+
+        .volver-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(-3px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .tarea-container {
+                padding: 1.5rem;
+            }
+            
+            .tarea-title {
+                font-size: 2rem;
+            }
+            
+            .evidencia-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .conclusiones-grid,
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tarea-actions {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* CONTADORES DE SECCIÓN */
+        body {
+            counter-reset: section;
+        }
+    </style>
+</head>
+<body class="task-detail-page">
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Inicio</a>
+                <a href="parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="proyecto.html" class="nav-link">Proyecto</a>
+                <a href="hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <section class="breadcrumb-section">
+                <div class="container">
+                    <nav class="breadcrumb">
+                        <a href="../index.html" class="breadcrumb-link">Inicio</a>
+                        <span class="breadcrumb-separator">→</span>
+                        <a href="parcial1.html" class="breadcrumb-link">Parcial 1</a>
+                        <span class="breadcrumb-separator">→</span>
+                        <span class="breadcrumb-current">Configuración de Ubiquitous</span>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- CONTENIDO DE LA TAREA -->
+            <div class="tarea-container" id="tareaContent">
+                <!-- ENCABEZADO -->
+                <header class="tarea-header">
+                    <h1 class="tarea-title" id="taskTitle">Configuración de Ubiquitous y Google Cloud</h1>
+                    <div class="tarea-meta">
+                        <span id="taskDate">Fecha: 20 de Enero, 2026</span>
+                        <span id="taskStatus" style="color: #38a169;">✅ Completada</span>
+                    </div>
+                </header>
+
+                <hr class="tarea-divider">
+
+                <!-- SECCIÓN 1: OBJETIVO Y CONTEXTO -->
+                <section class="tarea-section">
+                    <h2 class="section-title">Objetivo y Contexto</h2>
+                    
+                    <div class="subsection">
+                        <h3 class="subsection-title">Objetivo</h3>
+                        <div class="subsection-content" id="objetivoContent">
+                            En este día se vieron dos temas principales:
+                            <ul>
+                                <li>Comprender cómo acceder y usar Ubiquitous: utilizar nuestro servidor y crear la página donde estaremos subiendo nuestras tareas y ejercicios guiados.</li>
+                                <li>Configurar nuestra primera máquina virtual en Google Cloud: qué implica, las diferentes opciones y lo que nosotros estaremos usando.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3 class="subsection-title">Contexto</h3>
+                        <div class="subsection-content" id="contextoContent">
+                            <ul>
+                                <li>Todos tenemos una cuenta en el servidor de la escuela; ahí es donde cada quien estará subiendo sus tareas en lugar de Blackboard.</li>
+                                <li>Previamente dejamos nuestras cuentas escolares de Google Cloud creadas y configurada la facturación.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="tarea-divider">
+
+                <!-- SECCIÓN 2: CONCEPTOS -->
+                <section class="tarea-section">
+                    <h2 class="section-title">Conceptos y Profundización</h2>
+                    
+                    <div class="concept-grid" id="conceptosContent">
+                        <div class="concept-card">
+                            <h3 class="concept-title">Ubiquitous</h3>
+                            <p>El servidor está previamente configurado con SSH para que cada alumno pueda acceder con su matrícula. Creamos con IA generativa una página web provisional para levantarla en ese servidor y descargamos CyberDuck para poder subir los archivos con seguridad mediante el protocolo SFTP, logrando que se vea una página en vez de un índice en blanco.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <h3 class="concept-title">Google Cloud</h3>
+                            <p>Vimos con especial énfasis las configuraciones de las VM, el sistema operativo que debíamos instalar (CentOS), revisamos rápidamente algunos comandos e instalamos MariaDB en el servidor.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <h3 class="concept-title">SSH</h3>
+                            <p>Es un protocolo de seguridad de red que permite el acceso y control remoto de equipos a servidores a través de una conexión cifrada.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <h3 class="concept-title">VM</h3>
+                            <p>Máquina virtual que sirve para emular el software de una computadora física, funcionando como un sistema independiente con su propio sistema operativo y recursos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="tarea-divider">
+
+                <!-- SECCIÓN 3: EVIDENCIA -->
+                <section class="tarea-section">
+                    <h2 class="section-title">Evidencia de Ejecución</h2>
+                    <p class="subsection-content">Captura de pantalla mostrando la compilación y ejecución:</p>
+                    
+                    <div class="evidencia-grid" id="evidenciaContent">
+                        <div class="imagen-container">
+                            <div class="imagen-placeholder"></div>
+                            <p class="imagen-caption">Fig 1. Página en Ubiquitous creada.</p>
+                        </div>
+                        
+                        <div class="imagen-container">
+                            <div class="imagen-placeholder"></div>
+                            <p class="imagen-caption">Fig 2. Instancia de VM creada.</p>
+                        </div>
+                        
+                        <div class="imagen-container">
+                            <div class="imagen-placeholder"></div>
+                            <p class="imagen-caption">Fig 3. MariaDB activo en la VM.</p>
+                        </div>
+                    </div>
+
+                    <!-- TABLA -->
+                    <div class="tabla-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Nombre</th>
+                                    <th>Zona</th>
+                                    <th>Recomendaciones</th>
+                                    <th>En uso por</th>
+                                    <th>IP interna</th>
+                                    <th>IP externa</th>
+                                    <th>Conectar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>✅</td>
+                                    <td>bases-de-datos-avanzadas-02</td>
+                                    <td>us-central1-f</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>10.128.0.3 (nic0)</td>
+                                    <td>—</td>
+                                    <td>SSH</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OUTPUT DE CONSOLA -->
+                    <div class="codigo-container">
+                        <div class="codigo-header">
+                            <span class="codigo-titulo">Console Output: MariaDB Status</span>
+                            <button class="codigo-copiar" onclick="copiarCodigo(this)">Copiar</button>
+                        </div>
+                        <pre><code><span class="comando">mariaDB.service</span> - MariaDB 10.11 database server
+Loaded: loaded (/usr/lib/systemd/system/mariaDB.service; disabled; preset: disabled)
+Active: active (running) since Fri 2024-01-23 16:12:17 UTC; 9s ago
+Event: Process 587f13f7de4349588ac29071879086c1
+   PID: 587f13f7de4349588ac29071879086c1
+   PPID: 0
+   CRI: docker://192.168.100.1:3306@docker.sysbox.local
+   UID: 0
+   GID: 0
+   SYSLOG_ID: 0
+   TTY: pts/0
+   STDOUT: /bin/bash
+   STDERR: /bin/bash
+   USER: root
+   GROUP: root
+   TIME: Thu Jan 23 16:12:17 +0000 (UTC)</code></pre>
+                    </div>
+                </section>
+
+                <hr class="tarea-divider">
+
+                <!-- SECCIÓN 4: ENTREGABLES -->
+                <section class="tarea-section">
+                    <h2 class="section-title">Entregables</h2>
+                    
+                    <div class="entregables-container">
+                        <h3 class="subsection-title">Paquete de Código</h3>
+                        <p class="subsection-content">Incluye README con instrucciones.</p>
+                        
+                        <button class="btn-descargar" onclick="descargarPaquete()">
+                            📥 Descargar ZIP
+                        </button>
+                    </div>
+
+                    <!-- CÓDIGO -->
+                    <div class="codigo-container" style="margin-top: 2rem;">
+                        <div class="codigo-header">
+                            <span class="codigo-titulo">Instrucciones rápidas</span>
+                            <button class="codigo-copiar" onclick="copiarCodigo(this)">Copiar</button>
+                        </div>
+                        <pre><code><span class="comentario">// Ubiquitous</span>
+$ ls
+$ mkdir html
+$ cd html
+
+<span class="comentario">// Google Cloud</span>
+$ sudo apt install mariadb-server
+$ sudo systemctl enable mariadb
+$ sudo systemctl status mariadb</code></pre>
+                    </div>
+                </section>
+
+                <hr class="tarea-divider">
+
+                <!-- SECCIÓN 5: CONCLUSIONES -->
+                <section class="tarea-section">
+                    <h2 class="section-title">Conclusiones</h2>
+                    
+                    <div class="conclusiones-grid" id="conclusionesContent">
+                        <div class="conclusion-card">
+                            <h3 class="conclusion-title">Aprendizaje</h3>
+                            <p>Cómo conectarme a mi servidor de Ubiquitous y modificarlo, y cómo crear nuevas instancias de VM.</p>
+                        </div>
+                        
+                        <div class="conclusion-card">
+                            <h3 class="conclusion-title">Problemas y Soluciones</h3>
+                            <p>Cuando creé la máquina virtual la configuré mal y no podía descargar MariaDB; borré esa instancia y creé una nueva bien configurada.</p>
+                        </div>
+                        
+                        <div class="conclusion-card">
+                            <h3 class="conclusion-title">Mejoras Futuras</h3>
+                            <p>Practicar los comandos de Linux.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="tarea-actions">
+                    <a href="parcial1.html" class="volver-btn">
+                        ← Volver a Parcial 1
+                    </a>
+                    
+                    <button class="btn-descargar" onclick="imprimirTarea()">
+                        🖨️ Imprimir Tarea
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico</p>
+                <div class="footer-links">
+                    <a href="../index.html" class="footer-link">Inicio</a>
+                    <a href="#" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar datos de la tarea desde localStorage
+            const taskId = sessionStorage.getItem('currentTaskId');
+            const parcialId = sessionStorage.getItem('currentParcial');
+            
+            if (taskId && parcialId) {
+                cargarTarea(taskId, parcialId);
+            }
+            
+            // Configurar funcionalidad de copiar código
+            document.querySelectorAll('.codigo-copiar').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const codeBlock = this.closest('.codigo-container').querySelector('code');
+                    const texto = codeBlock.textContent;
+                    
+                    navigator.clipboard.writeText(texto).then(() => {
+                        const originalText = this.textContent;
+                        this.textContent = '✓ Copiado!';
+                        this.style.background = 'rgba(0, 255, 136, 0.2)';
+                        this.style.borderColor = 'var(--color-accent)';
+                        
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = '';
+                            this.style.borderColor = '';
+                        }, 2000);
+                    });
+                });
+            });
+        });
+
+        function cargarTarea(taskId, parcialId) {
+            const tasks = JSON.parse(localStorage.getItem(parcialId + '_tasks')) || [];
+            const task = tasks.find(t => t.id == taskId);
+            
+            if (task) {
+                // Actualizar título
+                document.getElementById('taskTitle').textContent = task.title;
+                
+                // Actualizar breadcrumb
+                const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
+                const parcialLink = document.querySelector('.breadcrumb a[href*="parcial"]');
+                
+                breadcrumbCurrent.textContent = task.title;
+                if (parcialLink) {
+                    parcialLink.textContent = parcialId === 'parcial1' ? 'Parcial 1' : 
+                                           parcialId === 'parcial2' ? 'Parcial 2' : 
+                                           parcialId === 'parcial3' ? 'Parcial 3' : 'Proyecto';
+                    parcialLink.href = `${parcialId}.html`;
+                }
+                
+                // Actualizar fecha
+                if (task.createdAt) {
+                    const fecha = new Date(task.createdAt);
+                    document.getElementById('taskDate').textContent = 
+                        `Fecha: ${fecha.toLocaleDateString('es-ES', { 
+                            day: 'numeric', 
+                            month: 'long', 
+                            year: 'numeric' 
+                        })}`;
+                }
+                
+                // Actualizar estado
+                const statusElement = document.getElementById('taskStatus');
+                if (task.status === 'completed') {
+                    statusElement.textContent = '✅ Completada';
+                    statusElement.style.color = '#38a169';
+                } else if (task.status === 'progress') {
+                    statusElement.textContent = '🚧 En progreso';
+                    statusElement.style.color = '#d69e2e';
+                } else {
+                    statusElement.textContent = '⏳ Pendiente';
+                    statusElement.style.color = '#718096';
+                }
+            }
+        }
+
+        function descargarPaquete() {
+            const readmeContent = `# Configuración de Ubiquitous y Google Cloud\n\nFecha: ${new Date().toLocaleDateString()}`;
+            
+            const blob = new Blob([readmeContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'configuracion-ubiquitous.zip';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function imprimirTarea() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

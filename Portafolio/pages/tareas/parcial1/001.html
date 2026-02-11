@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 001: Configuración Ubiquitous - Portafolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        :root {
+            --task-color: #00d4ff;
+            --task-color-rgb: 0, 212, 255;
+        }
+        
+        .task-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+        
+        .task-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(var(--task-color-rgb), 0.3);
+        }
+        
+        .task-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(var(--task-color-rgb), 0.1);
+            border: 2px solid var(--task-color);
+            border-radius: 25px;
+            color: var(--task-color);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .task-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--task-color) 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0.5rem 0 1rem;
+            line-height: 1.2;
+        }
+        
+        .task-subtitle {
+            font-size: 1.2rem;
+            color: #b8c5d6;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .task-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            text-align: center;
+        }
+        
+        .meta-value {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--task-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .meta-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #6b7a90;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .task-section {
+            background: rgba(19, 24, 41, 0.8);
+            border: 1px solid rgba(var(--task-color-rgb), 0.2);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .task-section:hover {
+            border-color: rgba(var(--task-color-rgb), 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--task-color);
+            background: rgba(var(--task-color-rgb), 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: white;
+            margin: 0;
+        }
+        
+        .section-content {
+            color: #b8c5d6;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .section-content h4 {
+            color: var(--task-color);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.3rem;
+        }
+        
+        .section-content ul, .section-content ol {
+            padding-left: 1.8rem;
+            margin: 1rem 0;
+        }
+        
+        .section-content li {
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+        
+        .section-content strong {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .task-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(var(--task-color-rgb), 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .task-image:hover {
+            transform: translateY(-5px);
+            border-color: var(--task-color);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+        }
+        
+        .task-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .image-info {
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .image-title {
+            color: var(--task-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .image-desc {
+            color: #b8c5d6;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .code-block {
+            background: #050814;
+            border: 1px solid rgba(var(--task-color-rgb), 0.3);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .code-comment { color: #6b7a90; }
+        .code-keyword { color: #ff6b9d; }
+        .code-string { color: #00ff88; }
+        .code-function { color: #00d4ff; }
+        .code-number { color: #ffd000; }
+        .code-prompt { color: #00d4ff; }
+        .code-command { color: #ffffff; }
+        
+        .files-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(var(--task-color-rgb), 0.05);
+            border: 1px solid rgba(var(--task-color-rgb), 0.2);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: rgba(var(--task-color-rgb), 0.1);
+            border-color: var(--task-color);
+            transform: translateX(8px);
+        }
+        
+        .file-icon {
+            font-size: 2.2rem;
+            color: var(--task-color);
+        }
+        
+        .file-details {
+            flex: 1;
+        }
+        
+        .file-name {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .file-size {
+            color: #6b7a90;
+            font-size: 0.9rem;
+        }
+        
+        .task-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(var(--task-color-rgb), 0.2);
+        }
+        
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: rgba(var(--task-color-rgb), 0.1);
+            border: 1px solid rgba(var(--task-color-rgb), 0.3);
+            border-radius: 8px;
+            color: var(--task-color);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(var(--task-color-rgb), 0.2);
+            border-color: var(--task-color);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .task-container {
+                padding: 80px 15px 30px;
+            }
+            
+            .task-title {
+                font-size: 2rem;
+            }
+            
+            .task-meta {
+                gap: 1.5rem;
+            }
+            
+            .task-section {
+                padding: 1.5rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .task-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="../../parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="task-container">
+        <header class="task-header">
+            <span class="task-badge">TAREA 001</span>
+            <h1 class="task-title">Configuración de Ubiquitous y Google Cloud</h1>
+            <p class="task-subtitle">
+                Configuración inicial del servidor Ubiquitous y creación de la primera máquina virtual en Google Cloud.
+            </p>
+            <div class="task-meta">
+                <div class="meta-item">
+                    <span class="meta-value">20 ENE</span>
+                    <span class="meta-label">Fecha</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value">3.5 HRS</span>
+                    <span class="meta-label">Duración</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value" style="color: #00ff88;">COMPLETADA</span>
+                    <span class="meta-label">Estado</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value">MEDIA</span>
+                    <span class="meta-label">Dificultad</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="task-section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Objetivo y Contexto</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>Fecha de ejecución:</strong> 20 de Enero, 2026</p>
+                <h4>🎯 Objetivo Principal</h4>
+                <p>En esta sesión trabajamos en dos objetivos principales:</p>
+                <ul>
+                    <li><strong>Configurar y utilizar Ubiquitous:</strong> Aprender a acceder al servidor de la escuela y crear nuestra página personal.</li>
+                    <li><strong>Crear una VM en Google Cloud:</strong> Configurar nuestra primera máquina virtual e instalar MariaDB.</li>
+                </ul>
+                <h4>📋 Contexto de la Actividad</h4>
+                <ul>
+                    <li>Cada estudiante tiene una cuenta en el servidor Ubiquitous donde se alojarán todas las tareas.</li>
+                    <li>Previamente configuramos nuestras cuentas de Google Cloud con facturación habilitada.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Procedimiento y Desarrollo</h2>
+            </div>
+            <div class="section-content">
+                <h4>🔧 Pasos realizados</h4>
+                <ol>
+                    <li><strong>Conexión SSH al servidor Ubiquitous</strong></li>
+                    <li><strong>Creación de estructura de carpetas</strong></li>
+                    <li><strong>Configuración de SFTP con CyberDuck</strong></li>
+                    <li><strong>Creación de VM en Google Cloud</strong></li>
+                    <li><strong>Instalación de MariaDB</strong></li>
+                </ol>
+                <h4>💻 Código ejecutado</h4>
+                <div class="code-block">
+<span class="code-comment"># Actualización del sistema</span>
+<span class="code-prompt">$</span> <span class="code-command">sudo yum update -y</span>
+<span class="code-comment"># Instalación de MariaDB</span>
+<span class="code-prompt">$</span> <span class="code-command">sudo yum install mariadb-server -y</span>
+<span class="code-comment"># Habilitar servicio</span>
+<span class="code-prompt">$</span> <span class="code-command">sudo systemctl enable mariadb</span>
+<span class="code-prompt">$</span> <span class="code-command">sudo systemctl start mariadb</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Evidencia y Resultados</h2>
+            </div>
+            <div class="section-content">
+                <p>Capturas de pantalla del proceso:</p>
+                <div class="images-grid">
+                    <div class="task-image">
+                        <img src="../../../../assets/images/parcial1/tarea001/ubiquitous-pagina.png" 
+                             alt="Página en Ubiquitous"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x220/0a0e27/00d4ff?text=Imagen+no+encontrada'">
+                        <div class="image-info">
+                            <div class="image-title">Figura 1: Página en Ubiquitous</div>
+                            <div class="image-desc">Página web funcionando en el servidor.</div>
+                        </div>
+                    </div>
+                    <div class="task-image">
+                        <img src="../../../../assets/images/parcial1/tarea001/vm-creada.png" 
+                             alt="VM en Google Cloud"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x220/0a0e27/00d4ff?text=Imagen+no+encontrada'">
+                        <div class="image-info">
+                            <div class="image-title">Figura 2: VM en Google Cloud</div>
+                            <div class="image-desc">Máquina virtual creada en GCP.</div>
+                        </div>
+                    </div>
+                    <div class="task-image">
+                        <img src="../../../../assets/images/parcial1/tarea001/mariadb-activo.png" 
+                             alt="MariaDB activo"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x220/0a0e27/00d4ff?text=Imagen+no+encontrada'">
+                        <div class="image-info">
+                            <div class="image-title">Figura 3: MariaDB activo</div>
+                            <div class="image-desc">Servicio MariaDB funcionando.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Conclusiones y Aprendizaje</h2>
+            </div>
+            <div class="section-content">
+                <h4>✅ Aprendizaje obtenido</h4>
+                <ul>
+                    <li>Conexión remota segura con SSH y SFTP</li>
+                    <li>Configuración de máquinas virtuales en la nube</li>
+                    <li>Gestión de servicios en Linux</li>
+                </ul>
+                <h4>🚀 Mejoras futuras</h4>
+                <ul>
+                    <li>Automatizar la configuración con scripts</li>
+                    <li>Implementar backup automático</li>
+                    <li>Configurar dominio personalizado</li>
+                </ul>
+            </div>
+        </section>
+
+        <nav class="task-nav">
+            <a href="../../parcial1.html" class="nav-btn">
+                <span>←</span>
+                <span>Volver al Parcial 1</span>
+            </a>
+            <div style="display: flex; gap: 1rem;">
+                <a href="002.html" class="nav-btn">
+                    <span>Siguiente Tarea</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </nav>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico - Eugenio Espeleta</p>
+                <div class="footer-links">
+                    <a href="../../../index.html" class="footer-link">Inicio</a>
+                    <a href="mailto:tu@email.com" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = getComputedStyle(document.documentElement);
+            const primaryColor = style.getPropertyValue('--color-primary').trim() || '#00d4ff';
+            const hex = primaryColor.replace('#', '');
+            const r = parseInt(hex.substr(0, 2), 16);
+            const g = parseInt(hex.substr(2, 2), 16);
+            const b = parseInt(hex.substr(4, 2), 16);
+            
+            document.documentElement.style.setProperty('--task-color', primaryColor);
+            document.documentElement.style.setProperty('--task-color-rgb', `${r}, ${g}, ${b}`);
+            
+            const sections = document.querySelectorAll('.task-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+            
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '🖨️ Imprimir';
+            printBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                background: ${primaryColor};
+                color: #050814;
+                border: none;
+                border-radius: 25px;
+                font-family: 'Orbitron', sans-serif;
+                font-weight: 700;
+                cursor: pointer;
+                z-index: 1000;
+                box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+                transition: all 0.3s ease;
+            `;
+            printBtn.onmouseover = () => printBtn.style.transform = 'translateY(-2px)';
+            printBtn.onmouseout = () => printBtn.style.transform = 'translateY(0)';
+            printBtn.onclick = () => window.print();
+            document.body.appendChild(printBtn);
+        });
+    </script>
+</body>
+</html>

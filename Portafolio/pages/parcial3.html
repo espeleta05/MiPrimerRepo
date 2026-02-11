@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial 3 - Portafolio Académico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/futuristic.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA PARCIAL 3 */
+        .parcial-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20, 0, 80, 0.3), rgba(0, 10, 40, 0.3));
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(100, 0, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parcial-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-primary), 
+                var(--color-secondary), 
+                var(--color-primary), 
+                transparent
+            );
+        }
+        
+        .parcial-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .module-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .module-tab {
+            padding: 0.8rem 1.5rem;
+            background: rgba(20, 0, 40, 0.4);
+            border: 1px solid rgba(100, 0, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-family: var(--font-display);
+            font-weight: 500;
+        }
+        
+        .module-tab:hover {
+            background: rgba(100, 0, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .module-tab.active {
+            background: rgba(100, 0, 255, 0.3);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 15px rgba(100, 0, 255, 0.3);
+        }
+        
+        .module-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .module-content.active {
+            display: block;
+        }
+        
+        .advanced-features {
+            background: rgba(0, 20, 40, 0.3);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 150, 255, 0.2);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-card {
+            background: rgba(10, 14, 39, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            transition: all var(--transition-normal);
+        }
+        
+        .feature-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+        
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.4), rgba(0, 10, 30, 0.6));
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0, 150, 255, 0.2);
+        }
+        
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN SUPERIOR -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-icon">🚀</div>
+                <span class="logo-text">Portafolio</span>
+                <span class="logo-highlight">Académico</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Inicio</span>
+                </a>
+                <a href="parcial1.html" class="nav-link">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Parcial 1</span>
+                </a>
+                <a href="parcial2.html" class="nav-link">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Parcial 2</span>
+                </a>
+                <a href="parcial3.html" class="nav-link active">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Parcial 3</span>
+                </a>
+                <a href="proyecto.html" class="nav-link">
+                    <span class="nav-icon">🌟</span>
+                    <span class="nav-text">Proyecto</span>
+                </a>
+                <a href="hobbies.html" class="nav-link">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-text">Hobbies</span>
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <!-- ENCABEZADO DE PARCIAL 3 -->
+            <header class="parcial-header">
+                <h1 class="page-title">Parcial 3</h1>
+                <p class="parcial-subtitle">Temas Avanzados y Proyecto Integrador</p>
+                
+                <div class="stats-banner">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTasks">0</div>
+                        <div class="stat-label">Tareas Totales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Completadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="progressPercent">0%</div>
+                        <div class="stat-label">Progreso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="lastUpdate">-</div>
+                        <div class="stat-label">Última Actualización</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PESTAÑAS DE MÓDULOS -->
+            <div class="module-tabs">
+                <div class="module-tab active" data-module="module1">Módulo 1: DevOps</div>
+                <div class="module-tab" data-module="module2">Módulo 2: Cloud Native</div>
+                <div class="module-tab" data-module="module3">Módulo 3: IA y ML</div>
+                <div class="module-tab" data-module="module4">Módulo 4: Seguridad</div>
+                <div class="module-tab" data-module="project">Proyecto Integrador</div>
+            </div>
+
+            <!-- CONTENIDO DE MÓDULOS -->
+            <div class="module-content active" id="module1">
+                <div class="content-area">
+                    <h2>📦 Módulo 1: DevOps y CI/CD</h2>
+                    <p>Automatización de procesos de desarrollo, integración y despliegue continuo.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🐳</div>
+                            <h3>Docker & Containers</h3>
+                            <p>Contenedorización de aplicaciones y microservicios.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚙️</div>
+                            <h3>Kubernetes</h3>
+                            <p>Orquestación de contenedores a escala empresarial.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔁</div>
+                            <h3>CI/CD Pipelines</h3>
+                            <p>Automatización de pruebas y despliegues.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>Monitoring</h3>
+                            <p>Monitoreo y observabilidad de aplicaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content" id="module2">
+                <div class="content-area">
+                    <h2>☁️ Módulo 2: Cloud Native</h2>
+                    <p>Aplicaciones diseñadas específicamente para entornos cloud.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Microservicios</h3>
+                            <p>Arquitectura escalable y desacoplada.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>APIs & Gateways</h3>
+                            <p>Comunicación entre servicios y exposición de APIs.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💾</div>
+                            <h3>Cloud Databases</h3>
+                            <p>Bases de datos administradas en la nube.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Serverless</h3>
+                            <p>Funciones como servicio y computación sin servidor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content" id="module3">
+                <div class="content-area">
+                    <h2>🤖 Módulo 3: Inteligencia Artificial</h2>
+                    <p>Implementación de modelos de ML y soluciones de IA.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <h3>Machine Learning</h3>
+                            <p>Modelos predictivos y algoritmos de aprendizaje.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👁️</div>
+                            <h3>Computer Vision</h3>
+                            <p>Procesamiento y análisis de imágenes.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🗣️</div>
+                            <h3>NLP</h3>
+                            <p>Procesamiento de lenguaje natural.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h3>Data Science</h3>
+                            <p>Análisis y visualización de datos complejos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content" id="module4">
+                <div class="content-area">
+                    <h2>🔒 Módulo 4: Seguridad Avanzada</h2>
+                    <p>Protección de aplicaciones y datos en entornos cloud.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Zero Trust</h3>
+                            <p>Modelo de seguridad "nunca confíes, siempre verifica".</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <h3>Encryption</h3>
+                            <p>Cifrado de datos en reposo y en tránsito.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👮</div>
+                            <h3>IAM</h3>
+                            <p>Gestión de identidades y accesos.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📋</div>
+                            <h3>Compliance</h3>
+                            <p>Cumplimiento de regulaciones y estándares.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-content" id="project">
+                <div class="content-area">
+                    <h2>🌟 Proyecto Integrador</h2>
+                    <p>Proyecto final que integra todos los conceptos aprendidos en el parcial.</p>
+                    
+                    <div class="advanced-features">
+                        <h3>🚀 Características del Proyecto</h3>
+                        <ul>
+                            <li>Aplicación Cloud Native con microservicios</li>
+                            <li>Pipeline CI/CD automatizado</li>
+                            <li>Contenedores Docker y orquestación Kubernetes</li>
+                            <li>Componentes de IA/ML integrados</li>
+                            <li>Arquitectura segura con Zero Trust</li>
+                            <li>Monitoreo y observabilidad completa</li>
+                            <li>Escalabilidad automática</li>
+                            <li>Documentación técnica completa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GESTOR DE TAREAS -->
+            <section class="task-manager">
+                <div class="section-header">
+                    <h2>📋 Tareas del Parcial 3</h2>
+                    <button class="btn btn-primary" id="newTaskBtn">
+                        <span class="btn-icon">+</span>
+                        Subir Nueva Tarea
+                    </button>
+                </div>
+                
+                <div class="tasks-container" id="tasksContainer">
+                    <!-- Las tareas se cargarán aquí dinámicamente -->
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <h3>No hay tareas aún</h3>
+                        <p>Comienza agregando tu primera tarea para este parcial.</p>
+                        <button class="btn btn-outline" id="firstTaskBtn">
+                            <span class="btn-icon">+</span>
+                            Crear Primera Tarea
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARACTERÍSTICAS AVANZADAS -->
+            <section class="advanced-features">
+                <h2>⚡ Características Avanzadas del Parcial 3</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>Integración Continua</h3>
+                        <p>Automatización de pruebas y builds con GitHub Actions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Despliegue Continuo</h3>
+                        <p>Despliegue automático en múltiples entornos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Monitoreo en Tiempo Real</h3>
+                        <p>Dashboards con métricas de performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Seguridad Automatizada</h3>
+                        <p>Scans de vulnerabilidades en el pipeline.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL PARA NUEVA TAREA -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Nueva Tarea - Parcial 3</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Título de la Tarea</label>
+                        <input type="text" id="taskTitle" placeholder="Ej: Configuración de Pipeline CI/CD" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskModule">Módulo</label>
+                        <select id="taskModule" required>
+                            <option value="">Seleccionar módulo</option>
+                            <option value="module1">Módulo 1: DevOps</option>
+                            <option value="module2">Módulo 2: Cloud Native</option>
+                            <option value="module3">Módulo 3: IA y ML</option>
+                            <option value="module4">Módulo 4: Seguridad</option>
+                            <option value="project">Proyecto Integrador</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskDescription">Descripción</label>
+                        <textarea id="taskDescription" rows="4" placeholder="Describe los detalles de la tarea, objetivos y resultados esperados..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskStatus">Estado</label>
+                        <select id="taskStatus" required>
+                            <option value="pending">⏳ Pendiente</option>
+                            <option value="progress">🚧 En progreso</option>
+                            <option value="completed">✅ Completada</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskDueDate">Fecha de Entrega</label>
+                        <input type="date" id="taskDueDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Archivos Adjuntos</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <span class="upload-text">Arrastra archivos o haz clic para subir</span>
+                            <input type="file" id="taskFiles" multiple hidden>
+                        </div>
+                        <div class="file-preview" id="filePreview"></div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancel">Cancelar</button>
+                <button class="btn btn-primary" id="modalSave">Guardar Tarea</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="../scripts/main.js"></script>
+    <script>
+        // CONFIGURACIÓN ESPECÍFICA PARA PARCIAL 3
+        const PARCIAL_ID = 'parcial3';
+        
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            initParcial3();
+        });
+        
+        function initParcial3() {
+            // Sistema de pestañas de módulos
+            const moduleTabs = document.querySelectorAll('.module-tab');
+            const moduleContents = document.querySelectorAll('.module-content');
+            
+            moduleTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const moduleId = tab.getAttribute('data-module');
+                    
+                    // Remover activo de todos
+                    moduleTabs.forEach(t => t.classList.remove('active'));
+                    moduleContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Activar actual
+                    tab.classList.add('active');
+                    document.getElementById(moduleId).classList.add('active');
+                });
+            });
+            
+            // Cargar tareas existentes
+            loadTasks();
+            
+            // Configurar botones
+            document.getElementById('newTaskBtn').addEventListener('click', showTaskModal);
+            document.getElementById('firstTaskBtn').addEventListener('click', showTaskModal);
+            document.getElementById('modalClose').addEventListener('click', hideTaskModal);
+            document.getElementById('modalCancel').addEventListener('click', hideTaskModal);
+            document.getElementById('modalSave').addEventListener('click', saveTask);
+            
+            // Configurar subida de archivos
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const taskFilesInput = document.getElementById('taskFiles');
+            
+            fileUploadArea.addEventListener('click', () => taskFilesInput.click());
+            fileUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.add('dragover');
+            });
+            
+            fileUploadArea.addEventListener('dragleave', () => {
+                fileUploadArea.classList.remove('dragover');
+            });
+            
+            fileUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.remove('dragover');
+                taskFilesInput.files = e.dataTransfer.files;
+                updateFilePreview();
+            });
+            
+            taskFilesInput.addEventListener('change', updateFilePreview);
+            
+            // Actualizar estadísticas
+            updateStats();
+        }
+        
+        function showTaskModal() {
+            document.getElementById('taskModal').style.display = 'flex';
+            document.getElementById('taskTitle').focus();
+        }
+        
+        function hideTaskModal() {
+            document.getElementById('taskModal').style.display = 'none';
+            document.getElementById('taskForm').reset();
+            document.getElementById('filePreview').innerHTML = '';
+        }
+        
+        function updateFilePreview() {
+            const files = document.getElementById('taskFiles').files;
+            const preview = document.getElementById('filePreview');
+            preview.innerHTML = '';
+            
+            if (files.length > 0) {
+                Array.from(files).forEach(file => {
+                    const fileElement = document.createElement('div');
+                    fileElement.className = 'file-item';
+                    fileElement.innerHTML = `
+                        <span class="file-icon">📎</span>
+                        <span class="file-name">${file.name}</span>
+                        <span class="file-size">(${formatFileSize(file.size)})</span>
+                    `;
+                    preview.appendChild(fileElement);
+                });
+            }
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function saveTask() {
+            const taskData = {
+                id: Date.now(),
+                title: document.getElementById('taskTitle').value,
+                module: document.getElementById('taskModule').value,
+                description: document.getElementById('taskDescription').value,
+                status: document.getElementById('taskStatus').value,
+                dueDate: document.getElementById('taskDueDate').value,
+                files: Array.from(document.getElementById('taskFiles').files).map(f => f.name),
+                createdAt: new Date().toISOString(),
+                parcial: PARCIAL_ID
+            };
+            
+            if (!taskData.title || !taskData.module) {
+                alert('Por favor completa los campos requeridos');
+                return;
+            }
+            
+            // Guardar en localStorage
+            saveTaskToStorage(taskData);
+            
+            // Actualizar UI
+            loadTasks();
+            updateStats();
+            
+            // Cerrar modal
+            hideTaskModal();
+            
+            // Mostrar confirmación
+            showNotification('Tarea guardada exitosamente', 'success');
+        }
+        
+        function saveTaskToStorage(task) {
+            let tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem(PARCIAL_ID + '_tasks', JSON.stringify(tasks));
+        }
+        
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+            const container = document.getElementById('tasksContainer');
+            
+            if (tasks.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <h3>No hay tareas aún</h3>
+                        <p>Comienza agregando tu primera tarea para este parcial.</p>
+                        <button class="btn btn-outline" id="firstTaskBtn">
+                            <span class="btn-icon">+</span>
+                            Crear Primera Tarea
+                        </button>
+                    </div>
+                `;
+                document.getElementById('firstTaskBtn').addEventListener('click', showTaskModal);
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            tasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'task-card';
+                taskElement.setAttribute('data-task-id', task.id);
+                
+                const statusIcons = {
+                    pending: '⏳',
+                    progress: '🚧',
+                    completed: '✅'
+                };
+                
+                const moduleNames = {
+                    module1: 'DevOps',
+                    module2: 'Cloud Native',
+                    module3: 'IA y ML',
+                    module4: 'Seguridad',
+                    project: 'Proyecto'
+                };
+                
+                taskElement.innerHTML = `
+                    <div class="task-header">
+                        <div class="task-status ${task.status}">
+                            ${statusIcons[task.status]}
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-module">${moduleNames[task.module] || task.module}</span>
+                            ${task.dueDate ? `<span class="task-due">📅 ${new Date(task.dueDate).toLocaleDateString('es-ES')}</span>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="task-body">
+                        <h3 class="task-title">${task.title}</h3>
+                        <p class="task-description">${task.description.substring(0, 100)}${task.description.length > 100 ? '...' : ''}</p>
+                        
+                        ${task.files && task.files.length > 0 ? `
+                            <div class="task-files">
+                                <span class="file-count">📎 ${task.files.length} archivo(s)</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="task-footer">
+                        <span class="task-date">Creada: ${new Date(task.createdAt).toLocaleDateString('es-ES')}</span>
+                        <div class="task-actions">
+                            <button class="btn-icon" onclick="viewTaskDetails(${task.id})" title="Ver detalles">
+                                👁️
+                            </button>
+                            <button class="btn-icon" onclick="editTask(${task.id})" title="Editar">
+                                ✏️
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteTask(${task.id})" title="Eliminar">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(taskElement);
+            });
+        }
+        
+        function updateStats() {
+            const tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+            const totalTasks = tasks.length;
+            const completedTasks = tasks.filter(t => t.status === 'completed').length;
+            const progressPercent = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+            
+            document.getElementById('totalTasks').textContent = totalTasks;
+            document.getElementById('completedTasks').textContent = completedTasks;
+            document.getElementById('progressPercent').textContent = progressPercent + '%';
+            
+            if (tasks.length > 0) {
+                const lastTask = tasks[tasks.length - 1];
+                document.getElementById('lastUpdate').textContent = new Date(lastTask.createdAt).toLocaleDateString('es-ES');
+            }
+        }
+        
+        function viewTaskDetails(taskId) {
+            // Guardar el ID para usar en la página de detalles
+            sessionStorage.setItem('currentTaskId', taskId);
+            sessionStorage.setItem('currentParcial', PARCIAL_ID);
+            
+            // Redirigir a la página de detalles
+            window.location.href = 'tarea-template.html';
+        }
+        
+        function editTask(taskId) {
+            const tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+            const task = tasks.find(t => t.id === taskId);
+            
+            if (task) {
+                // Llenar el formulario con los datos de la tarea
+                document.getElementById('taskTitle').value = task.title;
+                document.getElementById('taskModule').value = task.module;
+                document.getElementById('taskDescription').value = task.description;
+                document.getElementById('taskStatus').value = task.status;
+                document.getElementById('taskDueDate').value = task.dueDate || '';
+                
+                // Mostrar modal
+                showTaskModal();
+                
+                // Cambiar comportamiento del botón guardar
+                const saveBtn = document.getElementById('modalSave');
+                saveBtn.textContent = 'Actualizar Tarea';
+                saveBtn.onclick = function() {
+                    updateTask(taskId);
+                };
+            }
+        }
+        
+        function updateTask(taskId) {
+            const tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+            
+            if (taskIndex !== -1) {
+                tasks[taskIndex] = {
+                    ...tasks[taskIndex],
+                    title: document.getElementById('taskTitle').value,
+                    module: document.getElementById('taskModule').value,
+                    description: document.getElementById('taskDescription').value,
+                    status: document.getElementById('taskStatus').value,
+                    dueDate: document.getElementById('taskDueDate').value,
+                    updatedAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem(PARCIAL_ID + '_tasks', JSON.stringify(tasks));
+                loadTasks();
+                updateStats();
+                hideTaskModal();
+                showNotification('Tarea actualizada', 'success');
+            }
+        }
+        
+        function deleteTask(taskId) {
+            if (confirm('¿Estás seguro de eliminar esta tarea?')) {
+                let tasks = JSON.parse(localStorage.getItem(PARCIAL_ID + '_tasks')) || [];
+                tasks = tasks.filter(t => t.id !== taskId);
+                localStorage.setItem(PARCIAL_ID + '_tasks', JSON.stringify(tasks));
+                loadTasks();
+                updateStats();
+                showNotification('Tarea eliminada', 'warning');
+            }
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span class="notification-icon">${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️'}</span>
+                <span class="notification-text">${message}</span>
+            `;
+            
+            // Agregar al documento
+            document.body.appendChild(notification);
+            
+            // Mostrar con animación
+            setTimeout(() => notification.classList.add('show'), 10);
+            
+            // Remover después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Agregar estilos para notificaciones
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: rgba(10, 14, 39, 0.95);
+                border: 1px solid rgba(0, 212, 255, 0.3);
+                border-radius: var(--border-radius-md);
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                z-index: 1000;
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+            
+            .notification.show {
+                transform: translateX(0);
+            }
+            
+            .notification.success {
+                border-color: rgba(0, 255, 136, 0.4);
+            }
+            
+            .notification.warning {
+                border-color: rgba(255, 200, 0, 0.4);
+            }
+            
+            .notification-icon {
+                font-size: 1.2rem;
+            }
+            
+            .notification-text {
+                font-family: var(--font-body);
+                color: var(--color-text-light);
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+    </script>
+</body>
+</html>

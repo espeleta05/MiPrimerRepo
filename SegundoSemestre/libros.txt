@@ -1,0 +1,503 @@
+Cuentos de Mar y Fuego,1818,28.35,34
+Recuerdos de un Futuro,1833,21.74,30
+La Luz Oscura,1991,20.06,36
+Los Ecos del Tiempo,1871,24.42,41
+El Último Suspiro,1904,11.79,32
+Misterios del Mundo,1910,14.41,32
+El Último Suspiro,1980,14.75,10
+Cuentos No Contados,1923,15.09,21
+El Camino Perdido,1837,9.42,17
+El Último Refugio,1816,9.55,34
+El Último Refugio,2014,19.37,8
+Recuerdos de un Futuro,1926,30.04,6
+El Último Refugio,1936,8.59,21
+El Camino Perdido,1925,16.23,34
+La Luz Oscura,1871,23.87,49
+El Último Suspiro,1971,16.74,14
+La Sombra del Olvido,1825,22.26,14
+Voces Silenciadas,1834,21.5,31
+Voces Silenciadas,1880,12.47,20
+La Sombra del Olvido,1902,25.05,36
+Amor y Venganza,1824,14.05,24
+Cuentos de Mar y Fuego,2008,18.39,49
+El Último Refugio,1874,29.8,50
+Recuerdos de un Futuro,1869,20.26,37
+La Luz Oscura,1891,28.48,5
+El Camino Perdido,1933,17,18
+Amor y Venganza,1897,19.01,11
+La Sombra del Olvido,1965,25.21,21
+Voces Silenciadas,1911,21.47,28
+El Camino Perdido,1818,11.09,12
+La Luz Oscura,1957,18.72,50
+Sombras en el Desierto,1895,26.69,1
+Cuentos de Mar y Fuego,1916,25.46,22
+Misterios del Mundo,1983,13.79,22
+El Último Refugio,1966,8.6,32
+El Último Suspiro,2008,20.84,39
+El Último Suspiro,2005,21.23,16
+El Último Refugio,1957,26.83,13
+Misterios del Mundo,1967,15.67,5
+Misterios del Mundo,1819,20.31,11
+Sueños de Libertad,1963,28.1,45
+Cuentos de Mar y Fuego,1955,15.3,22
+El Arte de la Vida,1914,17.71,11
+El Último Refugio,2002,17.54,25
+La Sombra del Olvido,1875,22.29,38
+Cuentos No Contados,1958,25.01,34
+Amor y Venganza,1819,28.3,12
+La Sombra del Olvido,1931,12.29,42
+El Último Suspiro,1818,12.3,32
+El Último Suspiro,1904,15.01,15
+La Sombra del Olvido,1906,28.19,48
+El Arte de la Vida,1822,13.03,7
+Sueños de Libertad,1824,24.4,11
+El Arte de la Vida,1804,22.58,49
+Recuerdos de un Futuro,1999,29.74,3
+Los Ecos del Tiempo,1820,7.23,10
+Recuerdos de un Futuro,1864,23.79,39
+El Arte de la Vida,1947,7.59,31
+Voces Silenciadas,1930,25.22,43
+El Arte de la Vida,1802,29.83,4
+El Último Suspiro,1848,9.26,38
+La Luz Oscura,1950,17.36,7
+Cuentos de Mar y Fuego,1984,18.71,48
+La Luz Oscura,1847,21.48,17
+Sombras en el Desierto,1960,17.9,6
+El Camino Perdido,1843,20.71,7
+Los Ecos del Tiempo,1941,22.02,13
+Voces Silenciadas,1900,18.11,35
+Cuentos de Mar y Fuego,1990,26.84,7
+El Arte de la Vida,1865,25.37,45
+Amor y Venganza,1993,8.13,27
+Sombras en el Desierto,1932,8.77,38
+Recuerdos de un Futuro,1820,11.68,33
+El Último Suspiro,1933,26.49,2
+Sombras en el Desierto,1911,24.44,40
+El Camino Perdido,1957,27.34,12
+El Último Refugio,1948,27.45,31
+Sombras en el Desierto,1959,7.43,35
+Voces Silenciadas,1970,6.8,31
+El Último Suspiro,1850,13.49,1
+Voces Silenciadas,1959,14.82,4
+El Último Suspiro,1906,10.39,2
+Los Ecos del Tiempo,1898,25.18,47
+Recuerdos de un Futuro,1856,12.81,45
+Cuentos No Contados,1872,19.71,37
+La Luz Oscura,2010,12.85,12
+Amor y Venganza,1934,7.34,35
+El Arte de la Vida,2013,22.57,6
+Recuerdos de un Futuro,1958,16.04,38
+Cuentos No Contados,1974,17.25,38
+Sombras en el Desierto,1973,8.29,21
+La Sombra del Olvido,1865,8.02,10
+El Último Suspiro,1809,25.02,4
+Recuerdos de un Futuro,1877,12.7,25
+Amor y Venganza,1907,22.51,5
+El Último Refugio,1999,16.41,47
+Misterios del Mundo,1898,6.1,40
+El Arte de la Vida,1857,20.51,10
+Sombras en el Desierto,1922,12.61,16
+Amor y Venganza,1840,17.26,8
+La Luz Oscura,2000,27.69,36
+El Arte de la Vida,1970,30.69,14
+Los Ecos del Tiempo,1836,10.83,8
+Sueños de Libertad,1882,29.27,11
+El Último Suspiro,1843,9.59,18
+Sombras en el Desierto,1861,22.15,30
+Cuentos de Mar y Fuego,1970,22.11,35
+Sueños de Libertad,1848,12.57,21
+Misterios del Mundo,1966,27.73,13
+Recuerdos de un Futuro,1801,13.44,23
+Voces Silenciadas,1845,23.41,49
+Amor y Venganza,1859,22.76,42
+La Sombra del Olvido,1834,21.9,12
+La Luz Oscura,1998,15.23,42
+Cuentos No Contados,2006,12.45,41
+Amor y Venganza,2001,29.9,30
+Recuerdos de un Futuro,2003,7.07,43
+Cuentos de Mar y Fuego,1896,30.64,13
+El Último Suspiro,2014,10.62,22
+El Último Refugio,1885,9.71,21
+La Luz Oscura,1816,11.4,42
+El Camino Perdido,1977,7.95,49
+Misterios del Mundo,1818,7.95,10
+El Último Suspiro,1957,18.31,6
+Sombras en el Desierto,1931,21.96,17
+Cuentos de Mar y Fuego,1946,13.85,14
+Voces Silenciadas,1911,20.9,30
+La Sombra del Olvido,2012,17.35,36
+La Sombra del Olvido,1874,11.44,13
+Amor y Venganza,1902,6.09,5
+Cuentos de Mar y Fuego,1982,17.2,20
+El Último Suspiro,1886,13.24,19
+El Camino Perdido,1847,17.58,28
+El Último Refugio,1960,25.99,37
+El Último Refugio,2018,23.63,11
+El Último Suspiro,1807,11.27,26
+Amor y Venganza,1960,26.85,41
+Recuerdos de un Futuro,1884,23.08,18
+Los Ecos del Tiempo,1881,18.98,34
+Sombras en el Desierto,1833,30.82,17
+El Último Refugio,1823,19.07,20
+Amor y Venganza,1997,14.65,42
+La Sombra del Olvido,1823,24.74,33
+Los Ecos del Tiempo,1935,28.33,46
+El Último Refugio,1993,28.63,42
+Los Ecos del Tiempo,2017,23.66,25
+Recuerdos de un Futuro,1949,7.08,19
+El Último Suspiro,1914,12.6,2
+Amor y Venganza,1892,10.22,35
+Recuerdos de un Futuro,1999,7.01,14
+El Camino Perdido,1961,21.36,14
+Misterios del Mundo,1916,11.26,9
+El Camino Perdido,1803,19.1,38
+Misterios del Mundo,1973,27.82,27
+Recuerdos de un Futuro,1988,30.03,10
+El Camino Perdido,1875,29.67,24
+Misterios del Mundo,1994,26.65,6
+Sueños de Libertad,1841,22.33,27
+El Último Refugio,1965,16.77,46
+Voces Silenciadas,1803,29.39,6
+El Último Suspiro,1908,16.47,40
+Amor y Venganza,1898,23.51,38
+Voces Silenciadas,1838,20.66,1
+El Último Suspiro,1813,14.99,11
+Sueños de Libertad,1824,27.93,19
+Los Ecos del Tiempo,1945,16.67,41
+Voces Silenciadas,2016,20.5,24
+Misterios del Mundo,1802,20.49,44
+Amor y Venganza,1910,15.97,22
+El Arte de la Vida,1939,7.92,30
+Sueños de Libertad,1952,15.56,29
+Cuentos No Contados,1969,11.15,6
+Cuentos de Mar y Fuego,2010,7.94,8
+Voces Silenciadas,1809,26.93,19
+Misterios del Mundo,1814,17.22,49
+Misterios del Mundo,1832,11.32,26
+Recuerdos de un Futuro,1996,17.11,34
+Sombras en el Desierto,1977,11.61,40
+Voces Silenciadas,1840,22.58,14
+El Camino Perdido,1908,19.61,21
+La Luz Oscura,1972,21.66,47
+La Luz Oscura,1953,22.3,37
+Los Ecos del Tiempo,1810,22.37,45
+Recuerdos de un Futuro,1959,15.48,16
+El Arte de la Vida,2007,7.36,15
+La Luz Oscura,1897,15.47,6
+Los Ecos del Tiempo,1823,21.87,13
+Cuentos No Contados,1885,6.55,9
+Sueños de Libertad,1974,24.17,34
+El Último Suspiro,1921,24.99,12
+Sombras en el Desierto,2000,23,37
+Misterios del Mundo,1876,8.6,39
+Sueños de Libertad,1861,15.42,6
+Cuentos No Contados,1966,23.46,1
+Misterios del Mundo,1872,9.69,9
+La Luz Oscura,1894,27.52,24
+El Arte de la Vida,1859,14.63,21
+Voces Silenciadas,1876,17.61,32
+Cuentos No Contados,1854,20.83,49
+El Camino Perdido,1953,10.79,27
+La Sombra del Olvido,1832,28.2,2
+Misterios del Mundo,1863,29.47,43
+Cuentos No Contados,1835,13.2,24
+Misterios del Mundo,1948,23.22,7
+El Arte de la Vida,1858,8.32,32
+El Último Suspiro,1996,26.1,46
+Voces Silenciadas,1967,8.16,48
+Sueños de Libertad,1969,21.79,39
+El Último Suspiro,1846,26,20
+Cuentos de Mar y Fuego,1887,19.72,36
+Misterios del Mundo,2006,30.11,15
+Amor y Venganza,1898,23.54,2
+La Luz Oscura,1926,10.15,42
+Cuentos de Mar y Fuego,1897,19.78,7
+La Sombra del Olvido,1817,16.34,16
+El Último Suspiro,1859,25.15,14
+El Último Refugio,1868,18.5,30
+Cuentos No Contados,1913,23.72,50
+El Arte de la Vida,1901,8.87,19
+El Camino Perdido,1967,13.62,6
+El Camino Perdido,1859,10.54,22
+Amor y Venganza,1822,25.36,1
+El Último Refugio,1948,7.29,16
+El Último Refugio,1935,18.51,33
+El Último Suspiro,2022,20.76,36
+Cuentos No Contados,1910,27.62,27
+La Sombra del Olvido,2008,8.06,20
+Voces Silenciadas,1830,14.42,11
+La Sombra del Olvido,1829,24.36,11
+Los Ecos del Tiempo,1891,27.76,6
+Misterios del Mundo,1842,28.83,29
+Misterios del Mundo,2006,17.34,39
+La Sombra del Olvido,1861,19.06,36
+Sueños de Libertad,1859,19.77,39
+El Camino Perdido,1876,6.56,14
+Cuentos No Contados,1916,21.58,4
+Cuentos de Mar y Fuego,1854,27.53,45
+Recuerdos de un Futuro,1801,19.16,39
+Cuentos No Contados,2005,12.06,12
+La Luz Oscura,1862,11.01,43
+Misterios del Mundo,1965,6.61,43
+Cuentos No Contados,1915,22.58,38
+La Sombra del Olvido,1941,23.9,33
+La Luz Oscura,1939,24.53,36
+Sombras en el Desierto,1844,20.89,24
+El Camino Perdido,1944,12.62,39
+Los Ecos del Tiempo,1847,17.03,24
+Cuentos No Contados,1859,14.71,8
+El Último Refugio,1862,26.56,49
+Cuentos de Mar y Fuego,1809,29.5,1
+La Luz Oscura,1913,18.16,46
+El Último Suspiro,1926,28.91,14
+El Camino Perdido,1926,6.81,42
+Misterios del Mundo,1971,13.95,8
+Amor y Venganza,1911,8.97,22
+Cuentos de Mar y Fuego,1867,19.74,42
+El Arte de la Vida,1800,22.47,39
+Sombras en el Desierto,1858,27.74,50
+Sueños de Libertad,1838,29.55,1
+Voces Silenciadas,1990,14.79,7
+Los Ecos del Tiempo,1868,8.57,49
+La Luz Oscura,1801,9.57,32
+Los Ecos del Tiempo,1900,10.48,38
+Cuentos No Contados,1901,18.09,24
+Misterios del Mundo,1912,13.01,15
+El Arte de la Vida,1840,20.14,37
+El Último Suspiro,1958,18.04,17
+La Sombra del Olvido,1972,22.07,29
+La Sombra del Olvido,1804,24.07,2
+Amor y Venganza,1996,29.47,20
+Voces Silenciadas,1934,27.77,15
+Misterios del Mundo,1957,17.15,42
+El Arte de la Vida,1858,22.22,29
+El Camino Perdido,1997,27.59,36
+El Arte de la Vida,1902,25.28,35
+El Último Suspiro,1893,12.87,20
+Los Ecos del Tiempo,1926,28.02,6
+La Sombra del Olvido,1844,29.72,38
+Los Ecos del Tiempo,1839,23.56,33
+Misterios del Mundo,1855,28.07,44
+El Camino Perdido,1913,29.16,11
+Los Ecos del Tiempo,1809,9.21,42
+El Camino Perdido,1914,22.77,17
+Misterios del Mundo,1997,30.96,23
+La Sombra del Olvido,1933,17.25,8
+El Último Refugio,1989,20.1,41
+El Último Suspiro,1836,30.61,4
+Los Ecos del Tiempo,1969,26.12,39
+Sueños de Libertad,1879,30.68,35
+Sueños de Libertad,1929,26.8,40
+Sueños de Libertad,2014,29.99,45
+El Último Suspiro,1833,17.51,40
+El Camino Perdido,1856,15.2,19
+Sueños de Libertad,1850,29.82,23
+Cuentos No Contados,2010,28.71,2
+Cuentos No Contados,1810,21.21,21
+Amor y Venganza,1878,25.08,15
+El Último Suspiro,1940,12.5,19
+La Sombra del Olvido,1861,29.82,23
+El Último Suspiro,1879,10.76,17
+Sueños de Libertad,1998,15.51,47
+El Último Refugio,1979,18.69,7
+Los Ecos del Tiempo,1904,9.6,39
+Los Ecos del Tiempo,1871,13,44
+La Luz Oscura,1837,9.4,22
+Misterios del Mundo,1810,20.08,20
+El Camino Perdido,1858,22.17,18
+Voces Silenciadas,1830,14.62,7
+El Último Suspiro,1833,18.22,32
+Sueños de Libertad,1978,29.29,6
+Amor y Venganza,2014,18.24,31
+Sueños de Libertad,1898,28.42,6
+La Luz Oscura,1809,12.07,4
+Los Ecos del Tiempo,1995,20.58,7
+La Luz Oscura,1803,15.47,41
+Voces Silenciadas,1833,21.57,32
+La Luz Oscura,1974,29.23,39
+Voces Silenciadas,1807,23.6,28
+Misterios del Mundo,1895,13,35
+El Último Suspiro,1963,21.35,7
+El Último Refugio,1957,11.56,26
+El Camino Perdido,1984,8.89,44
+El Último Suspiro,1963,30.79,36
+Los Ecos del Tiempo,1901,17.9,16
+Amor y Venganza,1825,11.78,16
+La Sombra del Olvido,2019,26.69,27
+El Último Refugio,1840,14.94,40
+Voces Silenciadas,1847,17.45,50
+Los Ecos del Tiempo,1969,23.72,3
+Voces Silenciadas,1867,21.28,39
+Sombras en el Desierto,1944,26.7,13
+Voces Silenciadas,1861,21.64,11
+La Luz Oscura,1913,11.6,5
+Los Ecos del Tiempo,1929,7.02,43
+La Sombra del Olvido,1985,12.42,43
+Amor y Venganza,1854,17.02,22
+La Sombra del Olvido,1997,17.83,30
+Los Ecos del Tiempo,1939,11.68,25
+Voces Silenciadas,1910,22.43,21
+El Último Refugio,1960,8.81,7
+El Último Refugio,1982,13.89,35
+La Sombra del Olvido,1880,23.57,49
+El Camino Perdido,1936,15.57,28
+Cuentos No Contados,1863,17.9,5
+Misterios del Mundo,1976,7.79,13
+La Sombra del Olvido,1831,21.32,32
+Misterios del Mundo,2014,15.43,21
+El Último Refugio,1831,29.41,2
+Misterios del Mundo,1929,7.17,38
+El Último Refugio,1848,22.53,24
+El Arte de la Vida,1824,17.5,37
+Recuerdos de un Futuro,1905,30.77,17
+Cuentos de Mar y Fuego,1936,6.2,3
+Cuentos No Contados,2015,21.66,16
+Sombras en el Desierto,1977,21.24,9
+Sombras en el Desierto,1822,16.13,50
+Los Ecos del Tiempo,1852,9.99,48
+Los Ecos del Tiempo,1898,11.23,10
+Recuerdos de un Futuro,1899,23.17,39
+Cuentos No Contados,1890,19.32,13
+El Último Suspiro,1985,9.62,30
+El Último Refugio,1874,22.86,41
+La Sombra del Olvido,1833,9.36,42
+Sueños de Libertad,1818,29.3,31
+El Arte de la Vida,1829,6.52,10
+Voces Silenciadas,1989,18.48,45
+Sombras en el Desierto,2010,9.93,42
+Amor y Venganza,1887,15.67,23
+Cuentos No Contados,1961,14.52,44
+El Camino Perdido,1858,8.3,17
+Los Ecos del Tiempo,1919,25.94,31
+Misterios del Mundo,1825,18.86,6
+Voces Silenciadas,1853,14.01,46
+Cuentos de Mar y Fuego,1942,11.29,33
+Recuerdos de un Futuro,1886,22.68,27
+Sombras en el Desierto,1948,8.59,37
+Misterios del Mundo,1939,17.4,47
+Cuentos de Mar y Fuego,1809,16.59,1
+El Arte de la Vida,1970,6.65,16
+Cuentos No Contados,1971,22.36,27
+El Último Refugio,1850,8.04,35
+Sombras en el Desierto,1872,18.36,19
+Recuerdos de un Futuro,1839,7.01,46
+La Luz Oscura,1911,16.12,16
+Cuentos No Contados,2013,25.21,10
+Voces Silenciadas,1990,25.08,12
+Sueños de Libertad,1810,30.41,23
+Sueños de Libertad,1812,6.11,7
+La Sombra del Olvido,1872,17.52,30
+Amor y Venganza,1832,21.72,45
+Sueños de Libertad,1994,15.17,4
+Voces Silenciadas,1900,23.65,49
+Recuerdos de un Futuro,1979,17.32,5
+Cuentos de Mar y Fuego,2023,16.4,16
+La Luz Oscura,1823,24.56,48
+Cuentos de Mar y Fuego,1900,14.44,34
+Amor y Venganza,1950,30.95,3
+La Luz Oscura,1875,29.8,37
+El Último Refugio,1911,16.7,21
+La Luz Oscura,2019,30.4,5
+Cuentos No Contados,1909,24.07,44
+Cuentos de Mar y Fuego,1940,28.58,16
+La Sombra del Olvido,1928,25.08,32
+El Camino Perdido,2021,6.74,12
+Amor y Venganza,1996,19.17,39
+El Camino Perdido,1891,17.62,48
+La Sombra del Olvido,2017,11.56,43
+Amor y Venganza,1812,19.55,5
+La Sombra del Olvido,1814,20.54,32
+El Arte de la Vida,1819,17.21,37
+Misterios del Mundo,1866,18.26,40
+Sombras en el Desierto,1849,20.52,34
+Misterios del Mundo,1860,26.72,44
+La Luz Oscura,1972,13.89,9
+Sombras en el Desierto,1958,8.74,38
+Sueños de Libertad,1819,17.64,29
+Sombras en el Desierto,1957,16.67,32
+Sombras en el Desierto,1962,16.05,25
+El Camino Perdido,1998,21.26,48
+Amor y Venganza,1871,22,39
+Sombras en el Desierto,1918,23.71,10
+El Camino Perdido,1955,9.05,44
+El Arte de la Vida,1944,16.63,31
+El Camino Perdido,1906,22.86,20
+La Sombra del Olvido,1838,22.76,24
+La Sombra del Olvido,1980,24.76,40
+El Último Refugio,1837,12.25,43
+Amor y Venganza,1845,28.07,11
+Cuentos No Contados,1844,23.39,8
+Los Ecos del Tiempo,1814,13.56,43
+La Luz Oscura,1859,11.46,3
+La Sombra del Olvido,1915,14.05,14
+Misterios del Mundo,1964,25.92,21
+Cuentos No Contados,1847,7.58,49
+La Luz Oscura,1938,29.7,25
+Sombras en el Desierto,1837,23.8,7
+Cuentos de Mar y Fuego,1856,15.57,17
+El Camino Perdido,1947,22.45,8
+Recuerdos de un Futuro,1890,30.37,23
+Misterios del Mundo,1896,9.85,29
+Amor y Venganza,1911,30.71,3
+Los Ecos del Tiempo,2002,21.83,37
+Los Ecos del Tiempo,1972,24.1,31
+Cuentos No Contados,1902,6.86,22
+El Arte de la Vida,1803,20.1,46
+El Último Suspiro,1820,19.21,27
+Sombras en el Desierto,1993,21,9
+Recuerdos de un Futuro,1870,26.54,31
+Amor y Venganza,2007,27.22,18
+El Camino Perdido,1897,28.78,27
+El Arte de la Vida,1928,17.38,6
+Cuentos de Mar y Fuego,2022,9.37,15
+Recuerdos de un Futuro,1850,30.63,11
+El Último Refugio,1976,21.53,49
+El Último Refugio,1820,20.16,35
+Los Ecos del Tiempo,1826,13.13,17
+Voces Silenciadas,1889,7.45,15
+El Camino Perdido,2003,17.93,45
+Cuentos de Mar y Fuego,1931,19.2,37
+El Último Refugio,1905,30.79,12
+Cuentos No Contados,1983,24.87,50
+El Último Refugio,1851,14.86,34
+Sueños de Libertad,1907,14.42,13
+El Arte de la Vida,1916,8.49,45
+Amor y Venganza,1840,12.68,14
+Cuentos No Contados,1866,17.37,27
+Misterios del Mundo,1808,30.57,21
+El Último Refugio,2007,26.95,20
+Misterios del Mundo,2002,10.8,47
+El Último Suspiro,1976,9.54,40
+Cuentos de Mar y Fuego,2023,15.46,43
+El Último Suspiro,1884,19.73,21
+La Luz Oscura,1828,22.34,26
+Los Ecos del Tiempo,1862,18.25,9
+Amor y Venganza,1941,22.29,13
+El Último Suspiro,1921,16.74,25
+Amor y Venganza,1992,10.47,48
+El Último Suspiro,1940,15.93,11
+Cuentos de Mar y Fuego,1859,15.63,46
+Sueños de Libertad,1814,12.93,39
+Voces Silenciadas,1855,29.14,27
+Sueños de Libertad,2012,15.01,20
+Los Ecos del Tiempo,1976,23.56,13
+Sombras en el Desierto,2006,27.2,23
+Amor y Venganza,1855,16.75,38
+Los Ecos del Tiempo,1953,30.53,35
+La Sombra del Olvido,1889,23.74,23
+Cuentos No Contados,1860,28.78,19
+Amor y Venganza,1838,7.86,28
+El Camino Perdido,1813,25.97,23
+Amor y Venganza,1888,11.97,15
+El Último Suspiro,1899,22.75,31
+Voces Silenciadas,2014,7.51,33
+Misterios del Mundo,2010,13.1,49
+Sombras en el Desierto,1997,9.46,29
+La Sombra del Olvido,1821,26.54,35
+Voces Silenciadas,1805,24.28,32
+El Último Suspiro,1853,23.3,46
+Recuerdos de un Futuro,1826,13.7,33
+La Sombra del Olvido,1953,14.93,15
+Cien Anos de Soledad,1999,12.99,1
+El Amor en los Tiempos del Colera,1985,19.99,1
+Las aventuras del abuelo,1999,216.12,4

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Portafolio Académico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #050814 100%);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .test-box {
+            background: rgba(10, 14, 39, 0.7);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .test-title {
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-description {
+            color: #b8c5d6;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            color: #050814;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+        
+        .button-secondary {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+        }
+        
+        .status {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .status.success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            color: #00ff88;
+            display: block;
+        }
+        
+        .status.error {
+            background: rgba(255, 0, 110, 0.2);
+            border: 1px solid rgba(255, 0, 110, 0.4);
+            color: #ff006e;
+            display: block;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Pruebas del Portafolio</h1>
+        
+        <!-- Test 1: Verificar JSON -->
+        <div class="test-box">
+            <div class="test-title">Test 1: Cargar tareas.json</div>
+            <div class="test-description">
+                Verifica que el archivo <code>tareas.json</code> se puede cargar correctamente desde parcial1.html
+            </div>
+            <button class="button" onclick="testLoadJSON()">Ejecutar Test</button>
+            <div id="test1-status" class="status"></div>
+        </div>
+        
+        <!-- Test 2: Verificar localStorage -->
+        <div class="test-box">
+            <div class="test-title">Test 2: localStorage de Tareas</div>
+            <div class="test-description">
+                Verifica que las tareas se guardan correctamente en localStorage
+            </div>
+            <button class="button" onclick="testCheckStorage()">Ver Storage</button>
+            <div id="test2-status" class="status"></div>
+        </div>
+        
+        <!-- Test 3: Limpiar cache -->
+        <div class="test-box">
+            <div class="test-title">Test 3: Limpiar Cache de Tareas</div>
+            <div class="test-description">
+                Si las tareas no se actualizan, ejecuta esto para borrar el cache local y recargar desde JSON.
+                Luego recarga la página de Parcial 1.
+            </div>
+            <button class="button button-secondary" onclick="testClearCache()">Limpiar Cache</button>
+            <div id="test3-status" class="status"></div>
+        </div>
+        
+        <!-- Test 4: Ver archivos disponibles -->
+        <div class="test-box">
+            <div class="test-title">Test 4: Archivos de Tareas Disponibles</div>
+            <div class="test-description">
+                Muestra los archivos HTML de tareas que existen
+            </div>
+            <button class="button" onclick="testShowFiles()">Ver Archivos</button>
+            <div id="test4-status" class="status"></div>
+        </div>
+        
+        <a href="pages/parcial1.html" class="back-link">← Ir a Parcial 1</a>
+    </div>
+
+    <script>
+        async function testLoadJSON() {
+            const status = document.getElementById('test1-status');
+            try {
+                const response = await fetch('data/parcial1/tareas.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    const tareasCount = data.parcial1 ? data.parcial1.length : 0;
+                    status.className = 'status success';
+                    status.innerHTML = `✓ JSON cargado correctamente<br>Tareas encontradas: <strong>${tareasCount}</strong><br>${data.parcial1.map(t => `• ${t.titulo}`).join('<br>')}`;
+                } else {
+                    throw new Error('Error al cargar JSON');
+                }
+            } catch (error) {
+                status.className = 'status error';
+                status.innerHTML = `✗ Error: ${error.message}`;
+            }
+        }
+        
+        function testCheckStorage() {
+            const status = document.getElementById('test2-status');
+            const tareas = localStorage.getItem('parcial1_tareas');
+            
+            if (tareas) {
+                const tareasArray = JSON.parse(tareas);
+                status.className = 'status success';
+                status.innerHTML = `✓ Tareas en localStorage<br>Cantidad: <strong>${tareasArray.length}</strong><br>${tareasArray.map(t => `• ${t.titulo}`).join('<br>')}`;
+            } else {
+                status.className = 'status error';
+                status.innerHTML = `✗ No hay tareas en localStorage. Visita Parcial 1 para cargar desde JSON`;
+            }
+        }
+        
+        function testClearCache() {
+            const status = document.getElementById('test3-status');
+            try {
+                localStorage.removeItem('parcial1_tareas');
+                localStorage.removeItem('parcial2_tareas');
+                localStorage.removeItem('parcial3_tareas');
+                
+                status.className = 'status success';
+                status.innerHTML = `✓ Cache limpio correctamente<br>Ahora recarga la página de <strong>Parcial 1</strong> para cargar las tareas desde JSON`;
+            } catch (error) {
+                status.className = 'status error';
+                status.innerHTML = `✗ Error: ${error.message}`;
+            }
+        }
+        
+        function testShowFiles() {
+            const status = document.getElementById('test4-status');
+            const files = [
+                { name: 'tarea1.html', description: 'Configuración de Ubiquitous y Google Cloud (Completada)' },
+                { name: 'tarea2.html', description: 'Tarea de Prueba - Conceptos Básicos (En progreso)' }
+            ];
+            
+            status.className = 'status success';
+            status.innerHTML = `✓ Archivos disponibles en <code>tasks/parcial1/</code><br>` + 
+                files.map(f => `• <strong>${f.name}</strong> - ${f.description}`).join('<br>');
+        }
+    </script>
+</body>
+</html>

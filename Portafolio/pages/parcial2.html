@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial 2 - Portafolio Académico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Inicio</a>
+                <a href="parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="parcial2.html" class="nav-link active">Parcial 2</a>
+                <a href="parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="proyecto.html" class="nav-link">Proyecto</a>
+                <a href="hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content parcial-page">
+        <!-- Header del Parcial -->
+        <section class="parcial-header">
+            <div class="container">
+                <div class="parcial-header-content">
+                    <span class="parcial-badge">UNIDAD 2</span>
+                    <h1 class="parcial-title">Parcial 2</h1>
+                    <p class="parcial-subtitle">Segunda unidad de contenido académico</p>
+                    <div class="parcial-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="taskCount">0</span>
+                            <span class="stat-label">Tareas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="completedCount">0</span>
+                            <span class="stat-label">Completadas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="progressPercent">0%</span>
+                            <span class="stat-label">Progreso</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Tareas -->
+        <section class="tasks-section">
+            <div class="container">
+                <!-- Botón para agregar tarea -->
+                <div class="add-task-container">
+                    <button class="futuristic-btn" id="addTaskBtn">
+                        <span>+ Subir Nueva Tarea</span>
+                    </button>
+                </div>
+
+                <!-- Contenedor de tareas -->
+                <div id="tasksContainer" class="tasks-grid">
+                    <!-- Las tareas se cargarán dinámicamente aquí -->
+                </div>
+
+                <!-- Mensaje cuando no hay tareas -->
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-state-icon">📚</div>
+                    <h3>Aún no se ha subido nada</h3>
+                    <p>Comienza agregando tu primera tarea haciendo clic en el botón "Subir Nueva Tarea"</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico</p>
+                <div class="footer-links">
+                    <a href="../index.html" class="footer-link">Inicio</a>
+                    <a href="#" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para agregar/editar tarea -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content animated-border">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nueva Tarea</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <label for="taskTitle">Título de la tarea *</label>
+                    <input type="text" id="taskTitle" name="title" required 
+                           placeholder="Ej: Desarrollo de API REST">
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskDescription">Descripción</label>
+                    <textarea id="taskDescription" name="description" rows="4"
+                              placeholder="Describe brevemente la tarea..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskStatus">Estado</label>
+                    <select id="taskStatus" name="status">
+                        <option value="in-progress">En progreso</option>
+                        <option value="completed">Completada</option>
+                        <option value="pending">Pendiente</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="futuristic-btn">Guardar Tarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/animations.js"></script>
+    <script>
+        // Script específico para la página de Parcial 2
+        const PARCIAL_ID = 'parcial2';
+        let editingTaskId = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTasks();
+            initModalControls();
+            updateStats();
+        });
+
+        // Cargar y mostrar tareas
+        function loadTasks() {
+            const tasks = TaskManager.getTasks(PARCIAL_ID);
+            const container = document.getElementById('tasksContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (tasks.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'flex';
+            } else {
+                container.style.display = 'grid';
+                emptyState.style.display = 'none';
+                container.innerHTML = '';
+                
+                tasks.forEach((task, index) => {
+                    const taskCard = createTaskCard(task, index);
+                    container.appendChild(taskCard);
+                });
+            }
+        }
+
+        // Crear tarjeta de tarea
+        function createTaskCard(task, index) {
+            const card = document.createElement('div');
+            card.className = 'task-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            const statusColors = {
+                'completed': 'var(--color-accent)',
+                'in-progress': 'var(--color-primary)',
+                'pending': '#ffd000'
+            };
+            
+            const statusLabels = {
+                'completed': 'Completada',
+                'in-progress': 'En progreso',
+                'pending': 'Pendiente'
+            };
+            
+            // NUEVO: Convertimos el índice a número de tarea (001, 002, 003)
+            const taskNumber = String(index + 1).padStart(3, '0');
+            
+            card.innerHTML = `
+                <div class="task-card-header">
+                    <h3 class="task-title">${task.title}</h3>
+                    <div class="task-actions">
+                        <button class="task-action-btn" onclick="editTask(${task.id})" title="Editar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                        </button>
+                        <button class="task-action-btn delete" onclick="deleteTask(${task.id})" title="Eliminar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="task-description">${task.description || 'Sin descripción'}</p>
+                <div class="task-footer">
+                    <span class="task-date">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        ${formatDate(task.date)}
+                    </span>
+                    <span class="task-status" style="color: ${statusColors[task.status]}">
+                        ${statusLabels[task.status]}
+                    </span>
+                </div>
+                <!-- ENLACE NUEVO: apunta a tareas/parcial2/001.html -->
+                <a href="tareas/parcial2/${taskNumber}.html" class="task-view-link">
+                    Ver detalles →
+                </a>
+            `;
+            
+            return card;
+        }
+
+        // Inicializar controles del modal
+        function initModalControls() {
+            const modal = document.getElementById('taskModal');
+            const addBtn = document.getElementById('addTaskBtn');
+            const closeBtn = document.getElementById('closeModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const form = document.getElementById('taskForm');
+            
+            addBtn.addEventListener('click', () => openModal());
+            closeBtn.addEventListener('click', () => closeModal());
+            cancelBtn.addEventListener('click', () => closeModal());
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            
+            form.addEventListener('submit', handleFormSubmit);
+        }
+
+        // Abrir modal
+        function openModal(taskId = null) {
+            const modal = document.getElementById('taskModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const form = document.getElementById('taskForm');
+            
+            editingTaskId = taskId;
+            
+            if (taskId) {
+                modalTitle.textContent = 'Editar Tarea';
+                const tasks = TaskManager.getTasks(PARCIAL_ID);
+                const task = tasks.find(t => t.id === taskId);
+                
+                if (task) {
+                    document.getElementById('taskTitle').value = task.title;
+                    document.getElementById('taskDescription').value = task.description || '';
+                    document.getElementById('taskStatus').value = task.status;
+                }
+            } else {
+                modalTitle.textContent = 'Nueva Tarea';
+                form.reset();
+            }
+            
+            modal.classList.add('active');
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            const modal = document.getElementById('taskModal');
+            modal.classList.remove('active');
+            editingTaskId = null;
+        }
+
+        // Manejar envío del formulario
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const formData = {
+                title: document.getElementById('taskTitle').value,
+                description: document.getElementById('taskDescription').value,
+                status: document.getElementById('taskStatus').value
+            };
+            
+            if (editingTaskId) {
+                TaskManager.updateTask(PARCIAL_ID, editingTaskId, formData);
+                showNotification('Tarea actualizada correctamente', 'success');
+            } else {
+                TaskManager.addTask(PARCIAL_ID, formData);
+                showNotification('Tarea agregada correctamente', 'success');
+                
+                // Mostrar instrucciones para crear archivo HTML
+                const taskCount = TaskManager.getTasks(PARCIAL_ID).length;
+                const taskNumber = String(taskCount).padStart(3, '0');
+                
+                setTimeout(() => {
+                    if (confirm(`✅ Tarea agregada correctamente!\n\n¿Quieres crear la página detallada para esta tarea?\n\n📝 Archivo: tareas/parcial2/${taskNumber}.html`)) {
+                        alert(`📁 Para crear la página:\n1. Copia 'pages/tareas/base.html'\n2. Pega como 'pages/tareas/parcial2/${taskNumber}.html'\n3. Edita el contenido\n4. Crea carpeta: assets/images/parcial2/tarea${taskNumber}/`);
+                    }
+                }, 500);
+            }
+            
+            closeModal();
+            loadTasks();
+            updateStats();
+        }
+
+        // Editar tarea
+        function editTask(taskId) {
+            openModal(taskId);
+        }
+
+        // Eliminar tarea
+        function deleteTask(taskId) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+                TaskManager.deleteTask(PARCIAL_ID, taskId);
+                showNotification('Tarea eliminada', 'success');
+                loadTasks();
+                updateStats();
+            }
+        }
+
+        // Actualizar estadísticas
+        function updateStats() {
+            const tasks = TaskManager.getTasks(PARCIAL_ID);
+            const completed = tasks.filter(t => t.status === 'completed').length;
+            const progress = tasks.length > 0 ? Math.round((completed / tasks.length) * 100) : 0;
+            
+            document.getElementById('taskCount').textContent = tasks.length;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('progressPercent').textContent = progress + '%';
+        }
+    </script>
+
+    <!-- Estilos específicos para la página -->
+    <style>
+        .parcial-page {
+            padding-top: 70px;
+        }
+
+        .parcial-header {
+            background: var(--gradient-dark);
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .parcial-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--color-primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .parcial-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .parcial-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .parcial-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tasks-section {
+            padding: 4rem 0;
+        }
+
+        .add-task-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .task-card {
+            background: var(--color-bg-card);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            transition: all var(--transition-normal);
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .task-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .task-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .task-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .task-action-btn {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: var(--border-radius-sm);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--color-primary);
+        }
+
+        .task-action-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        .task-action-btn.delete {
+            color: var(--color-highlight);
+            background: rgba(255, 0, 110, 0.1);
+            border-color: rgba(255, 0, 110, 0.3);
+        }
+
+        .task-action-btn.delete:hover {
+            background: rgba(255, 0, 110, 0.2);
+            border-color: var(--color-highlight);
+        }
+
+        .task-action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .task-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .task-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .task-status {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .task-view-link {
+            display: block;
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: var(--border-radius-sm);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .task-view-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateX(4px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-primary);
+        }
+
+        .empty-state p {
+            color: var(--color-text-secondary);
+            max-width: 500px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-bg-card);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-primary);
+        }
+
+        .task-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            background: var(--color-bg-darker);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--border-radius-sm);
+            color: var(--color-text-primary);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-sm);
+            color: var(--color-text-secondary);
+            font-family: var(--font-primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .parcial-title {
+                font-size: 2rem;
+            }
+
+            .parcial-stats {
+                gap: 1.5rem;
+            }
+
+            .tasks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

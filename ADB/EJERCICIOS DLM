@@ -1,0 +1,37 @@
+1.- Muestra una lista de prestamos(no devueltos)
+
+SELECT p.id_prestamo, a.matricula, a.nombre, l.id_libro, l.titulo, p.fecha_prestamo, p.fecha_devolucion
+FROM Prestamos p
+JOIN Alumnos a ON p.matricula = a.matricula
+JOIN Libros l ON p.id_libro = l.id_libro
+WHERE p.fecha_devolucion IS NULL;
+
+2.- Muestra la cantidad de libros prestados por cada alumno
+
+SELECT a.matricula, a.nombre, COUNT(p.id_prestamo) AS cantidad_prestamos
+FROM Alumnos a
+LEFT JOIN Prestamos p ON a.matricula = p.matricula
+GROUP BY a.matricula, a.nombre
+ORDER BY cantidad_prestamos DESC; 
+
+3.- Muestra los libros prestados durante el mes de agosto del 2024
+
+SELECT p.id_prestamo, a.matricula, a.nombre, l.id_libro, l.titulo, p.fecha_prestamo
+FROM Prestamos p
+JOIN Alumnos a ON p.matricula = a.matricula
+JOIN Libros l ON p.id_libro = l.id_libro
+WHERE p.fecha_prestamo BETWEEN '2024-08-01' AND '2024-08-31';
+
+4.- Muestra los alumnos que hayan prestado algun libro de Gabriel Garcia Marquez
+
+SELECT DISTINCT a.matricula, a.nombre
+FROM Prestamos p
+JOIN Alumnos a ON p.matricula = a.matricula
+JOIN Libros l ON p.id_libro = l.id_libro
+WHERE l.autor LIKE '%Gabriel Garcia Marquez%' OR l.autor LIKE '%García Márquez%';
+
+5.- Muestra un listado de libros que nunca han sido prestados
+
+SELECT l.titulo FROM Libros l
+LEFT JOIN Prestamos p ON l.id_libro  = p.id_libro
+WHERE p.id_prestamo IS NULL;

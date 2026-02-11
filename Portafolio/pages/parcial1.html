@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial 1 - Portafolio Académico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/futuristic.css">
+    <style>
+        .tareas-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tarea-item {
+            background: rgba(10, 14, 39, 0.7);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tarea-item:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.15);
+        }
+        
+        .tarea-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        }
+        
+        .tarea-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .tarea-fecha {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tarea-titulo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tarea-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .tarea-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .tarea-estado {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .estado-completado {
+            background: rgba(56, 161, 105, 0.2);
+            color: #38a169;
+            border: 1px solid rgba(56, 161, 105, 0.3);
+        }
+        
+        .estado-progreso {
+            background: rgba(214, 158, 46, 0.2);
+            color: #d69e2e;
+            border: 1px solid rgba(214, 158, 46, 0.3);
+        }
+        
+        .ver-detalles {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .ver-detalles:hover {
+            text-decoration: underline;
+        }
+        
+        .agregar-tarea-btn {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .agregar-tarea-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-contenido {
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-titulo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-grupo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-grupo label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .form-grupo input,
+        .form-grupo textarea,
+        .form-grupo select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 6px;
+            color: var(--color-text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-grupo textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .modal-acciones {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primario {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .btn-secundario {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-text-primary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Inicio</a>
+                <a href="parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="proyecto.html" class="nav-link">Proyecto</a>
+                <a href="hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <!-- Botón hamburguesa para móvil -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>📚 Parcial 1</h1>
+                <p>Tareas y actividades del primer parcial</p>
+            </header>
+
+            <!-- LISTA DE TAREAS -->
+            <div class="tareas-lista" id="listaTareas">
+                <!-- Las tareas se cargan automáticamente desde JSON -->
+            </div>
+
+            <!-- MENSAJE CUANDO NO HAY TAREAS -->
+            <div id="sinTareas" style="text-align: center; padding: 3rem; color: var(--color-text-secondary);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📭</div>
+                <h3>No hay tareas aún</h3>
+                <p>Las tareas se cargarán desde el archivo JSON</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // VARIABLES GLOBALES
+        const TAREAS_KEY = 'parcial1_tareas';
+        const TAREAS_JSON_URL = '../data/parcial1/tareas.json';
+        
+        // CARGAR TAREAS AL INICIAR
+        document.addEventListener('DOMContentLoaded', async function() {
+            await cargarTareasDesdeJSON();
+            cargarTareas();
+        });
+        
+        // CARGAR TAREAS DESDE JSON
+        async function cargarTareasDesdeJSON() {
+            try {
+                const response = await fetch(TAREAS_JSON_URL);
+                if (!response.ok) {
+                    console.warn('No se encontró tareas.json:', TAREAS_JSON_URL);
+                    return;
+                }
+                
+                const datos = await response.json();
+                if (datos.parcial1 && datos.parcial1.length > 0) {
+                    // Verificar si ya existen tareas en localStorage
+                    const tareasExistentes = obtenerTareas();
+                    
+                    // Si no hay tareas locales, cargar las del JSON
+                    if (tareasExistentes.length === 0) {
+                        const tareasFormateadas = datos.parcial1.map(tarea => ({
+                            id: tarea.id || Date.now(),
+                            titulo: tarea.titulo,
+                            fecha: tarea.fecha,
+                            descripcion: tarea.descripcion,
+                            estado: tarea.estado,
+                            archivo: tarea.archivo,
+                            secciones: tarea.secciones
+                        }));
+                        
+                        guardarTareas(tareasFormateadas);
+                        console.log('✅ Tareas cargadas desde JSON:', tareasFormateadas);
+                    }
+                }
+            } catch (error) {
+                console.error('Error al cargar tareas.json:', error);
+            }
+        }
+        
+        // CARGAR Y MOSTRAR TAREAS
+        function cargarTareas() {
+            const tareas = obtenerTareas();
+            const contenedor = document.getElementById('listaTareas');
+            const sinTareas = document.getElementById('sinTareas');
+            
+            if (tareas.length === 0) {
+                contenedor.innerHTML = '';
+                sinTareas.style.display = 'block';
+                return;
+            }
+            
+            sinTareas.style.display = 'none';
+            contenedor.innerHTML = '';
+            
+            // Ordenar por ID (mantener orden original)
+            tareas.sort((a, b) => a.id - b.id);
+            
+            tareas.forEach((tarea, index) => {
+                const elemento = crearElementoTarea(tarea, index + 1);
+                contenedor.appendChild(elemento);
+            });
+        }
+        
+        // CREAR ELEMENTO HTML PARA UNA TAREA
+        function crearElementoTarea(tarea, numeroTarea) {
+            const div = document.createElement('div');
+            div.className = 'tarea-item';
+            
+            const fechaFormateada = new Date(tarea.fecha).toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            
+            const estadoClase = tarea.estado === 'completado' ? 'estado-completado' :
+                               tarea.estado === 'progreso' ? 'estado-progreso' : '';
+            
+            const estadoTexto = tarea.estado === 'completado' ? 'Completada' :
+                              tarea.estado === 'progreso' ? 'En progreso' : 'Pendiente';
+            
+            div.innerHTML = `
+                <div style="font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Tarea ${numeroTarea}</div>
+                <div class="tarea-header">
+                    <span class="tarea-fecha">📅 ${fechaFormateada}</span>
+                </div>
+                <h3 class="tarea-titulo">${tarea.titulo}</h3>
+                <p class="tarea-desc">${tarea.descripcion || 'Sin descripción'}</p>
+                <div class="tarea-meta">
+                    <span class="tarea-estado ${estadoClase}">${estadoTexto}</span>
+                    <a href="../tasks/parcial1/${tarea.archivo}" class="ver-detalles" target="_blank">
+                        Ver detalles →
+                    </a>
+                </div>
+            `;
+            
+            return div;
+        }
+        
+        // OBTENER TAREAS DESDE localStorage
+        function obtenerTareas() {
+            const datos = localStorage.getItem(TAREAS_KEY);
+            return datos ? JSON.parse(datos) : [];
+        }
+        
+        // GUARDAR TAREAS EN localStorage
+        function guardarTareas(tareas) {
+            localStorage.setItem(TAREAS_KEY, JSON.stringify(tareas));
+        }
+
+        // Limpiar caché al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.removeItem(TAREAS_KEY);
+        });
+    </script>
+
+    <!-- Scripts JavaScript -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/animations.js"></script>
+</body>
+</html>

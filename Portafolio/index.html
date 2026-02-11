@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio Académico de Eugenio Espeleta">
+    <title>Portafolio Académico - Eugenio Espeleta</title>
+    
+    <!-- Google Fonts - Tipografía futurista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER - Navegación fija -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="pages/parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <!-- Botón hamburguesa para móvil -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- Sección Hero -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line">PORTAFOLIO</span>
+                        <span class="title-line title-highlight">ACADÉMICO</span>
+                    </h1>
+                    <p class="hero-subtitle">Bienvenido a mi espacio digital de aprendizaje y desarrollo</p>
+                    <div class="hero-description">
+                        <p>Este portafolio contiene mi trabajo académico organizado por parciales, proyecto final y una sección personal sobre mis intereses. Explora cada sección para ver mi progreso y aprendizaje.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Navegación Interactiva -->
+        <section class="navigation-section">
+            <div class="container">
+                <h2 class="section-title">Explora mi trabajo</h2>
+                
+                <!-- Sistema de Tarjetas 3D -->
+                <div class="cards-grid" id="cardsGrid">
+                    <!-- Tarjeta Parcial 1 -->
+                    <div class="nav-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">Parcial 1</h3>
+                                <p class="card-description">Primera unidad de contenido académico</p>
+                                <div class="card-stats">
+                                    <span class="stat">
+                                        <span class="stat-icon">📚</span>
+                                        <span class="stat-text">Tareas: 5</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="pages/parcial1.html" class="card-link">
+                                <span>Ver Parcial</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Parcial 2 -->
+                    <div class="nav-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">Parcial 2</h3>
+                                <p class="card-description">Segunda unidad de contenido académico</p>
+                                <div class="card-stats">
+                                    <span class="stat">
+                                        <span class="stat-icon">📚</span>
+                                        <span class="stat-text">Tareas: 0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="pages/parcial2.html" class="card-link">
+                                <span>Ver Parcial</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Parcial 3 -->
+                    <div class="nav-card" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">Parcial 3</h3>
+                                <p class="card-description">Tercera unidad de contenido académico</p>
+                                <div class="card-stats">
+                                    <span class="stat">
+                                        <span class="stat-icon">📚</span>
+                                        <span class="stat-text">Tareas: 0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="pages/parcial3.html" class="card-link">
+                                <span>Ver Parcial</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Proyecto Final -->
+                    <div class="nav-card nav-card-highlight" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22 4 12 14.01 9 11.01"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">Proyecto Final</h3>
+                                <p class="card-description">Proyecto integrador del curso</p>
+                                <div class="card-stats">
+                                    <span class="stat">
+                                        <span class="stat-icon">🎯</span>
+                                        <span class="stat-text">Estado: Pendiente</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="pages/proyecto.html" class="card-link">
+                                <span>Ver Proyecto</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Hobbies -->
+                    <div class="nav-card nav-card-personal" data-tilt>
+                        <div class="card-inner">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">Hobbies</h3>
+                                <p class="card-description">Mis intereses y pasatiempos</p>
+                                <div class="card-stats">
+                                    <span class="stat">
+                                        <span class="stat-icon">🎨</span>
+                                        <span class="stat-text">Espacio Personal</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="pages/hobbies.html" class="card-link">
+                                <span>Ver Hobbies</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de características -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Organizado</h3>
+                        <p>Contenido estructurado por parciales para fácil navegación</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Actualizado</h3>
+                        <p>Portfolio en constante actualización con nuevo contenido</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Profesional</h3>
+                        <p>Diseño moderno y profesional con interfaz intuitiva</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Inicio</a>
+                    <a href="#" class="footer-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts JavaScript -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/animations.js"></script>
+</body>
+</html>

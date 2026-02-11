@@ -1,0 +1,108 @@
+{
+  "parcial1": [
+    {
+      "id": 1,
+      "titulo": "Configuración de Ubiquitous y Google Cloud",
+      "fecha": "2026-01-20",
+      "descripcion": "Configuración inicial del servidor Ubiquitous y creación de máquina virtual en Google Cloud",
+      "estado": "completado",
+      "archivo": "tarea1/tarea1.html",
+      "secciones": {
+        "objetivo": "Comprender cómo acceder y usar Ubiquitous y configurar nuestra primera máquina virtual en Google Cloud",
+        "conceptos": [
+          {"titulo": "Ubiquitous","descripcion": "Servidor preconfigurado con SSH para acceso con matrícula"},
+          {"titulo": "Google Cloud","descripcion": "Configuración de VM con CentOS e instalación de MariaDB"},
+          {"titulo": "SSH","descripcion": "Protocolo de seguridad para acceso remoto cifrado"},
+          {"titulo": "VM","descripcion": "Máquina virtual que emula software de computadora física"}
+        ],
+        "evidencia": ["Página en Ubiquitous creada","Instancia de VM creada","MariaDB activo en la VM"],
+        "entregables": "Paquete de código con README y instrucciones",
+        "conclusiones": {"aprendizaje": "Cómo conectarme a mi servidor de Ubiquitous y modificarlo, y cómo crear nuevas instancias de VM","problemas": "Cuando creé la máquina virtual la configuré mal y no podía descargar MariaDB; borré esa instancia y creé una nueva bien configurada","mejoras": "Practicar los comandos de Linux"}
+      }
+    },
+    {
+      "id": 2,
+      "titulo": "DBMS en máquina virtual de Google Cloud",
+      "fecha": "2026-01-23",
+      "descripcion": "Configurar MariaDB en la VM, crear usuarios y realizar respaldos",
+      "estado": "completado",
+      "archivo": "tarea2/tarea2.html",
+      "secciones": {
+        "objetivo": "Configurar el DBMS, crear usuarios y verificar permisos",
+        "conceptos": [
+          {"titulo": "DDL","descripcion": "Comandos para definir y modificar estructuras en la BD"},
+          {"titulo": "root","descripcion": "Usuario administrador del sistema y del DBMS"},
+          {"titulo": "DBMS","descripcion": "Sistema gestor de bases de datos"}
+        ],
+        "evidencia": ["Capturas de terminal: login y operaciones","Archivo SQL de respaldo"],
+        "entregables": "README + db_commands.sql",
+        "conclusiones": {"aprendizaje": "Uso de terminales, manejo de permisos y respaldos","problemas": "Confusión inicial con comandos, resuelto con práctica","mejoras": "Practicar más la terminal"}
+      }
+    },
+    {
+      "id": 3,
+      "titulo": "PostgreSQL en máquina virtual de Google Cloud",
+      "fecha": "2026-01-27",
+      "descripcion": "Instalación y configuración de PostgreSQL en la VM, creación de tablas relacionales",
+      "estado": "completado",
+      "archivo": "tarea3/tarea3.html",
+      "secciones": {
+        "objetivo": "Instalar PostgreSQL, crear usuarios, diseñar esquemas y ejecutar comandos DDL/DML",
+        "conceptos": [
+          {"titulo": "PostgreSQL","descripcion": "Sistema gestor de BD relacional de código abierto muy poderoso"},
+          {"titulo": "DDL","descripcion": "Comandos para crear y modificar estructuras de datos"},
+          {"titulo": "DML","descripcion": "Comandos para insertar, actualizar y eliminar datos"},
+          {"titulo": "psql","descripcion": "Cliente de línea de comandos para PostgreSQL"},
+          {"titulo": "Integridad Referencial","descripcion": "Validez de relaciones entre tablas con FOREIGN KEY"}
+        ],
+        "evidencia": ["PostgreSQL instalado y ejecutándose","Usuarios creados con permisos","Tablas relacionales con integridad"],
+        "entregables": "README + postgres_commands.sql",
+        "conclusiones": {"aprendizaje": "Instalación de PostgreSQL, gestión de usuarios, diseño relacional avanzado","problemas": "Diferencias sintácticas entre PostgreSQL y MariaDB requirieron adaptación","mejoras": "Explorar Window Functions, CTEs y replicación"}
+      }
+    },
+    {
+      "id": 4,
+      "titulo": "Importación de Bases de Datos Externas",
+      "fecha": "2026-02-03",
+      "descripcion": "Descarga e importación de archivos SQL desde fuentes externas, validación de integridad de datos",
+      "estado": "completado",
+      "archivo": "tarea4/tarea4.html",
+      "secciones": {
+        "objetivo": "Descargar archivos SQL desde URLs externas, importarlos en PostgreSQL y validar integridad de datos",
+        "conceptos": [
+          {"titulo": "wget/curl","descripcion": "Herramientas para descargar archivos desde URLs"},
+          {"titulo": "psql -f","descripcion": "Importación de archivo SQL en PostgreSQL"},
+          {"titulo": "Validación de Integridad","descripcion": "Verificación de restricciones UNIQUE, FOREIGN KEY y datos"},
+          {"titulo": "Transacciones","descripcion": "BEGIN/COMMIT para importaciones seguras"},
+          {"titulo": "Manejo de Errores","descripcion": "Identificación y resolución de conflictos durante importación"}
+        ],
+        "evidencia": ["Archivo SQL descargado exitosamente","Importación completada sin errores","Integridad de datos verificada","Tablas y registros validados"],
+        "entregables": "README + script_importacion.sql + tarea4.html",
+        "conclusiones": {"aprendizaje": "Proceso completo de descarga e importación de bases de datos, validación de integridad, manejo de errores","problemas": "Necesidad de validar archivos antes de importar para evitar conflictos con llaves foráneas","mejoras": "Implementar scripts de validación automática y respaldos antes de importar"}
+      }
+    }
+    ,
+    {
+      "id": 5,
+      "titulo": "Respaldos de Bases de Datos: MariaDB y PostgreSQL",
+      "fecha": "2026-02-10",
+      "descripcion": "Implementación de respaldos lógicos con mysqldump y pg_dumpall; organización y gestión de permisos.",
+      "estado": "completado",
+      "archivo": "tarea5/tarea5.html",
+      "secciones": {
+        "objetivo": "Generar respaldos lógicos y organizar archivos por motor; corregir permisos y propietarios.",
+        "conceptos": [
+          {"titulo": "Respaldo Lógico","descripcion": "Exportación de estructura y datos en formato SQL"},
+          {"titulo": "mysqldump","descripcion": "Herramienta para generar respaldos en MariaDB/MySQL"},
+          {"titulo": "pg_dumpall","descripcion": "Utilidad para exportar todas las bases de datos del clúster PostgreSQL"},
+          {"titulo": "chmod","descripcion": "Comando para modificar permisos de lectura, escritura y ejecución"},
+          {"titulo": "chown","descripcion": "Comando para cambiar el propietario y grupo de archivos"},
+          {"titulo": "Estructura de Directorios","descripcion": "Organización jerárquica de carpetas para almacenar respaldos ordenadamente"}
+        ],
+        "evidencia": ["Estructura Backups/MariaDB y Backups/PostgreSQL creada","Respaldo de MariaDB generado exitosamente","Respaldo de PostgreSQL exportado como cluster","Permisos y propietarios corregidos con chmod y chown","Visualización con tree mostrando estructura final"],
+        "entregables": "README + tarea5.html + backups.sh + README.md",
+        "conclusiones": {"aprendizaje": "Generación de respaldos lógicos en ambos DBMS, organización de archivos por motor, gestión correcta de permisos y propietarios en Linux","problemas": "Typos en nombre de comandos (mysqldum vs mysqldump), permisos insuficientes para archivos PostgreSQL, nombres de directorios mal escritos","mejoras": "Automatizar respaldos con cron, implementar rotación de respaldos antiguos, usar encriptación para proteger archivos sensibles"}
+      }
+    }
+  ]
+}

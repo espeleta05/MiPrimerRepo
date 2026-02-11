@@ -1,0 +1,32 @@
+CREATE DATABASE escuela;
+
+GRANT ALL PRIVILEGES ON escuela.* TO escuela_user@localhost IDENTIFIED BY '666';
+FLUSH PRIVILEGES;
+
+USE escuela
+
+CREATE TABLE students(
+    sid int primary key auto_increment,
+    s_name varchar(50) not null,
+);
+
+CREATE TABLE faculties(
+    fid int primary key auto_increment,
+    f_name varchar(50) not null,
+    f_phone varchar(20)
+);
+
+CREATE TABLE courses(
+    cid varchar(10) primary key,
+    c_name text(20) not null,
+    fid int not null,
+    FOREIGN KEY(fid) REFERENCES faculties(fid)
+);
+
+CREATE TABLE courses_grade(
+    sid int not null,
+    cid varchar(10) not null,
+    grade varchar(2),
+    FOREIGN KEY (sid) REFERENCES students(sid),
+    FOREIGN KEY (cid) REFERENCES courses(cid)
+);

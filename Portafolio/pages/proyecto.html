@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final - Portafolio Académico</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/futuristic.css">
+    <style>
+        .project-info {
+            background: rgba(10, 14, 39, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .project-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .links-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .links-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 0.5rem;
+        }
+        
+        .link-item a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        
+        .link-item a:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+        
+        .empty-message {
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Inicio</a>
+                <a href="parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="proyecto.html" class="nav-link active">Proyecto</a>
+                <a href="hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <!-- Botón hamburguesa para móvil -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>🎯 Proyecto Final</h1>
+                <p>Información del proyecto integrador del curso</p>
+            </header>
+
+            <!-- INFORMACIÓN DEL PROYECTO -->
+            <div class="project-info">
+                <div class="project-title" id="projectTitle">Mi Proyecto Final</div>
+                <span class="project-status" id="projectStatus">📋 En planificación</span>
+                
+                <div class="project-description" id="projectDescription">
+                    <p>Aquí va la descripción del proyecto final que estás desarrollando.</p>
+                </div>
+                
+                <div class="links-section" id="linksSection" style="display: none;">
+                    <h3>🔗 Enlaces Importantes</h3>
+                    <div id="linksList"></div>
+                </div>
+            </div>
+
+            <!-- INSTRUCCIONES -->
+            <div class="project-info">
+                <h2>📝 Instrucciones para Actualizar</h2>
+                <p>Para actualizar la información del proyecto, modifica el archivo JSON en:</p>
+                <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 4px; display: block; margin: 1rem 0;">
+                    tasks/proyecto/proyecto.json
+                </code>
+                <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+                    El archivo contiene: título, descripción, estado y enlaces del proyecto.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // CARGAR INFORMACIÓN DEL PROYECTO
+        const PROYECTO_JSON_URL = '../tasks/proyecto/proyecto.json';
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            await cargarProyecto();
+        });
+        
+        // CARGAR Y MOSTRAR INFORMACIÓN DEL PROYECTO
+        async function cargarProyecto() {
+            try {
+                const response = await fetch(PROYECTO_JSON_URL);
+                
+                if (!response.ok) {
+                    console.warn('No se encontró proyecto.json:', PROYECTO_JSON_URL);
+                    return;
+                }
+                
+                const datos = await response.json();
+                
+                if (datos.proyecto) {
+                    const proyecto = datos.proyecto;
+                    
+                    // Cargar título
+                    document.getElementById('projectTitle').textContent = proyecto.titulo || 'Mi Proyecto Final';
+                    
+                    // Cargar estado con icono
+                    const estadoMap = {
+                        'planning': '📋 En planificación',
+                        'development': '🚧 En desarrollo',
+                        'testing': '🧪 En testing',
+                        'completed': '✅ Completado'
+                    };
+                    document.getElementById('projectStatus').textContent = estadoMap[proyecto.estado] || '📋 En planificación';
+                    
+                    // Cargar descripción
+                    const descDiv = document.getElementById('projectDescription');
+                    descDiv.innerHTML = `<p>${proyecto.descripcion || 'Sin descripción'}</p>`;
+                    
+                    // Cargar enlaces si existen
+                    if (proyecto.enlaces && Object.keys(proyecto.enlaces).length > 0) {
+                        const linksSection = document.getElementById('linksSection');
+                        const linksList = document.getElementById('linksList');
+                        
+                        let hasLinks = false;
+                        
+                        if (proyecto.enlaces.repositorio) {
+                            linksList.innerHTML += `
+                                <div class="link-item">
+                                    <span>📦</span>
+                                    <a href="${proyecto.enlaces.repositorio}" target="_blank">
+                                        Repositorio: ${proyecto.enlaces.repositorio}
+                                    </a>
+                                </div>
+                            `;
+                            hasLinks = true;
+                        }
+                        
+                        if (proyecto.enlaces.demo) {
+                            linksList.innerHTML += `
+                                <div class="link-item">
+                                    <span>🌐</span>
+                                    <a href="${proyecto.enlaces.demo}" target="_blank">
+                                        Demo: ${proyecto.enlaces.demo}
+                                    </a>
+                                </div>
+                            `;
+                            hasLinks = true;
+                        }
+                        
+                        if (proyecto.enlaces.documentacion) {
+                            linksList.innerHTML += `
+                                <div class="link-item">
+                                    <span>📚</span>
+                                    <a href="${proyecto.enlaces.documentacion}" target="_blank">
+                                        Documentación: ${proyecto.enlaces.documentacion}
+                                    </a>
+                                </div>
+                            `;
+                            hasLinks = true;
+                        }
+                        
+                        if (hasLinks) {
+                            linksSection.style.display = 'block';
+                        }
+                    }
+                    
+                    console.log('✅ Proyecto cargado:', proyecto);
+                }
+            } catch (error) {
+                console.error('Error al cargar proyecto.json:', error);
+            }
+        }
+    </script>
+
+    <!-- Scripts JavaScript -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/animations.js"></script>
+</body>
+</html>

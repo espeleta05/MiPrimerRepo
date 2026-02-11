@@ -1,0 +1,16 @@
+USO DE STORED PRODECURES EN MARIADB
+
+Crea un stored procedure que sevuelva una columna llamada etiqueta que concatene el tecsto fijo Alumnos: seguido de el
+dato de cada uno de lo registro de la columna nombre.
+
+DELIMITER//
+CREATE PROCEDURE etiquetaAlumno()
+BEGIN
+    SELECT CONCAT ('Alumno: ',nombre) AS Alumnos FROM Alumnos;
+
+
+END//
+DELIMITER;
+
+
+DROP PROCEDURE

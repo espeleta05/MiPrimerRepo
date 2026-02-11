@@ -1,0 +1,12 @@
+{
+  "proyecto": {
+    "titulo": "Mi Proyecto Final",
+    "descripcion": "Proyecto integrador del curso que incluye conceptos de bases de datos, servidores en la nube y aplicaciones web.",
+    "estado": "development",
+    "enlaces": {
+      "repositorio": "https://github.com/usuario/proyecto-final",
+      "demo": "https://demo-proyecto.com",
+      "documentacion": "https://docs-proyecto.com"
+    }
+  }
+}

@@ -1,0 +1,598 @@
+/* ===================================
+   ESTILOS FUTURISTAS AVANZADOS
+   Efectos visuales, partículas y animaciones
+   =================================== */
+
+/* ========== PARTÍCULAS FLOTANTES ========== */
+.floating-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 
+        100px 200px 0 var(--color-primary),
+        200px 400px 0 var(--color-accent),
+        400px 100px 0 var(--color-secondary),
+        600px 300px 0 var(--color-primary),
+        800px 500px 0 var(--color-accent),
+        300px 600px 0 var(--color-secondary),
+        500px 800px 0 var(--color-primary),
+        700px 200px 0 var(--color-accent),
+        900px 600px 0 var(--color-secondary),
+        1100px 400px 0 var(--color-primary);
+    animation: float 15s linear infinite;
+}
+
+.floating-particles::after {
+    animation-delay: -7.5s;
+    opacity: 0.5;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ========== EFECTOS DE BRILLO NEÓN ========== */
+.neon-glow {
+    text-shadow: 
+        0 0 10px rgba(0, 212, 255, 0.8),
+        0 0 20px rgba(0, 212, 255, 0.6),
+        0 0 30px rgba(0, 212, 255, 0.4),
+        0 0 40px rgba(0, 212, 255, 0.2);
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(0, 212, 255, 0.8),
+            0 0 20px rgba(0, 212, 255, 0.6),
+            0 0 30px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(0, 212, 255, 1),
+            0 0 30px rgba(0, 212, 255, 0.8),
+            0 0 45px rgba(0, 212, 255, 0.6);
+    }
+}
+
+/* ========== EFECTOS DE ESCANEO ========== */
+.scan-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 212, 255, 0.8), 
+        transparent);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(500px);
+    }
+}
+
+/* ========== BOTONES FUTURISTAS ========== */
+.futuristic-btn {
+    position: relative;
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.futuristic-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-accent);
+    transition: left var(--transition-normal);
+    z-index: -1;
+}
+
+.futuristic-btn:hover {
+    color: var(--color-bg-darker);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-glow);
+}
+
+.futuristic-btn:hover::before {
+    left: 0;
+}
+
+.futuristic-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.futuristic-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* ========== BORDES ANIMADOS ========== */
+.animated-border {
+    position: relative;
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+}
+
+.animated-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius-lg);
+    padding: 2px;
+    background: linear-gradient(45deg, 
+        var(--color-primary), 
+        var(--color-accent), 
+        var(--color-secondary), 
+        var(--color-primary));
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderGlow 3s ease infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ========== EFECTOS DE CARGA / LOADING ========== */
+.loading-bar {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 212, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -40%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ========== EFECTOS DE HOVER 3D ========== */
+.hover-3d {
+    transition: all var(--transition-normal);
+    transform-style: preserve-3d;
+}
+
+.hover-3d:hover {
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+}
+
+/* ========== GRID HOLOGRÁFICO ========== */
+.holographic-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 212, 255, 0.05) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(0, 212, 255, 0.05) 41px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 212, 255, 0.05) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(0, 212, 255, 0.05) 41px
+        );
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 40px 40px, 40px 40px;
+    }
+}
+
+/* ========== EFECTOS DE TEXTO ========== */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--color-highlight);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--color-accent);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(120px, 9999px, 110px, 0);
+    }
+    5% {
+        clip: rect(80px, 9999px, 140px, 0);
+    }
+    10% {
+        clip: rect(50px, 9999px, 100px, 0);
+    }
+    15% {
+        clip: rect(90px, 9999px, 60px, 0);
+    }
+    20% {
+        clip: rect(130px, 9999px, 80px, 0);
+    }
+    100% {
+        clip: rect(70px, 9999px, 120px, 0);
+    }
+}
+
+/* ========== INDICADORES DE ESTADO ========== */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.pending .status-dot {
+    background: #ffd000;
+}
+
+.status-indicator.completed .status-dot {
+    background: var(--color-accent);
+}
+
+.status-indicator.in-progress .status-dot {
+    background: var(--color-primary);
+}
+
+/* ========== EFECTOS DE SCROLL ========== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========== CURSOR PERSONALIZADO ========== */
+.custom-cursor {
+    cursor: none;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.2s ease;
+}
+
+/* ========== TOOLTIP FUTURISTA ========== */
+.futuristic-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.futuristic-tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    padding: 0.5rem 1rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    z-index: 1000;
+}
+
+.futuristic-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-primary);
+    opacity: 0;
+    transition: all var(--transition-normal);
+}
+
+.futuristic-tooltip:hover::before,
+.futuristic-tooltip:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ========== DIVISORES DECORATIVOS ========== */
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--color-primary), 
+        transparent);
+    margin: var(--spacing-lg) 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-bg-darker);
+    padding: 0 1rem;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+/* ========== BADGES Y ETIQUETAS ========== */
+.futuristic-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-primary);
+}
+
+.futuristic-badge.accent {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.futuristic-badge.highlight {
+    background: rgba(255, 0, 110, 0.1);
+    border-color: var(--color-highlight);
+    color: var(--color-highlight);
+}
+
+/* ========== EFECTOS DE PROFUNDIDAD ========== */
+.depth-layer-1 {
+    transform: translateZ(10px);
+}
+
+.depth-layer-2 {
+    transform: translateZ(20px);
+}
+
+.depth-layer-3 {
+    transform: translateZ(30px);
+}
+
+/* ========== ANIMACIONES DE ENTRADA ========== */
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease forwards;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease forwards;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.8s ease forwards;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== RESPONSIVE - REDUCIR EFECTOS EN MÓVIL ========== */
+@media (max-width: 768px) {
+    .floating-particles::before,
+    .floating-particles::after {
+        display: none;
+    }
+    
+    .hover-3d:hover {
+        transform: scale(1.02);
+    }
+    
+    .animated-border::before {
+        animation: none;
+    }
+}
+
+/* ========== MODO DE ALTO CONTRASTE ========== */
+@media (prefers-contrast: high) {
+    :root {
+        --color-primary: #00ffff;
+        --color-accent: #00ff00;
+        --color-text-secondary: #ffffff;
+    }
+}
+
+/* ========== MODO DE MOVIMIENTO REDUCIDO ========== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

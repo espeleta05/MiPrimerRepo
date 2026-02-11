@@ -1,0 +1,17 @@
+﻿mkdir Backups
+mkdir Backups/MariaDB
+mkdir Backups/Postgress
+sudo dnf install tree -y
+tree Backups/
+mysqldump --user=biblio_user --password Biblioteca > Backups/MariaDB/respaldoBiblioteca.sql
+
+
+# verificación
+tree Backups/
+sudo su -
+su - postgres
+pg_dumpall -f respladoBiblioteca.sql
+ls
+ls -l respladoBiblioteca.sql
+chmod u+x respladoBiblioteca.sql
+ls -l respladoBiblioteca.sql

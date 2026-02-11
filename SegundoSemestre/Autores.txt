@@ -1,0 +1,50 @@
+1, Gabriel García Márquez, Colombiana,10
+2, Julio Cortázar, Argentina,12
+3, Jorge Luis Borges, Argentina,15
+4, Mario Vargas Llosa, Peruana,18
+5, Isabel Allende, Chilena,14
+6, Carlos Fuentes, Mexicana,16
+7, Juan Rulfo, Mexicana,3
+8, Pablo Neruda, Chilena,20
+9, Octavio Paz, Mexicana,22
+10, Miguel de Cervantes, Española,5
+11, William Shakespeare, Inglesa,38
+12, Edgar Allan Poe, Estadounidense,7
+13, Mark Twain, Estadounidense,11
+14, Jane Austen, Inglesa,6
+15, Charles Dickens, Inglesa,15
+16, Fiódor Dostoyevski, Rusa,10
+17, León Tolstói, Rusa,13
+18, Anton Chéjov, Rusa,9
+19, Franz Kafka, Austriaca,8
+20, Virginia Woolf, Inglesa,9
+21, James Joyce, Irlandesa,7
+22, Ernest Hemingway, Estadounidense,9
+23, George Orwell, Inglesa,6
+24, J.R.R. Tolkien, Inglesa,5
+25, C.S. Lewis, Inglesa,8
+26, Haruki Murakami, Japonesa,14
+27, Yukio Mishima, Japonesa,10
+28, Natsume Soseki, Japonesa,11
+29, Kazuo Ishiguro, Japonesa,7
+30, Chinua Achebe, Nigeriana,5
+31, Ngugi wa Thiong’o, Keniana,12
+32, Gabriel Okara, Nigeriana,8
+33, Alice Munro, Canadiense,10
+34, Margaret Atwood, Canadiense,17
+35, Michael Ondaatje, Canadiense,9
+36, Toni Morrison, Estadounidense,11
+37, Maya Angelou, Estadounidense,8
+38, Salman Rushdie, Británica,13
+39, Arundhati Roy, India,6
+40, Rabindranath Tagore, India,20
+41, R.K. Narayan, India,9
+42, Orhan Pamuk, Turca,10
+43, Elif Shafak, Turca,9
+44, Umberto Eco, Italiana,8
+45, Italo Calvino, Italiana,12
+46, Dante Alighieri, Italiana,3
+47, Victor Hugo, Francesa,12
+48, Gustave Flaubert, Francesa,8
+49, Marcel Proust, Francesa,7
+50, Albert Camus, Francesa,9
