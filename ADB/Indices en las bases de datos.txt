@@ -1,0 +1,77 @@
+INDICE en una base de datos
+
+Es una estructura de datos que la base de datos crea de forma adicional a la tabla para permitir busquedas mas rapidas 
+
+un indice funciona de manera similar a un libro. En lugar de recorrer todo el contenid, permite localizar directamente la informacion deseada.
+
+¿Para que funciona?
+1- acelera las consultas cuando utilizamos WHERE
+2- Optimiza y hace mas rapidos los JOINs
+3- Mejora drasticamente el ORDER BY y GROUP BY
+4- Garantiza la unicidad (UNIQUE)
+5- Reduce el tiempo de respuesta de nuestros queris.
+
+Cuando NO utilizarlos
+--Considerar que utilizan espacio en disco
+--Realentizan los INSERT, UPDATE, y los DELETES
+--Demasiados INDICE puede degradar el rendimiento de la base de datos
+
+Sintaxis para crear un indice
+
+CREATE INDEX indx_libros_autor ON libros(autor);
+
+SELECT id_libro, titulo, autor FROM Libros
+    WHERE autor = 'Gabriel García Márquez';
+
+Tambien, es importante sabes que hay diferentes tipos de indices, por ejemplo, el indice compuesto.
+
+CREATE INDEX indx_prestamos_matricula_fecha ON Prestamos(matricula,fecha_prestamo);
+
+SELECT * FROM Prestamos WHERE matricula = AND fecha_prestamo = '' ORDER BY fecha_prestamos;
+
+Como podemos ver el uso de indice
+
+EXPLAIN SELECT * FROM Prestamoss WHERE matricula = 1005;
+
+Para borrar un indice se utiliza
+DROP INDEX indx_prestamos_matricula_fecha ON Prestamos;
+
+-----------------------------------
+
+sp-->
+1.- Crea un SP que liste lso libros de un autor determinado utilizando IN. para recibir un parametro 'el autor' y valida o normaliza el nombre.
+
+DELIMETER//
+CREATE PROCEDURE buscarLibros(
+    IN p_autor varchar(100)
+)
+BEGIN
+    DECLARE n_autor varchar(100);
+    SET n_autor = TRIM(p_autor)
+
+    SELECT id_libro, titulo, anio_publicacion FROM Libros 
+    WHERE autor = n_autor;
+
+
+END//
+DELIMETER;
+
+CALL buscarLibros('Gabriel García Márquez');
+
+2.- Crea un SP que muestre los alumnos de un grado en particular, si el grado esta vacio, muestra un mensaje de error. utiliza IF y validacion del IN.
+
+DELIMITER //
+CREATE PROCEDURE alumnosxGrado(
+    IN p_grado varchar(20)
+)
+BEGIN
+    IF p_grado IS NULL OR TRIM(p_grado) = ''THEN
+    SELECT 'ERROR: no hay parametro' AS Mensaje;
+    ELSE
+    SELECT matricula, nombre FROM Alumnos 
+    WHERE grado=p_grado;
+    END IF;
+END //
+DELIMITER;
+
+CALL alumnosxGrados('1°semestre)

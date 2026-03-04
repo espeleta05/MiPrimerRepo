@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 - Base de Datos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>📚 Tarea 2: Base de Datos</h1>
+                <p>Diseño e Implementación de Sistemas de Bases de Datos</p>
+            </header>
+
+            <article class="tarea-content">
+                <!-- OBJETIVO -->
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo</h2>
+                    <p>
+                        Desarrollar una comprensión profunda de los sistemas de gestión de bases de datos, 
+                        incluyendo el diseño relacional, la normalización de datos, y la implementación de 
+                        soluciones prácticas utilizando SQL. Se enfatiza la importancia de la integridad de datos 
+                        y la optimización de consultas en aplicaciones empresariales.
+                    </p>
+                </section>
+
+                <!-- CONCEPTOS CLAVE -->
+                <section class="tarea-section">
+                    <h2>💡 Conceptos Clave</h2>
+                    <div class="conceptos-grid">
+                        <div class="concepto-card">
+                            <h3>Modelo Relacional</h3>
+                            <p>Fundamento de las bases de datos modernas. Organiza datos en tablas con relaciones definidas mediante claves primarias y foráneas.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Normalización</h3>
+                            <p>Proceso de organización de datos para minimizar redundancia y dependencias. Incluye formas normales (1NF, 2NF, 3NF, BCNF).</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>SQL (Structured Query Language)</h3>
+                            <p>Lenguaje estándar para gestionar bases de datos. Permite crear, leer, actualizar y eliminar datos (CRUD).</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Transacciones</h3>
+                            <p>Operaciones que garantizan la consistencia de datos. Implementan ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad).</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Índices</h3>
+                            <p>Estructuras que mejoran la velocidad de búsqueda. Esenciales para el rendimiento en bases de datos grandes.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Integridad Referencial</h3>
+                            <p>Mecanismo que garantiza la validez de las relaciones entre tablas. Previene datos huérfanos o inconsistentes.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE APRENDIZAJE -->
+                <section class="tarea-section">
+                    <h2>✓ Evidencia de Aprendizaje</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Diseño de Esquema</h3>
+                                <p>Creación de diagramas Entidad-Relación (ER) y esquemas lógicos optimizados.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Consultas Complejas</h3>
+                                <p>Implementación de JOINs, subconsultas, y agregaciones en SQL avanzado.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Normalización</h3>
+                                <p>Análisis y mejora de estructuras de datos para cumplir con formas normales.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Procedimientos Almacenados</h3>
+                                <p>Desarrollo de lógica de negocio reutilizable dentro de la base de datos.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Optimización</h3>
+                                <p>Técnicas para mejorar el rendimiento de consultas y gestión de índices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE IMPLEMENTACIÓN -->
+                <section class="tarea-section">
+                    <h2>📸 Evidencia de Implementación</h2>
+
+                    <h3>Estructura de la Base de Datos</h3>
+                    <p>Se implementó una base de datos relacional con múltiples tablas conectadas mediante relaciones de integridad referencial. La siguiente imagen muestra la arquitectura general:</p>
+                    <div class="imagen-container">
+                        <img src="images/fig1.png" alt="Estructura de la base de datos" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Diagrama de relaciones y estructura de tablas</p>
+                    </div>
+
+                    <h3>Comandos SQL Implementados</h3>
+                    <p>Se utilizaron diversos comandos SQL para garantizar la integridad y funcionalidad de la base de datos:</p>
+                    <div class="codigo-block">
+                        <pre><code>-- Creación de tablas con integridad referencial
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Índices para optimización
+CREATE INDEX idx_email ON usuarios(email);
+
+-- Consultas con JOINs
+SELECT u.nombre, COUNT(p.id) as num_productos
+FROM usuarios u
+LEFT JOIN productos p ON u.id = p.usuario_id
+GROUP BY u.id;</code></pre>
+                    </div>
+
+                    <div class="tarea-actions">
+                        <a href="db_commands.sql" class="btn btn-primario">📥 Descargar Comandos SQL</a>
+                        <a href="README.md" class="btn btn-primario">📄 Descargar README</a>
+                    </div>
+
+                    <h3>Resultados de la Implementación</h3>
+                    <p>Se validaron todas las operaciones CRUD y se confirmó la integridad de datos en diferentes escenarios:</p>
+                    <div class="imagen-container">
+                        <img src="images/fig2.png" alt="Resultados de pruebas" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Validación de integridad y resultados de consultas</p>
+                    </div>
+                </section>
+
+                <!-- CONCLUSIONES -->
+                <section class="tarea-section">
+                    <h2>📋 Conclusiones</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>📚 Aprendizajes Principales</h3>
+                            <p>La normalización de datos es crucial para crear bases de datos escalables y mantenibles. El dominio de SQL y las técnicas de optimización son esenciales para cualquier profesional de datos.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>⚠️ Desafíos Encontrados</h3>
+                            <p>Balancear entre la normalización ideal y el rendimiento práctico fue desafiante. Las consultas complejas requieren validación exhaustiva para garantizar resultados correctos.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>🎯 Mejoras Futuras</h3>
+                            <p>Implementar replicación de bases de datos, backup automático, y monitoreo en tiempo real. Explorar NoSQL para casos de uso específicos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTÓN VOLVER -->
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">← Volver a Parcial 1</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

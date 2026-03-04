@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 7 - Índices, EXPLAIN y Stored Procedures en MariaDB</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        .rubrica-badge { display: inline-block; background: linear-gradient(135deg, #7b2cbf 0%, #00d4ff 100%); color: white; padding: 8px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 20px; }
+        .meta-info { display: flex; gap: 1rem; flex-wrap: wrap; margin: 10px 0 20px; }
+        .meta-pill { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.35); color: #b8c5d6; padding: 6px 12px; border-radius: 999px; font-size: 0.9rem; }
+        .table-of-contents { background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .table-of-contents ul { margin: 10px 0 0 18px; }
+        .table-of-contents a { color: #00d4ff; }
+        .evidencia-grid { display: block; margin-top: 18px; }
+        .evidencia-card { background: rgba(123, 44, 191, 0.08); border: 1px solid rgba(123, 44, 191, 0.3); border-radius: 10px; padding: 16px; max-width: 980px; margin: 0 auto 24px; }
+        .evidencia-card img { display: block; width: 100%; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.35); margin: 12px 0 14px; }
+        .evidencia-card h4 { margin: 0 0 8px; color: #00d4ff; }
+        .faq-section { background: rgba(123, 44, 191, 0.05); padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .faq-item { margin: 15px 0; }
+        .faq-item summary { cursor: pointer; font-weight: bold; color: #00d4ff; padding: 10px; background: rgba(0, 212, 255, 0.1); border-radius: 5px; margin-bottom: 10px; }
+        .faq-item summary:hover { background: rgba(0, 212, 255, 0.2); }
+        .faq-item p { padding: 10px 15px; margin-left: 20px; background: rgba(184, 197, 214, 0.1); border-radius: 5px; }
+        .resources { background: rgba(0, 255, 136, 0.08); border-left: 4px solid #00ff88; padding: 16px; border-radius: 8px; margin-top: 14px; }
+        .references-section { background: rgba(123, 44, 191, 0.1); border-left: 4px solid #7b2cbf; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .reference { margin: 12px 0; padding-left: 20px; text-align: justify; font-size: 0.95em; line-height: 1.6; }
+        .version-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .version-table th, .version-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 212, 255, 0.3); }
+        .version-table th { background: rgba(0, 212, 255, 0.2); color: #00d4ff; font-weight: bold; }
+        .bitacora-section { background: rgba(0, 255, 136, 0.1); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .bitacora-item { margin: 12px 0; padding: 10px; background: rgba(0, 255, 136, 0.05); border-radius: 5px; }
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+        .tag { background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); color: #b8c5d6; padding: 5px 10px; border-radius: 999px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../index.html" class="btn-volver">← Volver al inicio</a>
+
+            <article class="tarea-card" style="margin-top: 20px; padding: 28px;">
+                <span class="rubrica-badge">📚 Parcial 1 · Optimización + Programación en BD</span>
+                <h1>Tarea 07: Índices, EXPLAIN y Stored Procedures en MariaDB</h1>
+                <div class="meta-info">
+                    <span class="meta-pill">📅 13 Febrero 2026</span>
+                    <span class="meta-pill">🎯 Tipo: Optimización + Programación en BD</span>
+                    <span class="meta-pill">🗃️ Base: Biblioteca</span>
+                </div>
+
+                <section class="tarea-section table-of-contents">
+                    <h2>Índice</h2>
+                    <ul>
+                        <li><a href="#objetivo">1. Objetivo</a></li>
+                        <li><a href="#contexto">2. Contexto del Ejercicio</a></li>
+                        <li><a href="#conceptos">3. Conceptos Técnicos</a></li>
+                        <li><a href="#desarrollo">4. Desarrollo del Ejercicio</a></li>
+                        <li><a href="#evidencias">5. Evidencias de Ejecución</a></li>
+                        <li><a href="#calidad">6. Calidad del Trabajo y Buenas Prácticas</a></li>
+                        <li><a href="#conclusiones">7. Conclusiones</a></li>
+                        <li><a href="#integridad">8. Autenticidad e Integridad Académica</a></li>
+                        <li><a href="#faq">9. Preguntas Frecuentes</a></li>
+                        <li><a href="#referencias">10. Referencias APA</a></li>
+                        <li><a href="#versiones">11. Historial de Versiones</a></li>
+                        <li><a href="#bitacora">12. Bitácora de Defensa Oral</a></li>
+                    </ul>
+                </section>
+
+                <section class="tarea-section" id="objetivo">
+                    <h2>1. Objetivo</h2>
+                    <p>Aplicar técnicas de optimización y automatización en MariaDB sobre la base <strong>Biblioteca</strong> mediante inspección del esquema, creación de índices, análisis de planes con <strong>EXPLAIN</strong> e implementación de stored procedures con parámetros y validaciones.</p>
+                </section>
+
+                <section class="tarea-section" id="contexto">
+                    <h2>2. Contexto del Ejercicio</h2>
+                    <p>La práctica se realizó en el monitor de MariaDB con el usuario <strong>biblio_user</strong>. Se operó sobre tablas clave (<strong>Alumnos</strong>, <strong>Libros</strong>, <strong>Prestamos</strong>) para medir el impacto de indexar columnas de búsqueda y para encapsular consultas dentro de procedimientos reutilizables.</p>
+                </section>
+
+                <section class="tarea-section" id="conceptos">
+                    <h2>3. Conceptos Técnicos</h2>
+                    <h3>Índices</h3>
+                    <p>Un índice reduce lecturas innecesarias al filtrar por columnas consultadas frecuentemente (por ejemplo, <code>autor</code>). A cambio, incrementa costo de mantenimiento en inserciones y actualizaciones.</p>
+
+                    <h3>EXPLAIN</h3>
+                    <p><code>EXPLAIN</code> permite observar la estrategia del motor: método de acceso, posible índice utilizado y cardinalidad estimada. Es la forma práctica de comprobar si una optimización tuvo efecto.</p>
+
+                    <h3>Stored Procedures</h3>
+                    <p>Los procedures encapsulan lógica SQL en el servidor para evitar repetición y estandarizar operaciones. Al definirlos se usa <code>DELIMITER</code> y conviene validar parámetros para prevenir ejecuciones inválidas.</p>
+                </section>
+
+                <section class="tarea-section" id="desarrollo">
+                    <h2>4. Desarrollo del Ejercicio</h2>
+
+                    <h3>4.1 Conexión, selección de base y exploración de tablas</h3>
+                    <pre><code>mysql -u biblio_user -p
+
+USE Biblioteca;
+SHOW TABLES;
+
+DESC Libros;</code></pre>
+
+                    <h3>4.2 Consulta filtrada por autor</h3>
+                    <pre><code>SELECT *
+FROM Libros
+WHERE autor = 'Gabriel García Márquez';</code></pre>
+
+                    <h3>4.3 Creación de índice y validación</h3>
+                    <pre><code>CREATE INDEX indx_libros_autor ON Libros(autor);
+
+SELECT id_libro, titulo, autor
+FROM Libros
+WHERE autor = 'Gabriel García Márquez';</code></pre>
+
+                    <h3>4.4 Consulta en Prestamos y análisis con EXPLAIN</h3>
+                    <pre><code>SELECT *
+FROM Prestamos
+WHERE matricula = 1006
+  AND fecha_prestamo >= '2024-08-01'
+ORDER BY fecha_prestamo;
+
+EXPLAIN SELECT * FROM Prestamos WHERE matricula = 1005;
+
+CREATE INDEX indx_libros_autor ON Libros(autor);</code></pre>
+                    <p>La recreación de <code>indx_libros_autor</code> produjo error por nombre duplicado, confirmando que el índice ya existía y que el motor lo reconocía correctamente.</p>
+
+                    <h3>4.5 Stored Procedure: buscarLibros (parametrizado + TRIM)</h3>
+                    <pre><code>DELIMITER //
+
+CREATE PROCEDURE buscarLibros(
+  IN p_autor VARCHAR(100)
+)
+BEGIN
+  DECLARE n_autor VARCHAR(100);
+  SET n_autor = TRIM(p_autor);
+
+  SELECT id_libro, titulo, anio_publicacion
+  FROM Libros
+  WHERE autor = n_autor;
+END //
+
+DELIMITER ;
+
+CALL buscarLibros('Gabriel García Márquez');</code></pre>
+
+                    <h3>4.6 Stored Procedure: alumnosxGrado (validación + error esperado)</h3>
+                    <pre><code>SELECT * FROM Alumnos;
+
+DELIMITER //
+
+CREATE PROCEDURE alumnosxGrado(
+  IN p_grado VARCHAR(20)
+)
+BEGIN
+  IF p_grado IS NULL OR TRIM(p_grado) = '' THEN
+    SELECT 'ERROR: no hay parametro' AS Mensaje;
+  ELSE
+    SELECT matricula, nombre
+    FROM Alumnos
+    WHERE grado = p_grado;
+  END IF;
+END //
+
+DELIMITER ;
+
+CALL alumnosxGrado('2° Secundaria');
+
+CALL alumnosxGrado();</code></pre>
+                </section>
+
+                <section class="tarea-section" id="evidencias">
+                    <h2>5. Evidencias de Ejecución</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-card">
+                            <h4>Evidence 1</h4>
+                            <img src="images/img1.png" alt="Exploración inicial de Biblioteca y estructura de Libros">
+                            <p>Exploración inicial: <code>USE Biblioteca</code>, <code>SHOW TABLES</code> y <code>DESC Libros</code>.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 2</h4>
+                            <img src="images/img2.png" alt="Índice en Libros por autor y consulta filtrada">
+                            <p>Creación de índice en <code>Libros(autor)</code> y ejecución de consulta filtrada.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 3</h4>
+                            <img src="images/img3.png" alt="Consulta Prestamos, EXPLAIN y error por índice duplicado">
+                            <p>Consulta sobre <code>Prestamos</code>, análisis con <code>EXPLAIN</code> y error 1061 por índice duplicado.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 4</h4>
+                            <img src="images/img4.png" alt="Procedure buscarLibros con CALL">
+                            <p>Creación y ejecución de <code>buscarLibros</code> con parámetro de autor.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 5</h4>
+                            <img src="images/img5.png" alt="Procedure alumnosxGrado con validación y error por argumentos">
+                            <p><code>alumnosxGrado</code> con validación defensiva y error 1318 al llamar sin argumentos.</p>
+                        </div>
+                    </div>
+
+                    <div class="resources">
+                        <strong>Evidencia (script SQL):</strong>
+                        <a href="indice.sql" download>Descargar indice.sql</a>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="calidad">
+                    <h2>6. Calidad del Trabajo y Buenas Prácticas</h2>
+                    <ul>
+                        <li><strong>Optimización con criterio:</strong> índice aplicado en columna consultada de forma repetida.</li>
+                        <li><strong>Diagnóstico técnico:</strong> uso de <code>EXPLAIN</code> para validar estrategia de ejecución.</li>
+                        <li><strong>Reutilización:</strong> procedimientos parametrizados para encapsular lógica de consulta.</li>
+                        <li><strong>Validación defensiva:</strong> control de nulos o vacíos en parámetros de entrada.</li>
+                        <li><strong>Trazabilidad:</strong> evidencias incluyen resultados exitosos y errores reales.</li>
+                    </ul>
+                </section>
+
+                <section class="tarea-section" id="conclusiones">
+                    <h2>7. Conclusiones</h2>
+                    <p>La actividad permitió combinar optimización y programación SQL en un mismo flujo: primero se mejoró el acceso a datos con índices, luego se comprobó el plan de ejecución con <strong>EXPLAIN</strong>, y finalmente se estandarizaron consultas con procedures. Los errores observados (índice duplicado y llamada sin parámetros) fortalecieron el proceso de prueba y depuración.</p>
+                </section>
+
+                <section class="tarea-section" id="integridad">
+                    <h2>8. Autenticidad e Integridad Académica</h2>
+                    <p>Declaro que este trabajo fue ejecutado en un entorno real de MariaDB en Linux, y que las evidencias corresponden a comandos y resultados obtenidos durante la práctica, incluyendo intentos fallidos y correcciones.</p>
+                    <div class="tags">
+                        <span class="tag">MariaDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Índices</span>
+                        <span class="tag">EXPLAIN</span>
+                        <span class="tag">Stored Procedures</span>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="faq">
+                    <h2>9. Preguntas Frecuentes</h2>
+                    <div class="faq-section">
+                        <details class="faq-item">
+                            <summary>¿Cómo saber si un índice sí está ayudando?</summary>
+                            <p>Comparando el plan de ejecución con <code>EXPLAIN</code> antes y después, y observando menor costo estimado o uso de índice.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Por qué TRIM en parámetros del procedure?</summary>
+                            <p>Porque evita que espacios accidentales rompan comparaciones exactas al buscar por autor o por grado.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Qué significa el error 1061?</summary>
+                            <p>Que intentaste crear un índice con un nombre que ya existe en la misma tabla.</p>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="references-section" id="referencias">
+                    <h2>10. Referencias APA</h2>
+                    <div class="reference">1. MariaDB Foundation. (2026). CREATE INDEX. Retrieved from https://mariadb.com/kb/en/create-index/</div>
+                    <div class="reference">2. MariaDB Foundation. (2026). EXPLAIN. Retrieved from https://mariadb.com/kb/en/explain/</div>
+                    <div class="reference">3. MariaDB Foundation. (2026). CREATE PROCEDURE. Retrieved from https://mariadb.com/kb/en/create-procedure/</div>
+                    <div class="reference">4. Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database system concepts (7th ed.). McGraw-Hill.</div>
+                    <div class="reference">5. Ramakrishnan, R., & Gehrke, J. (2003). Database management systems (3rd ed.). McGraw-Hill.</div>
+                </section>
+
+                <section class="tarea-section" id="versiones">
+                    <h2>11. Historial de Versiones</h2>
+                    <table class="version-table">
+                        <tr><th>Versión</th><th>Fecha</th><th>Cambios</th><th>Autor</th></tr>
+                        <tr><td>v1.0</td><td>2026-02-23</td><td>Creación de actividad con desarrollo completo y evidencias.</td><td>Eugenio E.</td></tr>
+                    </table>
+                </section>
+
+                <section class="bitacora-section" id="bitacora">
+                    <h2>12. Bitácora de Defensa Oral</h2>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Por qué no indexar todas las columnas?<br>
+                        <strong>Respuesta:</strong> Porque sobreindexar aumenta costo de escritura y espacio; solo conviene indexar columnas con filtros frecuentes.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Qué aportó EXPLAIN en esta práctica?<br>
+                        <strong>Respuesta:</strong> Mostró evidencia de cómo el motor planea la consulta y ayudó a justificar la indexación aplicada.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Qué validación implementaste en procedures?<br>
+                        <strong>Respuesta:</strong> Control de parámetros vacíos o nulos para evitar resultados ambiguos y llamadas incorrectas.
+                    </div>
+                </section>
+
+                <p style="margin-top: 30px;">
+                    <a href="../../../pages/parcial1.html" class="btn-volver">← Volver a Parcial 1</a>
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2026 Portafolio Académico</p>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

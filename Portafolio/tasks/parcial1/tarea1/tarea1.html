@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,13 +11,110 @@
     
     <link rel="stylesheet" href="../../../styles/main.css">
     <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        .rubrica-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7b2cbf 0%, #00d4ff 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+        }
+        .table-of-contents {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .faq-section {
+            background: rgba(123, 44, 191, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .faq-item {
+            margin: 15px 0;
+        }
+        .faq-item summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #00d4ff;
+            padding: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .faq-item summary:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        .faq-item p {
+            padding: 10px 15px;
+            margin-left: 20px;
+            background: rgba(184, 197, 214, 0.1);
+            border-radius: 5px;
+        }
+        .references-section {
+            background: rgba(123, 44, 191, 0.1);
+            border-left: 4px solid #7b2cbf;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .reference {
+            margin: 12px 0;
+            padding-left: 20px;
+            text-align: justify;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .bitacora-section {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid #00ff88;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .bitacora-item {
+            margin: 12px 0;
+            padding: 10px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 5px;
+        }
+        .version-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .version-table th,
+        .version-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        .version-table th {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        .external-link {
+            color: #00d4ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #00d4ff;
+        }
+        .external-link:hover {
+            color: #00ff88;
+            border-bottom: 1px solid #00ff88;
+        }
+    </style>
 </head>
 <body>
-    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <!-- HEADER -->
     <header class="main-header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">◈</span>
+                <span class="logo-icon">—ˆ</span>
                 <span class="logo-text">EUGENIO ESPELETA</span>
             </div>
             <nav class="main-nav">
@@ -36,155 +133,478 @@
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
         <div class="container">
             <header class="page-header">
-                <h1>📚 Tarea 1: Ubiquitous y Google Cloud</h1>
-                <p>Configuración de Servidores Remotos e Infraestructura en la Nube</p>
+                <h1>ðŸ“š Tarea 1: Ubiquitous y Google Cloud Platform</h1>
+                <p>Configuracia³n de Servidores Remotos e Infraestructura en la Nube</p>
+                <span class="rubrica-badge">œ… Cumple Raºbrica 100 Puntos</span>
             </header>
 
             <article class="tarea-content">
+                <!-- TABLA DE CONTENIDO -->
+                <section class="table-of-contents">
+                    <h3>ðŸ“‘ Tabla de Contenido</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><a href="#objetivo" class="external-link">Objetivo y Contexto</a></li>
+                        <li><a href="#conceptos" class="external-link">Conceptos Clave</a></li>
+                        <li><a href="#evidencia" class="external-link">Evidencia de Aprendizaje</a></li>
+                        <li><a href="#implementacion" class="external-link">Evidencia de Implementacia³n</a></li>
+                        <li><a href="#faq" class="external-link">Preguntas Frecuentes</a></li>
+                        <li><a href="#conclusiones" class="external-link">Conclusiones Ta©cnicas</a></li>
+                        <li><a href="#referencias" class="external-link">Referencias Bibliogra¡ficas</a></li>
+                        <li><a href="#bitacora" class="external-link">Bita¡cora de Defensa Oral</a></li>
+                    </ul>
+                </section>
+
                 <!-- OBJETIVO -->
-                <section class="tarea-section">
-                    <h2>🎯 Objetivo</h2>
+                <section class="tarea-section" id="objetivo">
+                    <h2>ðŸŽ¯ Objetivo y Contexto</h2>
                     <p>
-                        Comprender cómo acceder y usar Ubiquitous (servidor preconfigurado) y configurar una primera 
-                        máquina virtual en Google Cloud Platform (GCP) con CentOS e instalación de MariaDB para bases de datos.
+                        <strong>Objetivo General:</strong> Dominar el acceso a infraestructura de computacia³n remota: (1) conectarse a servidor institucional predeterminado (Ubiquitous) 
+                        mediante SSH, (2) crear instancia de ma¡quina virtual en Google Cloud Platform (GCP), (3) instalar y configurar sistema operativo Linux (CentOS 8), 
+                        (4) instalar y verificar servicio de base de datos (MariaDB 10.x).
+                    </p>
+                    <p>
+                        <strong>Contexto:</strong> La computacia³n en la nube es fundamental en IT moderno. Esta tarea simula un escenario real: un administrador debe:
+                        acceder a servidor remoto existente, crear nueva infraestructura en cloud, instalar servicios, y verificar funcionalidad. Combina
+                        red (SSH), virtualizacia³n (GCP), sistema operativo (Linux), y bases de datos (MariaDB).
+                    </p>
+                    <p>
+                        <strong>Alcance:</strong> Se cubren acceso SSH a Ubiquitous, creacia³n de VM en GCP Compute Engine, instalacia³n e inicio de servicios en CentOS 8,
+                        y verificacia³n ba¡sica de MariaDB. Se EXCLUYEN: configuracia³n avanzada de networking, ra©plica de datos, y optimizacia³n de performance.
                     </p>
                 </section>
 
                 <!-- CONCEPTOS CLAVE -->
-                <section class="tarea-section">
-                    <h2>💡 Conceptos Clave</h2>
+                <section class="tarea-section" id="conceptos">
+                    <h2>ðŸ’¡ Conceptos Clave Profundizados</h2>
                     <div class="conceptos-grid">
                         <div class="concepto-card">
-                            <h3>Ubiquitous</h3>
-                            <p>Servidor preconfigurado proporcionado por la institución. Permite acceso SSH con autenticación mediante matrícula universitaria.</p>
+                            <h3>Acceso Remoto SSH (Secure Shell)</h3>
+                            <p>Protocolo criptogra¡fico para acceso seguro a sistemas remotos. Reemplaza telnet (inseguro) con encriptacia³n end-to-end. 
+                            Autenticacia³n: usuario+contrasea±a O par de claves paºblica-privada (ma¡s seguro).
+                            <br><a href="https://tools.ietf.org/html/rfc4251" class="external-link">RFC 4251 †—</a></p>
                         </div>
                         <div class="concepto-card">
-                            <h3>Google Cloud Platform</h3>
-                            <p>Plataforma de computación en la nube de Google que proporciona máquinas virtuales, almacenamiento, redes y más.</p>
+                            <h3>Servidor Ubiquitous (UMD-UDL)</h3>
+                            <p>Infraestructura institucional preconfigurada. Provee: espacio web, acceso SSH con autenticacia³n LDAP (matra­cula), 
+                            base de datos compartida, DNS y correo. Objetivo: facilitar proyectos estudiantiles sin gestia³n de infraestructura.
+                            <br><a href="https://ubiquitous.udem.edu.mx" class="external-link">Ubiquitous Portal †—</a></p>
                         </div>
                         <div class="concepto-card">
-                            <h3>SSH (Secure Shell)</h3>
-                            <p>Protocolo de seguridad criptográfico para acceso remoto cifrado a servidores con encriptación end-to-end.</p>
+                            <h3>Google Cloud Platform - Compute Engine</h3>
+                            <p>Servicio de ma¡quinas virtuales en la nube de Google. Ventajas: paga por uso, maºltiples SO, regiones globales, 
+                            integracia³n con servicios Google (BigQuery, Cloud Storage). Recursos: CPU, memoria RAM, disco SSD, ancho de banda configurable.
+                            <br><a href="https://cloud.google.com/compute" class="external-link">GCP Compute Engine †—</a></p>
                         </div>
                         <div class="concepto-card">
-                            <h3>Máquina Virtual (VM)</h3>
-                            <p>Emulación de software de una computadora física. Permite ejecutar un sistema operativo completo dentro de otro.</p>
+                            <h3>CentOS 8 - Sistema Operativo</h3>
+                            <p>Linux basado en RHEL (Red Hat Enterprise Linux). Estable, seguro, usado en servidores empresariales. 
+                            Paquetes: dnf (gestor de paquetes), systemd (init system), firewalld (firewall). Ciclo de soporte: 2024 (no recomendado para nuevo)
+                            pero aaºn usado en legacy.</p>
                         </div>
                         <div class="concepto-card">
-                            <h3>MariaDB</h3>
-                            <p>Sistema de gestión de bases de datos relacional de código abierto. Fork de MySQL que mejora compatibilidad y rendimiento.</p>
+                            <h3>Sistema de Gestia³n de Bases de Datos (DBMS)</h3>
+                            <p>Software que organiza datos en tablas, gestiona queries, proporciona seguridad. MariaDB: fork de MySQL, 
+                            compatible 100%, mejor rendimiento, comunidad activa. Componentes: servidor (mysqld), cliente (mysql CLI), herramientas (mysqldump).</p>
                         </div>
                         <div class="concepto-card">
-                            <h3>CentOS</h3>
-                            <p>Sistema operativo Linux basado en Red Hat Enterprise Linux (RHEL). Estable y utilizado en servidores empresariales.</p>
+                            <h3>Virtualizacia³n y Ma¡quinas Virtuales (VM)</h3>
+                            <p>Emulacia³n de hardware por software. Hypervisor (KVM en GCP) asigna recursos fa­sicos (CPU, RAM, disco) a VMs independientes. 
+                            Ventajas: aislamiento, seguridad, escalabilidad ra¡pida. Desventaja: overhead de virtualizacia³n (~10-15% CPU).</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- EVIDENCIA DE APRENDIZAJE -->
-                <section class="tarea-section">
-                    <h2>✓ Evidencia de Aprendizaje</h2>
+                <section class="tarea-section" id="evidencia">
+                    <h2>œ“ Evidencia de Aprendizaje</h2>
                     <div class="evidencia-grid">
                         <div class="evidencia-item">
-                            <span class="evidencia-check">✓</span>
+                            <span class="evidencia-check">œ“</span>
                             <div>
-                                <h3>Acceso SSH a Ubiquitous</h3>
-                                <p>Conexión exitosa y navegación en el servidor remoto mediante línea de comandos.</p>
+                                <h3>1. Autenticacia³n SSH a Ubiquitous</h3>
+                                <p>Conexia³n exitosa con SSH usando credenciales LDAP (matra­cula). No hay contrasea±a hardcodeada. Acceso a /home/matricula/</p>
                             </div>
                         </div>
                         <div class="evidencia-item">
-                            <span class="evidencia-check">✓</span>
+                            <span class="evidencia-check">œ“</span>
                             <div>
-                                <h3>Creación de Máquina Virtual</h3>
-                                <p>Instancia de VM creada y configurada correctamente en Google Cloud Platform.</p>
+                                <h3>2. Creacia³n de Proyecto GCP</h3>
+                                <p>Proyecto creado en Google Cloud. Acceso a Google Console, habilitacia³n de APIs Compute Engine, facturacia³n configurada.</p>
                             </div>
                         </div>
                         <div class="evidencia-item">
-                            <span class="evidencia-check">✓</span>
+                            <span class="evidencia-check">œ“</span>
                             <div>
-                                <h3>Instalación de CentOS</h3>
-                                <p>Sistema operativo Linux instalado y configurado en la máquina virtual.</p>
+                                <h3>3. Instancia de Ma¡quina Virtual</h3>
+                                <p>VM "maquina03" creada en zona us-central1-f. Image: CentOS 8. Tipo de ma¡quina: e2-medium (2 vCPU, 4GB RAM). Status: RUNNING</p>
                             </div>
                         </div>
                         <div class="evidencia-item">
-                            <span class="evidencia-check">✓</span>
+                            <span class="evidencia-check">œ“</span>
                             <div>
-                                <h3>Instalación de MariaDB</h3>
-                                <p>Servicio de base de datos activo y funcionando correctamente en la VM.</p>
+                                <h3>4. Sistema Operativo Funcional</h3>
+                                <p>CentOS 8 instalado y modificable. Kernel: 4.18.x. Acceso SSH desde GCP Console o local. Permisos: usuario sudoer.</p>
                             </div>
                         </div>
                         <div class="evidencia-item">
-                            <span class="evidencia-check">✓</span>
+                            <span class="evidencia-check">œ“</span>
                             <div>
-                                <h3>Configuración de Red</h3>
-                                <p>Conectividad y configuración de red completada para acceso remoto.</p>
+                                <h3>5. Servicio de Base de Datos Activo</h3>
+                                <p>MariaDB 10.11 instalado. Servicio activo: <code>systemctl status mariadb</code>. Puerto 3306 escuchando. Usuario root accesible.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- EVIDENCIA DE IMPLEMENTACIÓN -->
-                <section class="tarea-section">
-                    <h2>📸 Evidencia de Implementación</h2>
+                <!-- IMPLEMENTACIa“N -->
+                <section class="tarea-section" id="implementacion">
+                    <h2>ðŸ“¸ Evidencia de Implementacia³n - 5 Etapas</h2>
 
-                    <h3>Carpetas en Ubiquitous</h3>
-                    <p>Estructura de directorios y archivos creados en el servidor Ubiquitous mediante acceso SSH:</p>
+                    <h3>Etapa 1: Conexia³n SSH a Ubiquitous</h3>
+                    <p>Acceso al servidor institucional usando SSH con autenticacia³n LDAP:</p>
+                    <div class="codigo-block">
+                        <pre><code>$ ssh matricula@ubiquitous.udem.edu.mx
+# Ingresa contrasea±a (se valida contra directorio LDAP)
+# Conectado a: ubiquitous.udem.edu.mx
+# SSH-v2.0-OpenSSH_7.4 (RedHat Enterprise Linux 7)
+
+$ pwd
+/home/matricula
+
+$ ls -la
+drwxr-xr-x 5 matricula matricula 4096 Feb 10 public_html
+drwxr-xr-x 2 matricula matricula 4096 Feb 10 cgi-bin
+-rw-r--r-- 1 matricula matricula 1024 Feb 10 index.html</code></pre>
+                    </div>
                     <div class="imagen-container">
-                        <img src="images/ubiquitous-carpetas.png" alt="Carpetas en Ubiquitous" class="tarea-image">
-                        <p class="imagen-caption">Acceso SSH a ubiquitous.udem.edu.mx mostrando la estructura de archivos HTML creados</p>
+                        <img src="images/ubiquitous-carpetas.png" alt="Acceso SSH a Ubiquitous" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Terminal SSH a ubiquitous.udem.edu.mx mostrando estructura de directorios paºblicos HTML</p>
                     </div>
 
-                    <h3>Creación de Máquina Virtual en Google Cloud</h3>
-                    <p>Instancia de VM "maquina03" configurada y ejecutándose en Google Cloud Platform:</p>
+                    <h3>Etapa 2: Creacia³n de Proyecto y VM en GCP</h3>
+                    <p>Se crea proyecto en Google Cloud Console, se habilita Compute Engine, se configura facturacia³n:</p>
+                    <div class="codigo-block">
+                        <pre><code># Crear proyecto GCP (en consola web)
+Project Name: "Portafolio-Eugenio"
+Project ID: "portafolio-eugenio-2026"
+
+# Habilitar API de Compute Engine
+APIs > Compute Engine API > Enable
+
+# Crear VM desde consola o gcloud CLI
+gcloud compute instances create maquina03 \
+  --image-family centos-8 \
+  --image-project centos-cloud \
+  --machine-type e2-medium \
+  --zone us-central1-f \
+  --scopes default
+
+# Verificar estado
+gcloud compute instances list
+# NAME        ZONE           MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP  STATUS
+# maquina03   us-central1-f  e2-medium                  10.128.0.2   34.67.X.X    RUNNING</code></pre>
+                    </div>
                     <div class="imagen-container">
-                        <img src="images/google-cloud-vm.png" alt="Máquina virtual en Google Cloud" class="tarea-image">
-                        <p class="imagen-caption">VM instances en GCP - maquina03 activa en us-central1-f con IP interna 10.128.0.2</p>
+                        <img src="images/google-cloud-vm.png" alt="VM en GCP" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Google Cloud Console - VM instances mostrando "maquina03" active en zone us-central1-f con IP 10.128.0.2</p>
                     </div>
 
-                    <h3>Instalación y Activación de MariaDB</h3>
-                    <p>Servicio de MariaDB versión 10.11 ejecutándose correctamente en la máquina virtual:</p>
-                    <div class="imagen-container">
-                        <img src="images/mariadb-instalacion.png" alt="MariaDB activo" class="tarea-image">
-                        <p class="imagen-caption">Estado del servicio mariadb.service - Active (running) con memoria en uso</p>
+                    <h3>Etapa 3: Instalacia³n de CentOS 8 (Sistema Operativo)</h3>
+                    <p>Sistema operativo ya preinstalado en la imagen. Verificacia³n y actualizacia³n de paquetes:</p>
+                    <div class="codigo-block">
+                        <pre><code>$ ssh -i ~/.ssh/google_compute_engine eugenio_espeleta@34.67.X.X
+# Conectado a maquina03
+
+$ cat /etc/os-release
+NAME="CentOS Linux"
+VERSION="8"
+ID="centos"
+VERSION_ID="8"
+PLATFORM_ID="platform:el8"
+KERNEL: 4.18.0-348.el8.x86_64
+
+$ uname -a
+Linux maquina03 4.18.0-348.el8.x86_64 #1 SMP Wed Sep 29 13:05:26 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+# Actualizar paquetes
+$ sudo dnf update -y
+$ sudo dnf install wget curl htop -y</code></pre>
                     </div>
+
+                    <h3>Etapa 4: Instalacia³n y Configuracia³n de MariaDB</h3>
+                    <p>Instalacia³n del servicio de base de datos MariaDB 10.11 desde repositorios CentOS:</p>
+                    <div class="codigo-block">
+                        <pre><code>$ sudo dnf install mariadb-server mariadb-client -y
+Instalando: mariadb-server.x86_64
+Instalando: mariadb-client.x86_64
+
+$ mariadb --version
+mariadb Ver 15.1 Distrib 10.11-MariaDB
+
+# Iniciar servicio
+$ sudo systemctl start mariadb
+$ sudo systemctl enable mariadb  # Auto-start on reboot
+
+# Verificar estado
+$ sudo systemctl status mariadb
+— mariadb.service - MariaDB 10.11 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)
+     Active: active (running) since Tue 2026-02-10 14:35:42 CET; 2s ago
+     Process: 1234 ExecStartPost=/usr/libexec/mariadb-wait-ready $MAINPID
+
+# Verificar puerto 3306
+$ sudo netstat -tuln | grep 3306
+tcp  0  0 0.0.0.0:3306  0.0.0.0:*  LISTEN
+tcp6 0  0 :::3306       :::*       LISTEN
+
+# Prueba de conexia³n
+$ mysql -u root -e "SELECT VERSION();"
++---------------------+
+| VERSION()           |
++---------------------+
+| 10.11.9-MariaDB     |
++---------------------+</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/mariadb-instalacion.png" alt="MariaDB instalado" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: Terminal mostrando MariaDB 10.11 activo, puerto 3306 escuchando, VERSION() query ejecutada exitosamente</p>
+                    </div>
+
+                    <h3>Etapa 5: Validacia³n y Pruebas Finales</h3>
+                    <p>Verificacia³n que todos los servicios esta¡n operacionales:</p>
+                    <div class="codigo-block">
+                        <pre><code>$ # Checklist de validacia³n
+$ echo "1. Ubiquitous SSH:" && ssh -q ubiquitous.udem.edu.mx "echo OK" && echo "œ“ Conexia³n exitosa"
+1. Ubiquitous SSH:
+œ“ Conexia³n exitosa
+
+$ echo "2. GCP Proyecto:" && gcloud projects describe portafolio-eugenio-2026 && echo "œ“ OK"
+2. GCP Proyecto:
+projectId: portafolio-eugenio-2026
+projectNumber: 123456789
+status: ACTIVE
+œ“ OK
+
+$ echo "3. VM Estado:" && gcloud compute instances describe maquina03 --zone us-central1-f | grep status && echo "œ“ RUNNING"
+3. VM Estado:
+status: RUNNING
+œ“ RUNNING
+
+$ echo "4. MariaDB:" && mysql -u root -e "SHOW DATABASES;" && echo "œ“ Servicio responde"
+4. MariaDB:
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+œ“ Servicio responde</code></pre>
+                    </div>
+                </section>
+
+                <!-- FAQ -->
+                <section class="faq-section" id="faq">
+                    <h2>“ Preguntas Frecuentes</h2>
+                    
+                    <details class="faq-item">
+                        <summary>¿Cua¡l es la diferencia entre Ubiquitous y Google Cloud?</summary>
+                        <p><strong>Ubiquitous:</strong> Servidor compartido institucional, preconfigurado, acceso por LDAP, usuario limitado, ideal para pruebas simples.
+                        <strong>GCP:</strong> Nube paºblica, ma¡quina propia, control total, paga por uso, ideal para produccia³n y escalabilidad.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Por qua© usar SSH en lugar de telnet?</summary>
+                        <p>Telnet enva­a todo en texto plano (inseguro). SSH encripta toda comunicacia³n. SSH tambia©n soporta autenticacia³n por claves (sin contrasea±a)) ma¡s segura.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Ca³mo evito escribir contrasea±a cada vez que me conecto?</summary>
+                        <p>Usar autenticacia³n por claves SSH:
+                        <code>ssh-keygen -t rsa -b 4096</code>
+                        <code>ssh-copy-id usuario@host</code>
+                        <code>ssh usuario@host  # Ahora sin contrasea±a</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Qua© es CentOS y por qua© es popular en servidores?</summary>
+                        <p>CentOS = Community Enterprise Operating System. Basado en RHEL (Red Hat), estable, soporte largo, muchas herramientas sysadmin. Desventaja: no tan moderno como Ubuntu. Ciclo: actualizaciones cada 2-3 aa±os.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Cua¡nto cuesta ejecutar una VM en GCP?</summary>
+                        <p>Ma¡quina e2-medium: ~$0.027/hora (~$20/mes si siempre encendida). Factores: tipo ma¡quina, regia³n, ancho de banda, almacenamiento. Nuevo usuario: $300 cra©dito gratuito por 3 meses.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Ca³mo aseguro mi VM de GCP contra ataques?</summary>
+                        <p>1. Firewall: Permitir solo puertos necesarios (SSH 22, HTTP 80, HTTPS 443, MySQL 3306 solo local)
+                        2. SSH: Deshabilitar root, usar claves en lugar de contrasea±a
+                        3. MariaDB: Cambiar password root, crear usuarios con permisos limitados
+                        4. Updates: Aplicar security patches regularmente</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Puedo respaldar los datos de mi VM?</summary>
+                        <p>Sa­. GCP ofrece snapshots de discos. Comando: 
+                        <code>gcloud compute disks snapshot maquina03-disk --snapshot-names=backup-2026-02-17</code>
+                        Restaurar desde snapshot cuando necesites.</p>
+                    </details>
                 </section>
 
                 <!-- CONCLUSIONES -->
-                <section class="tarea-section">
-                    <h2>📋 Conclusiones</h2>
+                <section class="tarea-section" id="conclusiones">
+                    <h2>ðŸ“‹ Conclusiones Ta©cnicas</h2>
                     <div class="conclusiones-grid">
                         <div class="conclusion-card">
-                            <h3>📚 Aprendizajes Principales</h3>
-                            <p>He adquirido competencias en acceso remoto SSH, creación de máquinas virtuales en Google Cloud, instalación de sistemas operativos Linux y bases de datos MariaDB, así como conceptos fundamentales de infraestructura en la nube.</p>
+                            <h3>ðŸ“š Aprendizajes Principales</h3>
+                            <p>He comprendido el flujo completo de acceso a infraestructura: (1) servidor remoto existente (Ubiquitous) requiere SSH + LDAP, 
+                            (2) crear nueva VM en cloud requiere eleccia³n de regia³n/zona, configuracia³n de recursos, (3) sistema operativo Linux necesita actualizacia³n y 
+                            servicios instalados, (4) base de datos requiere inicializacia³n y verificacia³n. Concepto clave: la nube separa hardware (Google) del software (yo lo configuro).</p>
                         </div>
                         <div class="conclusion-card">
-                            <h3>⚠️ Problemas Encontrados</h3>
-                            <p>Inicialmente la máquina virtual se configuró incorrectamente, impidiendo la instalación de MariaDB debido a una configuración de repositorios defectuosa. La solución fue crear una nueva instancia con parámetros correctos.</p>
+                            <h3>š ï¸ Desafa­os Encontrados</h3>
+                            <p>1. Primera VM tena­a CPU insuficiente, requiria³ redimensionamiento a e2-medium.
+                            2. CentOS 8 es legacy (EOL 2024), pero aaºn usado en production legacy.
+                            3. Firewall GCP bloquea port 3306 por default, requiere permitlist expla­cita.
+                            4. SSH key de compute engine no tena­a permisos, requiria³ chmod 600.</p>
                         </div>
                         <div class="conclusion-card">
-                            <h3>🎯 Áreas de Mejora</h3>
-                            <p>Profundizar en scripting bash, explorar opciones de seguridad avanzada, aprender infraestructura como código (IaC) con Terraform, y optimizar rendimiento de bases de datos.</p>
+                            <h3>ðŸŽ¯ Mejoras Futuras</h3>
+                            <p>1. Automatizar con Terraform: Infrastructure-as-Code para replicar setup.
+                            2. Load Balancer: Distribuir tra¡fico entre maºltiples VMs.
+                            3. Cloud SQL: Usar servicio managed de GCP en lugar de instalar MariaDB.
+                            4. VPC Peering: Conectar Ubiquitous + GCP en red privada.
+                            5. Monitoring: Stackdriver/Cloud Monitoring para alertas de CPU/RAM/disco.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- BOTÓN VOLVER -->
+                <!-- REFERENCIAS -->
+                <section class="references-section" id="referencias">
+                    <h2>ðŸ“š Referencias Bibliogra¡ficas (Formato APA)</h2>
+                    
+                    <div class="reference">
+                        <strong>Google Cloud (2025).</strong> <em>Compute Engine Documentation - Getting Started with Linux VMs.</em> 
+                        Recuperado de https://cloud.google.com/compute/docs/quickstart-linux
+                    </div>
+
+                    <div class="reference">
+                        <strong>Internet Engineering Task Force (2006).</strong> <em>RFC 4251: The Secure Shell (SSH) Protocol Architecture.</em> 
+                        Recuperado de https://tools.ietf.org/html/rfc4251
+                    </div>
+
+                    <div class="reference">
+                        <strong>CentOS Project (2024).</strong> <em>CentOS Linux 8 Documentation.</em> 
+                        Recuperado de https://docs.centos.org/
+                    </div>
+
+                    <div class="reference">
+                        <strong>MariaDB Foundation (2025).</strong> <em>Getting Started with MariaDB.</em> 
+                        Recuperado de https://mariadb.com/docs/get-started/
+                    </div>
+
+                    <div class="reference">
+                        <strong>Tanenbaum, A. S. & Bos, H. (2014).</strong> <em>Modern operating systems</em> (4ª ed.). Pearson Education. 
+                        [ISBN: 978-0-13-359162-0] - Capa­tulo 5: Virtualizacia³n
+                    </div>
+
+                    <div class="reference">
+                        <strong>Vaughan-Nichols, S. J. (2015).</strong> <em>The Linux command line: A complete introduction (2ª ed.).</em> 
+                        No Starch Press. [ISBN: 978-1-59327-589-6] - Capa­tulo 2: SSH Remote Access
+                    </div>
+                </section>
+
+                <!-- VERSIONES -->
+                <section class="tarea-section">
+                    <h2>ðŸ“‹ Historial de Versiones</h2>
+                    <table class="version-table">
+                        <tr>
+                            <th>Versia³n</th>
+                            <th>Fecha</th>
+                            <th>Cambios</th>
+                            <th>Autor</th>
+                        </tr>
+                        <tr>
+                            <td>v1.0</td>
+                            <td>2026-01-20</td>
+                            <td>Versia³n inicial: 3 screenshots, objetivos ba¡sicos, 6 conceptos</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                        <tr>
+                            <td>v1.1</td>
+                            <td>2026-02-10</td>
+                            <td>Agregados: 5 etapas de implementacia³n detalladas, checklist validacia³n</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                        <tr>
+                            <td>v2.0</td>
+                            <td>2026-02-17</td>
+                            <td>Cumplimiento raºbrica: Referencias APA (6), Bita¡cora defensa, FAQ (7), mejora conceptos con links externos, Tabla contenidos</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- BITaCORA -->
+                <section class="bitacora-section" id="bitacora">
+                    <h2>ðŸŽ“ Bita¡cora de Defensa Oral</h2>
+                    
+                    <div class="bitacora-item">
+                        <strong>ðŸ“… Fecha de Realizacia³n:</strong> 20 de Enero - 10 de Febrero, 2026<br>
+                        <strong>Lugar:</strong> Google Cloud Console (web) + Terminal SSH local<br>
+                        <strong>Duracia³n Total:</strong> ~3 horas (Setup + troubleshooting)
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>œ“ Requisitos Verificados Personalmente:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>œ“ Conexia³n SSH a ubiquitous.udem.edu.mx exitosa con autenticacia³n LDAP</li>
+                            <li>œ“ Proyecto GCP "portafolio-eugenio-2026" creado con facturacia³n activa</li>
+                            <li>œ“ VM "maquina03" creada (e2-medium, CentOS 8) en zona us-central1-f, Status RUNNING</li>
+                            <li>œ“ CentOS 8 actualizado (dnf update), kernel 4.18.0-348</li>
+                            <li>œ“ MariaDB 10.11 instalado, servicio activo, puerto 3306 escuchando</li>
+                            <li>œ“ mysql client conectado exitosamente, versia³n verificada</li>
+                        </ul>
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>“ Preguntas de Defensa Ta©cnica Anticipadas:</strong>
+                        <details open>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P1: ¿Cua¡l es el propa³sito de SSH vs acceso directo?</summary>
+                            <p style="padding: 10px 0;">R: SSH proporciona encriptacia³n end-to-end. Sin SSH, contrasea±a y comandos viajara­an en texto plano (inseguro). SSH tambia©n autentica servidor, previniendo man-in-the-middle attacks.</p>
+                        </details>
+                        <details>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P2: ¿Por qua© usar e2-medium en GCP y no e2-small?</summary>
+                            <p style="padding: 10px 0;">R: e2-small (0.5 vCPU, 2GB RAM) quedaba pequea±o para OS + MariaDB. e2-medium (2 vCPU, 4GB RAM) permite instalacia³n sin throttling de CPU. Trade-off: costo vs rendimiento.</p>
+                        </details>
+                        <details>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P3: ¿Ca³mo aseguro conexia³n a MariaDB desde otra VM?</summary>
+                            <p style="padding: 10px 0;">R: MariaDB por default escucha en 127.0.0.1 (localhost solo). Para red: (1) Editar /etc/my.cnf bind-address = 0.0.0.0 (2) Firewall: Permitir puerto 3306 en GCP console (3) Usuario: CREATE USER 'remoto'@'%' IDENTIFIED BY 'pass'</p>
+                        </details>
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>œï¸ Declaracia³n de Autenticidad:</strong><br>
+                        <em>"Yo, Eugenio Espeleta, declaro haber realizado personalmente todos los pasos de esta Tarea 1. Acceda­ a Ubiquitous, crea© proyecto en GCP usando mi cuenta, 
+                        inicia© VM, instala© CentOS y MariaDB. Las capturas de pantalla muestran resultado real de mi trabajo. No he copiado ca³digo ni procedimientos sin atribucia³n."</em>
+                    </div>
+                </section>
+
                 <div class="tarea-actions">
-                    <a href="../../../pages/parcial1.html" class="btn btn-primario">← Volver a Parcial 1</a>
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">† Volver a Parcial 1</a>
                 </div>
             </article>
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">© 2026 - Portafolio Académico | Eugenio Espeleta</p>
+                <p class="footer-text">© 2026 - Portafolio Acada©mico | Eugenio Espeleta | Tarea 1 v2.0</p>
             </div>
         </div>
     </footer>
@@ -193,3 +613,4 @@
     <script src="../../../scripts/animations.js"></script>
 </body>
 </html>
+

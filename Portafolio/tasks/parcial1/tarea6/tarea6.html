@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 6 - Consultas y Stored Procedures en MariaDB</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        .rubrica-badge { display: inline-block; background: linear-gradient(135deg, #7b2cbf 0%, #00d4ff 100%); color: white; padding: 8px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 20px; }
+        .meta-info { display: flex; gap: 1rem; flex-wrap: wrap; margin: 10px 0 20px; }
+        .meta-pill { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.35); color: #b8c5d6; padding: 6px 12px; border-radius: 999px; font-size: 0.9rem; }
+        .table-of-contents { background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .table-of-contents ul { margin: 10px 0 0 18px; }
+        .table-of-contents a { color: #00d4ff; }
+        .faq-section { background: rgba(123, 44, 191, 0.05); padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .faq-item { margin: 15px 0; }
+        .faq-item summary { cursor: pointer; font-weight: bold; color: #00d4ff; padding: 10px; background: rgba(0, 212, 255, 0.1); border-radius: 5px; margin-bottom: 10px; }
+        .faq-item summary:hover { background: rgba(0, 212, 255, 0.2); }
+        .faq-item p { padding: 10px 15px; margin-left: 20px; background: rgba(184, 197, 214, 0.1); border-radius: 5px; }
+        .evidencia-grid { display: block; margin-top: 18px; }
+        .evidencia-card { background: rgba(123, 44, 191, 0.08); border: 1px solid rgba(123, 44, 191, 0.3); border-radius: 10px; padding: 16px; max-width: 980px; margin: 0 auto 24px; }
+        .evidencia-card img { display: block; width: 100%; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.35); margin: 12px 0 14px; }
+        .evidencia-card h4 { margin: 0 0 8px; color: #00d4ff; }
+        .resources { background: rgba(0, 255, 136, 0.08); border-left: 4px solid #00ff88; padding: 16px; border-radius: 8px; margin-top: 14px; }
+        .references-section { background: rgba(123, 44, 191, 0.1); border-left: 4px solid #7b2cbf; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .reference { margin: 12px 0; padding-left: 20px; text-align: justify; font-size: 0.95em; line-height: 1.6; }
+        .version-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .version-table th, .version-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 212, 255, 0.3); }
+        .version-table th { background: rgba(0, 212, 255, 0.2); color: #00d4ff; font-weight: bold; }
+        .bitacora-section { background: rgba(0, 255, 136, 0.1); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .bitacora-item { margin: 12px 0; padding: 10px; background: rgba(0, 255, 136, 0.05); border-radius: 5px; }
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+        .tag { background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); color: #b8c5d6; padding: 5px 10px; border-radius: 999px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../index.html" class="btn-volver">← Volver al inicio</a>
+
+            <article class="tarea-card" style="margin-top: 20px; padding: 28px;">
+                <span class="rubrica-badge">📚 Parcial 1 · Ejercicio Práctico</span>
+                <h1>Actividad: Consultas y Stored Procedures en MariaDB (Biblioteca)</h1>
+                <div class="meta-info">
+                    <span class="meta-pill">📅 Febrero 2026</span>
+                    <span class="meta-pill">🎯 Tipo: Ejercicio Práctico</span>
+                    <span class="meta-pill">🗃️ Motor: MariaDB</span>
+                </div>
+
+                <section class="tarea-section table-of-contents">
+                    <h2>Índice</h2>
+                    <ul>
+                        <li><a href="#objetivo">1. Objetivo</a></li>
+                        <li><a href="#contexto">2. Contexto</a></li>
+                        <li><a href="#conceptos">3. Conceptos Técnicos</a></li>
+                        <li><a href="#desarrollo">4. Desarrollo del Ejercicio</a></li>
+                        <li><a href="#evidencias">5. Evidencias de Ejecución</a></li>
+                        <li><a href="#calidad">6. Calidad del Trabajo y Buenas Prácticas</a></li>
+                        <li><a href="#faq">7. Preguntas Frecuentes</a></li>
+                        <li><a href="#conclusiones">8. Conclusiones</a></li>
+                        <li><a href="#referencias">9. Referencias APA</a></li>
+                        <li><a href="#versiones">10. Historial de Versiones</a></li>
+                        <li><a href="#bitacora">11. Bitácora de Defensa Oral</a></li>
+                        <li><a href="#integridad">12. Autenticidad e Integridad Académica</a></li>
+                    </ul>
+                </section>
+
+                <section class="tarea-section" id="objetivo">
+                    <h2>1. Objetivo</h2>
+                    <p>Documentar un flujo completo de trabajo en <strong>Biblioteca</strong>: revisar estructura, formatear resultados con SQL y administrar un procedimiento almacenado desde su validación hasta su eliminación segura.</p>
+                </section>
+
+                <section class="tarea-section" id="contexto">
+                    <h2>2. Contexto</h2>
+                    <p>El ejercicio se realizó en consola MariaDB sobre la base <strong>Biblioteca</strong>, usando las tablas <strong>Alumnos</strong>, <strong>Libros</strong> y <strong>Prestamos</strong>. Se priorizó obtener salidas legibles y confirmar el estado real de objetos SQL antes de aplicar cambios.</p>
+                </section>
+
+                <section class="tarea-section" id="conceptos">
+                    <h2>3. Conceptos Técnicos</h2>
+                    <h3>SHOW TABLES y DESCRIBE</h3>
+                    <p><code>SHOW TABLES</code> permite confirmar qué tablas existen dentro de una base. <code>DESC</code>/<code>DESCRIBE</code> se usa para inspeccionar la estructura: tipos, llaves, nulos y atributos especiales.</p>
+
+                    <h3>CONCAT y alias</h3>
+                    <p><code>CONCAT()</code> sirve para construir strings a partir de columnas. El alias (por ejemplo <code>AS Alumnos</code>) hace la salida más legible y presentable, especialmente cuando la expresión es larga.</p>
+
+                    <h3>Stored Procedures (Procedimientos almacenados)</h3>
+                    <p>Un procedimiento almacenado es código SQL guardado en el servidor y ejecutable bajo demanda. Esto permite reutilizar lógica, estandarizar operaciones y controlar permisos.</p>
+
+                    <h3>Delimitadores y Error 1064</h3>
+                    <p>En MariaDB, cuando se crean o administran procedures, es común cambiar el delimitador a <code>//</code> para que el servidor no corte el procedimiento al primer <code>;</code>. Un uso incorrecto del delimitador o una instrucción mal cerrada suele terminar en <strong>ERROR 1064</strong>.</p>
+                </section>
+
+                <section class="tarea-section" id="desarrollo">
+                    <h2>4. Desarrollo del Ejercicio</h2>
+
+                    <h3>4.1 Verificación de tablas existentes</h3>
+                    <pre><code>SHOW TABLES;</code></pre>
+
+                    <h3>4.2 Inspección de la tabla Alumnos</h3>
+                    <pre><code>DESC Alumnos;</code></pre>
+
+                    <h3>4.3 Consulta con salida formateada usando CONCAT</h3>
+                    <pre><code>SELECT CONCAT('Alumnos: ', nombre)
+FROM Alumnos;
+
+SELECT CONCAT('Alumnos: ', nombre) AS Alumnos
+FROM Alumnos;</code></pre>
+
+                    <h3>4.4 Verificación de Stored Procedure existente</h3>
+                    <pre><code>SHOW PROCEDURE STATUS //</code></pre>
+
+                    <h3>4.5 Diagnóstico: error de sintaxis (ERROR 1064)</h3>
+                    <p>Se presentó un ERROR 1064 al ejecutar una instrucción relacionada con el procedure. Lo clave fue verificar estado real antes de actuar con <code>SHOW PROCEDURE STATUS //</code>.</p>
+
+                    <h3>4.6 Eliminación del procedure y verificación final</h3>
+                    <pre><code>SHOW PROCEDURE STATUS //
+
+DROP PROCEDURE etiquetaAlumno//
+
+SHOW PROCEDURE STATUS //</code></pre>
+                </section>
+
+                <section class="tarea-section" id="evidencias">
+                    <h2>5. Evidencias de Ejecución</h2>
+                    <ul>
+                        <li>Listado de tablas en Biblioteca y estructura de Alumnos con <code>DESC</code>.</li>
+                        <li>Consultas con <code>CONCAT</code> para formatear salida, con y sin alias.</li>
+                        <li>Consulta de procedimientos con <code>SHOW PROCEDURE STATUS //</code> mostrando <code>etiquetaAlumno</code>.</li>
+                        <li>Registro del <code>ERROR 1064</code> y verificación posterior del estado del procedure.</li>
+                        <li>Eliminación del procedure con <code>DROP PROCEDURE</code> y confirmación con <code>Empty set</code>.</li>
+                    </ul>
+
+                    <div class="evidencia-grid">
+                        <div class="evidencia-card">
+                            <h4>Evidence 1</h4>
+                            <img src="images/img1.png" alt="SHOW TABLES, DESC Alumnos y CONCAT">
+                            <p>Listado de tablas, estructura de <strong>Alumnos</strong> y consultas con <strong>CONCAT</strong> (con y sin alias).</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 2</h4>
+                            <img src="images/img2.png" alt="SHOW PROCEDURE STATUS con etiquetaAlumno">
+                            <p>Validación del procedure <strong>etiquetaAlumno</strong> en <strong>Biblioteca</strong>.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 3</h4>
+                            <img src="images/img3.png" alt="Error 1064 y estado del procedure">
+                            <p>Error 1064 y confirmación posterior de estado con <code>SHOW PROCEDURE STATUS //</code>.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 4</h4>
+                            <img src="images/img4.png" alt="DROP PROCEDURE y Empty set">
+                            <p><code>DROP PROCEDURE etiquetaAlumno//</code> y verificación final con <strong>Empty set</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="resources">
+                        <strong>Evidencia adicional (script):</strong>
+                        <a href="usoStoredProceduresMariaDB.sql" download>Descargar usoStoredProceduresMariaDB.sql</a>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="calidad">
+                    <h2>6. Calidad del Trabajo y Buenas Prácticas</h2>
+                    <ul>
+                        <li><strong>Validación antes de actuar:</strong> uso de <code>SHOW PROCEDURE STATUS</code> para confirmar estado real del procedure.</li>
+                        <li><strong>Salida legible:</strong> alias en expresiones con <code>CONCAT</code> para una entrega más clara.</li>
+                        <li><strong>Control de objetos:</strong> eliminación explícita del procedure con <code>DROP</code> y verificación posterior.</li>
+                        <li><strong>Evidencia verificable:</strong> capturas con comandos y outputs completos.</li>
+                    </ul>
+                </section>
+
+                <section class="tarea-section" id="faq">
+                    <h2>7. Preguntas Frecuentes</h2>
+                    <div class="faq-section">
+                        <details class="faq-item">
+                            <summary>¿Para qué correr SHOW TABLES al inicio?</summary>
+                            <p>Funciona como verificación rápida de contexto: confirma base activa y evita ejecutar consultas sobre objetos inexistentes.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Qué ventaja práctica tiene usar alias en CONCAT?</summary>
+                            <p>Mejora la presentación de resultados en reportes y bitácoras, porque evita encabezados largos generados por la expresión completa.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Qué causa más comúnmente el ERROR 1064?</summary>
+                            <p>Delimitador mal configurado, sentencia incompleta o error de sintaxis puntual en SQL.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Cómo confirmar que un procedure existe?</summary>
+                            <p>Con <code>SHOW PROCEDURE STATUS //</code> filtrando por base y nombre del procedimiento.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Qué valida la salida “Empty set” al final?</summary>
+                            <p>Que el procedure ya no está registrado en el catálogo del servidor para esa base de datos.</p>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="conclusiones">
+                    <h2>8. Conclusiones</h2>
+                    <p>La práctica confirmó que una buena administración en MariaDB combina diagnóstico y ejecución ordenada: inspeccionar, consultar, validar y luego modificar. El <strong>ERROR 1064</strong> fue útil para reforzar disciplina de revisión sintáctica antes de cualquier operación sobre procedures.</p>
+                </section>
+
+                <section class="references-section" id="referencias">
+                    <h2>9. Referencias APA</h2>
+                    <div class="reference">1. MariaDB Foundation. (2026). SHOW PROCEDURE STATUS. Retrieved from https://mariadb.com/kb/en/show-procedure-status/</div>
+                    <div class="reference">2. MariaDB Foundation. (2026). CONCAT. Retrieved from https://mariadb.com/kb/en/concat/</div>
+                    <div class="reference">3. MariaDB Foundation. (2026). DROP PROCEDURE. Retrieved from https://mariadb.com/kb/en/drop-procedure/</div>
+                    <div class="reference">4. Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database system concepts (7th ed.). McGraw-Hill.</div>
+                    <div class="reference">5. Elmasri, R., & Navathe, S. B. (2016). Fundamentals of database systems (7th ed.). Pearson.</div>
+                </section>
+
+                <section class="tarea-section" id="versiones">
+                    <h2>10. Historial de Versiones</h2>
+                    <table class="version-table">
+                        <tr><th>Versión</th><th>Fecha</th><th>Cambios</th><th>Autor</th></tr>
+                        <tr><td>v1.0</td><td>2026-02-23</td><td>Versión inicial con desarrollo y evidencias.</td><td>Eugenio E.</td></tr>
+                        <tr><td>v2.0</td><td>2026-02-23</td><td>Estructura completa al estándar del portafolio: FAQ, referencias APA, historial y bitácora.</td><td>Eugenio E.</td></tr>
+                    </table>
+                </section>
+
+                <section class="bitacora-section" id="bitacora">
+                    <h2>11. Bitácora de Defensa Oral</h2>
+                    <div class="bitacora-item">
+                        <strong>Pregunta probable:</strong> ¿Por qué no hiciste DROP directo sin verificar?<br>
+                        <strong>Respuesta:</strong> Porque validar primero evita borrar objetos incorrectos y documenta el estado real antes del cambio.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta probable:</strong> ¿Qué aprendiste del ERROR 1064?<br>
+                        <strong>Respuesta:</strong> Que delimitador y sintaxis deben revisarse de forma explícita; depurar por prueba y error sin diagnóstico retrasa la solución.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta probable:</strong> ¿Qué evidencia valida el cierre de actividad?<br>
+                        <strong>Respuesta:</strong> La secuencia SHOW → DROP → SHOW y la salida final con Empty set.
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="integridad">
+                    <h2>12. Autenticidad e Integridad Académica</h2>
+                    <p>Declaro que los comandos y resultados documentados corresponden a ejecuciones reales en MariaDB, y que las evidencias presentadas reflejan el proceso completo, incluyendo errores y correcciones.</p>
+                    <div class="tags">
+                        <span class="tag">MariaDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Stored Procedures</span>
+                        <span class="tag">CONCAT</span>
+                        <span class="tag">DDL</span>
+                    </div>
+                </section>
+
+                <p style="margin-top: 30px;">
+                    <a href="../../../pages/parcial1.html" class="btn-volver">← Volver a Parcial 1</a>
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2026 Portafolio Académico</p>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

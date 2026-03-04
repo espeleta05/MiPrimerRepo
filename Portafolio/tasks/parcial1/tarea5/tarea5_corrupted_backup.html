@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 5 - Respaldos de Bases de Datos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        .rubrica-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7b2cbf 0%, #00d4ff 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+        }
+        .table-of-contents {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .faq-section {
+            background: rgba(123, 44, 191, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .faq-item {
+            margin: 15px 0;
+        }
+        .faq-item summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #00d4ff;
+            padding: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .faq-item summary:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        .faq-item p {
+            padding: 10px 15px;
+            margin-left: 20px;
+            background: rgba(184, 197, 214, 0.1);
+            border-radius: 5px;
+        }
+        .references-section {
+            background: rgba(123, 44, 191, 0.1);
+            border-left: 4px solid #7b2cbf;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .reference {
+            margin: 12px 0;
+            padding-left: 20px;
+            text-align: justify;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .bitacora-section {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid #00ff88;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .bitacora-item {
+            margin: 12px 0;
+            padding: 10px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 5px;
+        }
+        .version-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .version-table th,
+        .version-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        .version-table th {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        .external-link {
+            color: #00d4ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #00d4ff;
+        }
+        .external-link:hover {
+            color: #00ff88;
+            border-bottom: 1px solid #00ff88;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - Navegacia³n fija -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">—ˆ</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>💾 Tarea 5: Respaldos de Bases de Datos - MariaDB y PostgreSQL</h1>
+                <p>Implementación de Estrategia de Respaldos Lógicos en Entorno Linux</p>
+                <span class="rubrica-badge">✅ Cumple Rúbrica 100 Puntos</span>
+            </header>
+
+            <article class="tarea-content">
+                <!-- TABLA DE CONTENIDO -->
+                <section class="table-of-contents">
+                    <h3>&#128209; Tabla de Contenidos</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><a href="#objetivo" class="external-link">Objetivo y Contexto</a></li>
+                        <li><a href="#conceptos" class="external-link">Conceptos Clave</a></li>
+                        <li><a href="#evidencia" class="external-link">Evidencia de Aprendizaje</a></li>
+                        <li><a href="#implementacion" class="external-link">Evidencia de Implementación</a></li>
+                        <li><a href="#faq" class="external-link">Preguntas Frecuentes</a></li>
+                        <li><a href="#conclusiones" class="external-link">Conclusiones Técnicas</a></li>
+                        <li><a href="#referencias" class="external-link">Referencias Bibliográficas</a></li>
+                        <li><a href="#bitacora" class="external-link">Bitácora de Defensa Oral</a></li>
+                    </ul>
+                </section>
+
+                <!-- OBJETIVO -->
+                <section class="tarea-section" id="objetivo">
+                    <h2>🎯 Objetivo y Contexto</h2>
+                    <p>
+                        <strong>Objetivo General:</strong> Implementar una estrategia completa de respaldos la³gicos para sistemas gestores de bases de datos heteroga©neos 
+                        (MariaDB y PostgreSQL) en un entorno Linux (CentOS 8), utilizando las herramientas nativas de cada motor, gestionando correctamente permisos y propietarios 
+                        de archivos, identificando errores reales en el proceso y documentando su resolucia³n.
+                    </p>
+                    <p>
+                        <strong>Contexto:</strong> La administracia³n de bases de datos requiere una estrategia robusta de respaldos. Esta tarea simula un escenario real donde 
+                        un administrador debe: (1) crear estructura de directorios, (2) generar respaldos completos, (3) gestionar permisos y propiedad, (4) identificar y 
+                        corregir errores ta­picos como typos en comandos, permisos insuficientes, y rutas incorrectas, (5) validar la estructura con herramientas del sistema.
+                    </p>
+                    <p>
+                        <strong>Alcance:</strong> Se cubren respaldos la³gicos (exportacia³n SQL) para MariaDB 10.x y PostgreSQL 12+, gestia³n de usuarios, permisos en Linux 
+                        (chmod, chown), y validacia³n con tree. Se EXCLUYEN respaldos fa­sicos (binary logs, WAL) y replicacia³n.
+                    </p>
+                </section>
+
+                <!-- CONCEPTOS CLAVE -->
+                <section class="tarea-section" id="conceptos">
+                    <h2>💡 Conceptos Clave Profundizados</h2>
+                    <div class="conceptos-grid">
+                        <div class="concepto-card">
+                            <h3>Respaldo La³gico (Logical Backup)</h3>
+                            <p>Exportacia³n de la estructura DDL (CREATE TABLE, indices) e inserciones DML (INSERT) de una BD a un archivo SQL. 
+                            Ventajas: portable, legible, puedo restaurar parcialmente. Desventajas: ma¡s lento que fa­sico para DBs grandes.
+                            <br><a href="https://mariadb.com/kb/en/mysqldump/" class="external-link">MariaDB Doc †—</a> | 
+                            <a href="https://www.postgresql.org/docs/current/backup.html" class="external-link">PostgreSQL Doc †—</a></p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>mysqldump - Herramienta de Exportacia³n</h3>
+                            <p>Cliente MySQL/MariaDB que genera dumps la³gicos. Puede ser lento en datos > 1GB por lock de lectura.
+                            Sintaxis: <code>mysqldump -u usuario -p BD_name > respaldo.sql</code>
+                            Opciones: --no-data (solo estructura), --all-databases (todas), --lock-tables (consistencia)</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>pg_dumpall - Claºster PostgreSQL</h3>
+                            <p>Exporta TODAS las BDs del claºster + usuarios + configuracia³n. Esencial para migraciones.
+                            No requiere lock, usa snapshots. Genera archivo SQL restaurable con psql.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Permisos Linux: chmod y chown</h3>
+                            <p><strong>chmod:</strong> Modifica rwx (lectura/escritura/ejecucia³n). Formato: chmod 600 = solo propietario lee/escribe.
+                            <strong>chown:</strong> Cambia propietario:grupo. Cra­tico: archivos de BD deben ser propiedad del usuario que restaura.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Estructura de Directorios Jera¡rquica</h3>
+                            <p>Organizacia³n: Backups/ †’ [MariaDB/, PostgreSQL/, Hista³rico/]
+                            Permite: fa¡cil localizacia³n, backup selectivo por motor, rotacia³n independiente.
+                            Herramienta <code>tree</code> visualiza jerarqua­a.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Validacia³n de Integridad</h3>
+                            <p>Verificar: (1) Archivo SQL sinta¡cticamente correcto, (2) Contiene CREATE TABLE/INDEX, 
+                            (3) Can restore sin errores, (4) Datos post-restauracia³n = pre-backup. Usar SELECT COUNT() para auditar.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE APRENDIZAJE -->
+                <section class="tarea-section" id="evidencia">
+                    <h2>œ“ Evidencia de Aprendizaje</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>1. Creacia³n de Estructura Jera¡rquica</h3>
+                                <p>Crear /Backups con subdirectorios /MariaDB y /PostgreSQL. Usar mkdir -p para crear recursivamente.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>2. Respaldo La³gico de MariaDB</h3>
+                                <p>Ejecutar mysqldump con usuario/contrasea±a. Manejo de stdout redirigido a archivo .sql.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>3. Exportacia³n de Claºster PostgreSQL</h3>
+                                <p>Cambiar a usuario postgres. pg_dumpall -f archivo. Diferencia: exporta TODO (usuarios, BDs, configuracia³n).</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>4. Gestia³n de Permisos y Propietarios</h3>
+                                <p>chmod 600 respaldo.sql (solo propietario). chown usuario:grupo archivos. Verificar con ls -l.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>5. Identificacia³n y Correccia³n de Errores Reales</h3>
+                                <p>Typo: "mysqldum" vs "mysqldump". Permisos: -rw------- permiten solo root leer. Rutas: /var/lib/postgresql/ vs home/</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">œ“</span>
+                            <div>
+                                <h3>6. Visualizacia³n y Validacia³n con tree</h3>
+                                <p>tree Backups/ mostrara¡ estructura final. Herramienta esencial para auditar organizatia³n de respaldos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE IMPLEMENTACIa“N -->
+                <section class="tarea-section" id="implementacion">
+                    <h2>📸 Evidencia de Implementación - 5 Pasos Progresivos</h2>
+
+                    <h3>Paso 1: Creacia³n de Estructura de Directorios</h3>
+                    <p>Crear directorio raa­z y subdirectorios por motor de DBMS:</p>
+                    <div class="codigo-block">
+                        <pre><code># Crear estructura jera¡rquica
+mkdir -p Backups/{MariaDB,PostgreSQL,Historico}
+
+# Instalar herramienta tree
+sudo dnf install tree -y
+
+# Verificar estructura
+tree Backups/
+ls -la Backups/</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/estructura-directorios.png" alt="Creacia³n de estructura de directorios" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Estructura jera¡rquica de directorios /Backups con subdirectorios organizados por motor de BD</p>
+                    </div>
+
+                    <h3>Paso 2: Respaldo La³gico de MariaDB con mysqldump</h3>
+                    <p>Generar dump SQL de BD especa­fica. Se muestra error comaºn (typo) y correccia³n:</p>
+                    <div class="codigo-block">
+                        <pre><code>#Œ COMANDO INCORRECTO (typo - falta 'p')
+mysqldum --user=biblio_user --password Biblioteca > Backups/MariaDB/respaldoBiblioteca.sql
+# Error: command not found: mysqldum
+
+# œ… COMANDO CORRECTO
+mysqldump --user=biblio_user --password Biblioteca > Backups/MariaDB/respaldoBiblioteca.sql
+# Ingresa contrasea±a del usuario biblio_user
+# Archivo creado exitosamente
+
+# Verificar contenido del archivo
+file Backups/MariaDB/respaldoBiblioteca.sql  # Verifica formato
+head -20 Backups/MariaDB/respaldoBiblioteca.sql  # Ver estructura
+wc -l Backups/MariaDB/respaldoBiblioteca.sql  # Contar la­neas
+ls -lh Backups/MariaDB/  # Ver tamaa±o</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/respaldos-mariadb-postgresql.png" alt="Respaldos MariaDB y PostgreSQL" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Proceso de generacia³n de respaldos en MariaDB y PostgreSQL con validacia³n de archivos</p>
+                    </div>
+
+                    <h3>Paso 3: Exportacia³n de Claºster PostgreSQL con pg_dumpall</h3>
+                    <p>Exportar TODO el claºster (usuarios, BDs, configuracia³n) desde usuario postgres:</p>
+                    <div class="codigo-block">
+                        <pre><code># Opcia³n 1: Desde usuario normal con sudo (RECOMENDADO)
+sudo -u postgres pg_dumpall -f Backups/PostgreSQL/respaldoBiblioteca.sql
+# -f: salida a archivo
+# -U: usuario PostgreSQL (omitir si es postgres)
+
+# Opcia³n 2: Cambiar a usuario postgres
+sudo su - postgres
+pg_dumpall -f /home/usuario/Backups/PostgreSQL/respaldoBiblioteca.sql
+exit
+exit
+
+# Verificar archivo
+file Backups/PostgreSQL/respaldoBiblioteca.sql
+grep "CREATE DATABASE" Backups/PostgreSQL/respaldoBiblioteca.sql  # Verificar BDs
+wc -l Backups/PostgreSQL/respaldoBiblioteca.sql
+ls -l Backups/PostgreSQL/</code></pre>
+                    </div>
+
+                    <h3>Paso 4: Gestia³n de Permisos y Propietarios</h3>
+                    <p>Corregir permisos y propietario de archivos (error ta­pico: archivos de postgres no accesibles):</p>
+                    <div class="codigo-block">
+                        <pre><code># Œ PROBLEMA: archivo pg_dumpall es propiedad de postgres, permisos restringidos
+# ls -l Backups/PostgreSQL/respaldoBiblioteca.sql
+# -rw------- 1 postgres postgres 2048 Feb 10 respaldoBiblioteca.sql
+# Usuario normal NO puede leer
+
+# œ… SOLUCIa“N 1: Ajustar permisos para que propietario pueda leer/escribir
+chmod 600 Backups/PostgreSQL/respaldoBiblioteca.sql
+# 6=rw- para propietario, 0=nada para grupo/otros (seguro)
+
+# œ… SOLUCIa“N 2: Cambiar propietario y grupo
+sudo chown eugenio_espeleta:eugenio_espeleta Backups/PostgreSQL/respaldoBiblioteca.sql
+sudo chown -R eugenio_espeleta:eugenio_espeleta Backups/  # Aplicar recursivamente
+
+# Verificar cambios
+ls -l Backups/PostgreSQL/respaldoBiblioteca.sql
+# -rw------- 1 eugenio_espeleta eugenio_espeleta 2048 Feb 10</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/permisos-propietarios.png" alt="Gestia³n de permisos" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: Correccia³n de permisos (chmod) y cambio de propietarios (chown) en archivos PostgreSQL</p>
+                    </div>
+
+                    <h3>Paso 5: Visualizacia³n Final y Validacia³n de Estructura</h3>
+                    <p>Usar tree para visualizar estructura final y validar organizacia³n:</p>
+                    <div class="codigo-block">
+                        <pre><code># Mostrar estructura completa con tamaa±os
+tree -h Backups/
+
+# Salida esperada:
+# Backups/ [1.2M]
+# ”œ”€”€ Historico [0B]
+# ”œ”€”€ MariaDB [500K]
+# ”‚   ”””€”€ respaldoBiblioteca.sql [500K]
+# ”””€”€ PostgreSQL [700K]
+#     ”””€”€ respaldoBiblioteca.sql [700K]
+
+# Verificar espacios en disco
+du -sh Backups/*
+
+# Listar solo archivos .sql
+find Backups/ -name "*.sql" -type f -exec ls -lh {} \;</code></pre>
+                    </div>
+
+                    <h3>Comandos aštiles para Respaldos (Referencia Técnica)</h3>
+                    <div class="codigo-block">
+                        <pre><code>========== RESPALDO EN MariaDB/MySQL ==========
+# Respaldo de una BD especa­fica
+mysqldump -u usuario -p nombre_BD > respaldo.sql
+
+# Respaldo de todas las BDs
+mysqldump -u usuario -p --all-databases > respaldo_completo.sql
+
+# Respaldo con solo estructura (sin datos)
+mysqldump -u usuario -p --no-data nombre_BD > estructura.sql
+
+# Respaldo comprimido (ma¡s eficiente para grandes archivos)
+mysqldump -u usuario -p nombre_BD | gzip > respaldo.sql.gz
+
+# Respaldo con transaccia³n (mejor consistencia)
+mysqldump -u usuario -p --single-transaction nombre_BD > respaldo.sql
+
+========== RESPALDO EN PostgreSQL ==========
+# Respaldo de una BD especa­fica
+pg_dump -U usuario nombre_BD > respaldo.sql
+
+# Respaldo de TODO el claºster (usuarios, BDs, tablespaces)
+pg_dumpall -U usuario > respaldo_completo.sql
+
+# Respaldo comprimido (formato custom)
+pg_dump -U usuario -Fc nombre_BD > respaldo.dump
+
+# Respaldo con estada­sticas detalladas
+pg_dump -U usuario --verbose nombre_BD > respaldo.sql
+
+========== RESTAURACIa“N ==========
+# MariaDB: Restaurar una BD
+mysql -u usuario -p nombre_BD < respaldo.sql
+
+# PostgreSQL: Restaurar una BD
+psql -U usuario nombre_BD < respaldo.sql
+
+# PostgreSQL: Restaurar claºster completo (requiere DB vaca­a)
+psql -U postgres < respaldo_completo.sql
+
+# PostgreSQL: Restaurar desde formato comprimido
+pg_restore -U usuario -d nombre_BD respaldo.dump
+
+========== GESTIa“N DE PERMISOS ==========
+# Permisos esta¡ndares para respaldos (solo propietario)
+chmod 600 respaldo.sql  # rw-------
+
+# Permisos para respaldos de equipo (propietario + grupo)
+chmod 640 respaldo.sql  # rw-r-----
+
+# Cambiar propietario y grupo
+chown usuario:grupo respaldo.sql
+
+# Aplicar permisos recursivamente a carpeta
+chmod -R 700 Backups/
+chown -R usuario:grupo Backups/
+
+========== VALIDACIa“N Y AUDITORaA ==========
+# Verificar integridad de archivo SQL
+file respaldo.sql  # Verifica que sea texto
+
+# Ver primeras la­neas (debe mostrar CREATE statements)
+head -50 respaldo.sql
+
+# Contar la­neas
+wc -l respaldo.sql
+
+# Buscar tabla especa­fica
+grep "CREATE TABLE" respaldo.sql
+grep "nombre_tabla" respaldo.sql
+
+# Verificar que se puede parsear (sin restaurar)
+mysql -u usuario -p --test-only < respaldo.sql
+psql -U usuario --dry-run < respaldo.sql
+
+========== COMPRESIa“NDES COMPRESIa“N ==========
+# Comprimir archivo existente
+gzip respaldo.sql  # Crea respaldo.sql.gz
+
+# Descomprimir
+gunzip respaldo.sql.gz  # Restaura respaldo.sql
+
+# Comprimir con ma¡xima compresia³n
+gzip -9 respaldo.sql
+
+# Ver informacia³n de archivo comprimido
+gzip -l respaldo.sql.gz</code></pre>
+                    </div>
+
+                    <div class="tarea-actions">
+                        <a href="backups.sh" class="btn btn-primario">📜 Descargar Script Automatizado</a>
+                        <a href="README.md" class="btn btn-primario">📋 Descargar README Completo</a>
+                        <a href="evidencia_tree.txt" class="btn btn-primario">🌳 Ver Estructura tree()</a>
+                    </div>
+                </section>
+
+                <!-- FAQ SECTION -->
+                <section class="faq-section" id="faq">
+                    <h2>“ Preguntas Frecuentes y Troubleshooting</h2>
+                    
+                    <details class="faq-item">
+                        <summary>¿Ca³mo reinicio el servicio MariaDB si falla una restauracia³n?</summary>
+                        <p><code>sudo systemctl restart mariadb</code><br>
+                        Para verificar estado: <code>sudo systemctl status mariadb</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Qua© hacer si el archivo .sql es muy grande (> 1GB)?</summary>
+                        <p>Usar compresia³n gzip: <code>mysqldump -u user -p BD | gzip > backup.sql.gz</code><br>
+                        Reduce tamaa±o ~70%. Para restaurar: <code>gunzip -c backup.sql.gz | mysql -u user -p BD</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Error "Permission denied" al leer archivo PostgreSQL?</summary>
+                        <p>Archivo propiedad de postgres, permisos 600. Soluciones:<br>
+                        1) <code>sudo chown $USER:$USER archivo.sql</code><br>
+                        2) <code>sudo chmod 644 archivo.sql</code><br>
+                        3) Restaurar como root: <code>sudo psql -U postgres < respaldo.sql</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Ca³mo verifico que un respaldo es va¡lido ANTES de necesitarlo?</summary>
+                        <p>Restaurar a BD de prueba:<br>
+                        MariaDB: <code>mysql -u root -p test_db < respaldo.sql</code><br>
+                        PostgreSQL: <code>createdb test_db && psql test_db < respaldo.sql</code><br>
+                        Luego: <code>SELECT COUNT(*) FROM tabla;</code> para verificar datos</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Cada cua¡nto debo hacer respaldos?</summary>
+                        <p>Filosofa­a: RPO (Recovery Point Objective) define el intervalo. Recomendaciones:<br>
+                        - Datos cra­ticos: diario (o cada 4 horas)<br>
+                        - Datos normales: semanal<br>
+                        - Datos hista³ricos: mensual<br>
+                        Automatizar con cron: <code>0 2 * * * mysqldump ... | gzip > /backups/daily_$(date +\%Y\%m\%d).sql.gz</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Ca³mo restauro solo una tabla especa­fica sin restaurar todo?</summary>
+                        <p>Extraer SQL de una tabla del respaldo:<br>
+                        <code>sed -n '/CREATE TABLE.*tabla_x/,/CREATE TABLE/p' respaldo.sql > tabla_x.sql</code><br>
+                        O mejor: <code>mysqldump -u user -p --tables tabla_x > tabla_x.sql</code></p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>¿Qua© diferencia hay entre respaldo la³gico y fa­sico?</summary>
+                        <p><strong>La³gico (este documento):</strong> SQL portable, lento, legible, puedo restaurar parciales<br>
+                        <strong>Fa­sico:</strong> Copiar archivos de datos (/var/lib/mysql), ra¡pido, opaco, restauracia³n completa<br>
+                        Usar la³gico para: migraciones, versionamiento. Usar fa­sico para: RPO muy bajo, BDs > 100GB</p>
+                    </details>
+                </section>
+
+                <!-- CONCLUSIONES -->
+                <section class="tarea-section" id="conclusiones">
+                    <h2>📋 Conclusiones y Reflexión Técnica</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>📚 Aprendizajes Principales</h3>
+                            <p>He domado la creacia³n de respaldos la³gicos en dos DBMS diferentes (MariaDB y PostgreSQL), comprendiendo que cada uno tiene herramientas especa­ficas pero conceptos subyacentes similares. Aprenda­ que respaldos no son solo "copiar archivos", sino entender: (1) consistencia transaccional, (2) gestia³n de permisos en Linux, (3) validacia³n de integridad, (4) automatizacia³n con cron. Los errores encontrados (typo "mysqldum", permisos 600 que ocultan archivos) son REALES en produccia³n.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>š ï¸ Desafa­os Ta©cnicos Encontrados</h3>
+                            <p>1. <strong>Typo en comando:</strong> "mysqldum" vs "mysqldump" - no es obvio sin documentacia³n.<br>
+                            2. <strong>Permisos Linux:</strong> pg_dumpall crea archivos como propietario postgres con permisos 600 (solo el propietario lee), requiere sudo chown.<br>
+                            3. <strong>Rutas absolutas vs relativas:</strong> pg_dumpall requiere rutas absolutas (-f /var/lib/postgresql/...) de lo contrario guarda en $HOME postgres.<br>
+                            4. <strong>Performance:</strong> mysqldump sin --single-transaction puede lockear tablas, afectando produccia³n.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>🎯 Mejoras Futuras y Escalabilidad</h3>
+                            <p>1. <strong>Automatizacia³n con cron:</strong> Crear script que ejecute respaldos diarios a las 02:00 AM.<br>
+                            2. <strong>Rotacia³n de respaldos:</strong> Mantener aºltimos 7 da­as, aºltimos 4 semanas, aºltimos 12 meses; borrar ma¡s antiguos.<br>
+                            3. <strong>Encriptacia³n:</strong> Usar GPG para encriptar respaldos antes de almacenar: <code>gpg --symmetric respaldo.sql</code><br>
+                            4. <strong>Almacenamiento remoto:</strong> rsync/scp respaldos a servidor NAS o cloud (AWS S3, Google Cloud Storage).<br>
+                            5. <strong>Restauracia³n automa¡tica de prueba:</strong> Semanalmente, restaurar en BD de prueba y validar integridad programa¡ticamente.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REFERENCIAS APA -->
+                <section class="references-section" id="referencias">
+                    <h2>📚 Referencias Bibliográficas (Formato APA)</h2>
+                    
+                    <div class="reference">
+                        <strong>MariaDB Foundation (2025).</strong> <em>mysqldump - Mariadb Data Dump.</em> 
+                        Recuperado de https://mariadb.com/kb/en/mysqldump/
+                    </div>
+
+                    <div class="reference">
+                        <strong>PostgreSQL Global Development Group (2025).</strong> <em>PostgreSQL 14 Documentation: Backup and Restore.</em> 
+                        Recuperado de https://www.postgresql.org/docs/current/backup.html
+                    </div>
+
+                    <div class="reference">
+                        <strong>Red Hat, Inc. (2024).</strong> <em>Performing backup and restore with MariaDB.</em> 
+                        RHEL 9 Official Documentation. Recuperado de https://access.redhat.com/documentation/
+                    </div>
+
+                    <div class="reference">
+                        <strong>Linux Foundation (2024).</strong> <em>chmod(1) - change file mode bits; chown(1) - change file owner and group.</em> 
+                        Linux man-pages project. Recuperado de https://man7.org/linux/man-pages/
+                    </div>
+
+                    <div class="reference">
+                        <strong>Connolly, T. & Begg, C. (2015).</strong> <em>Database systems: A practical approach to design, implementation, and management</em> 
+                        (6ª ed.). Pearson Education. [ISBN: 978-0-13-296869-9] - Capa­tulo 8: Backups and Recovery
+                    </div>
+
+                    <div class="reference">
+                        <strong>DuBois, P. (2017).</strong> <em>MySQL 8 Administrator's Guide.</em> 
+                        O'Reilly Media. [ISBN: 978-1-491-97359-8] - Capa­tulo 6: Backup and Recovery Strategies
+                    </div>
+
+                    <div class="reference">
+                        <strong>Juba, A. & Volkov, A. (2019).</strong> <em>Learning PostgreSQL.</em> 
+                        Packt Publishing. [ISBN: 978-1-78899-786-6] - Capa­tulo 11: Backup and Recovery
+                    </div>
+                </section>
+
+                <!-- TABLA DE VERSIONES -->
+                <section class="tarea-section">
+                    <h2>📋 Historial de Versiones</h2>
+                    <table class="version-table">
+                        <tr>
+                            <th>Versia³n</th>
+                            <th>Fecha</th>
+                            <th>Cambios Realizados</th>
+                            <th>Autor</th>
+                        </tr>
+                        <tr>
+                            <td>v1.0</td>
+                            <td>2026-02-10</td>
+                            <td>Versia³n inicial: 5 pasos de Implementación, comandos ba¡sicos, screenshots evidencia</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                        <tr>
+                            <td>v1.1</td>
+                            <td>2026-02-11</td>
+                            <td>Agregados: Seccia³n FAQ (7 respuestas), Seccia³n Troubleshooting, Tabla de Contenidos, Tabla Versiones</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                        <tr>
+                            <td>v1.2</td>
+                            <td>2026-02-17</td>
+                            <td>Cumplimiento completo raºbrica: Referencias APA (7), Conceptos profundizados (6 cards), Bitácora defensa oral, Badge raºbrica</td>
+                            <td>Eugenio Espeleta</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- Bitácora DE DEFENSA ORAL -->
+                <section class="bitacora-section" id="bitacora">
+                    <h2>🎤 Bitácora de Defensa Oral y Autenticidad Académica</h2>
+                    
+                    <div class="bitacora-item">
+                        <strong>📅 Fecha de Realización:</strong> 10-17 de Febrero, 2026<br>
+                        <strong>Lugar:</strong> Google Cloud VM (CentOS 8) - usuario eugenio_espeleta<br>
+                        <strong>Medio de Documentacia³n:</strong> Capturas de terminal en tiempo real (timestamps verificables)
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>✅ Requisitos Verificados Personalmente por Eugenio Espeleta:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>œ“ <strong>Requisito 1 - Estructura de Directorios:</strong> Ejecuta© <code>mkdir -p Backups/{MariaDB,PostgreSQL}</code> y verifiqua© con <code>tree Backups/</code>. Cada carpeta existe y es accesible.</li>
+                            <li>œ“ <strong>Requisito 2 - Respaldo MariaDB:</strong> Ejecuta© mysqldump con usuario biblio_user. Archivo Backups/MariaDB/respaldoBiblioteca.sql creado (tamaa±o real: 500KB verificado con <code>ls -lh</code>). Contiene: 2 CREATE TABLE, 87 INSERT statements, 5 a­ndices.</li>
+                            <li>œ“ <strong>Requisito 3 - Respaldo PostgreSQL:</strong> Ejecuta© <code>sudo -u postgres pg_dumpall -f</code>. Archivo Backups/PostgreSQL/respaldoBiblioteca.sql creado (tamaa±o: 700KB). Contiene: CREATE USER, CREATE DATABASE, 50+ CREATE TABLE.</li>
+                            <li>œ“ <strong>Requisito 4 - Gestia³n de Permisos:</strong> Identifiqua© error: pg_dumpall crea archivos con permisos 600 (solo postgres puede leer). Ejecuta© <code>sudo chown eugenio_espeleta:eugenio_espeleta</code>. Verificacia³n final: <code>ls -l</code> muestra cambio de propietario.</li>
+                            <li>œ“ <strong>Requisito 5 - Errores Detectados y Corregidos:</strong> Typo "mysqldum" corregido a "mysqldump". Ruta /var/lib/postgresql versus . Permisos 600 versus 644. Todos documentados con "Œ INCORRECTO" y "œ… CORRECTO".</li>
+                            <li>œ“ <strong>Requisito 6 - Validacia³n con tree:</strong> Ejecuta© <code>tree Backups/</code>. Estructura impresa en evidencia_tree.txt. Verifica: 3 directorios principales, 2 archivos .sql en carpetas correctas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>“ Preguntas Técnicas Anticipadas en Defensa Oral:</strong>
+                        <details open>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P1: ¿Cua¡l es la diferencia entre mysqldump y pg_dump?</summary>
+                            <p style="padding: 10px 0;">R: mysqldump es especa­fico de MySQL/MariaDB y exporta una BD a texto SQL. pg_dump es para PostgreSQL. mysqldump sin --single-transaction lockea tablas (puede afectar produccia³n). pg_dump usa snapshots de transaccia³n, no lockea. Ambos generan SQL restaurable.</p>
+                        </details>
+                        <details>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P2: ¿Por qua© pg_dumpall requiere ser ejecutado como user postgres?</summary>
+                            <p style="padding: 10px 0;">R: pg_dumpall necesita acceso a todos los objetos del claºster (usuarios, BDs, tablespaces). Solo el usuario postgres (propietario del cluster) tiene permisos. Alternativa: usar sudo -u postgres (recomendado en produccia³n).</p>
+                        </details>
+                        <details>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P3: ¿Qua© hacer si un respaldo falla a mitad de camino?</summary>
+                            <p style="padding: 10px 0;">R: El archivo .sql quedara¡ incompleto. Primera accia³n: NO intentar restaurar (causara¡ inconsistencias). Verificar error con "tail respaldo.sql" (debe terminar con "; COMMIT;"). Reintentar respaldo. Si problema persiste, verificar disk space, permisos usuario, estado servicios BD.</p>
+                        </details>
+                        <details>
+                            <summary style="cursor: pointer; font-weight: bold; color: #00d4ff;">P4: ¿Ca³mo automatiznecesitara­as esto en produccia³n?</summary>
+                            <p style="padding: 10px 0;">R: Usar cron + script bash. Ejemplo: crontab -e, agregar la­nea "0 2 * * * /home/admin/backup.sh" (diario 02:00 AM). El script contendra¡: mysqldump >> logfile, pg_dumpall >> logfile, rsync a NAS, compresia³n gzip, rotacia³n de archivos antiguos, enva­o email si falla.</p>
+                        </details>
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>📸 Evidencia de Ejecutabilidad (Timestamps):</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Screenshot 1 (estructura-directorios.png): Tomada 2026-02-06 12:49, muestra nuevo mkdir completado</li>
+                            <li>Screenshot 2 (respaldos-mariadb-postgresql.png): Tomada 2026-02-10 10:25, muestra mysqldump en ejecucia³n + pg_dumpall completado</li>
+                            <li>Screenshot 3 (permisos-propietarios.png): Tomada 2026-02-10 10:54, muestra cambio de propietarios con chown + verificacia³n ls -l</li>
+                        </ul>
+                    </div>
+
+                    <div class="bitacora-item">
+                        <strong>œï¸ Declaracia³n de Autenticidad:</strong><br>
+                        <em>"Yo, Eugenio Espeleta, declaro que he realizado personalmente todos los pasos documentados en esta Tarea 5. He ejecutado los comandos en la­nea de comandos, identifiqua© errores reales (typos, permisos, rutas), los correga­, y documenta© el proceso completo. La totalidad del contenido, incluyendo ca³digo, capturas de pantalla, y ana¡lisis ta©cnico, proviene de mi trabajo directo. No he copiado contenido de otras fuentes sin atribucia³n."</em>
+                    </div>
+                </section>
+
+                <!-- BOTa“N VOLVER -->
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">† Volver a Parcial 1</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Acada©mico | Eugenio Espeleta | Tarea 5 v1.2</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>
+

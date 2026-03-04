@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 5 - Respaldos de Bases de Datos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>💾 Tarea 5: Respaldos de Bases de Datos: MariaDB y PostgreSQL</h1>
+                <p>Implementación de Estrategia de Respaldos Lógicos en Linux</p>
+            </header>
+
+            <article class="tarea-content">
+                <!-- OBJETIVO -->
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo</h2>
+                    <p>
+                        Implementar una estrategia básica de respaldos para distintos sistemas gestores de bases de datos (MariaDB y PostgreSQL) en un entorno Linux, 
+                        utilizando herramientas de línea de comandos, organizando los archivos por motor y gestionando correctamente permisos y propiedad de ficheros. 
+                        Se enfatiza la identificación y corrección de errores reales en la gestión de rutas, usuarios y permisos.
+                    </p>
+                </section>
+
+                <!-- CONCEPTOS CLAVE -->
+                <section class="tarea-section">
+                    <h2>💡 Conceptos Clave</h2>
+                    <div class="conceptos-grid">
+                        <div class="concepto-card">
+                            <h3>Respaldo Lógico</h3>
+                            <p>Exportación de la estructura y datos de una base de datos en formato SQL, permitiendo su restauración posterior.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>mysqldump</h3>
+                            <p>Herramienta utilizada para generar respaldos lógicos de bases de datos en MariaDB/MySQL mediante redirección a archivo SQL.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>pg_dumpall</h3>
+                            <p>Utilidad de PostgreSQL para exportar todas las bases de datos y objetos del clúster en un solo archivo SQL.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>chmod</h3>
+                            <p>Comando para modificar permisos de lectura, escritura y ejecución en archivos y directorios de Linux.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>chown</h3>
+                            <p>Comando para cambiar el propietario y grupo de un archivo o directorio en sistemas Unix/Linux.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Estructura de Directorios</h3>
+                            <p>Organización jerárquica de carpetas para almacenar respaldos de forma ordenada por motor de base de datos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE APRENDIZAJE -->
+                <section class="tarea-section">
+                    <h2>✓ Evidencia de Aprendizaje</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Creación de Estructura de Directorios</h3>
+                                <p>Crear directorio principal de respaldos con subdirectorios organizados por motor (MariaDB y PostgreSQL).</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Respaldo de MariaDB</h3>
+                                <p>Generar dump lógico de base de datos MariaDB usando mysqldump y redirección a archivo SQL.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Respaldo de PostgreSQL</h3>
+                                <p>Exportar todas las bases de datos del clúster PostgreSQL usando pg_dumpall como usuario postgres.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Gestión de Permisos</h3>
+                                <p>Corregir permisos de lectura/ejecución (chmod) y propietarios (chown) en archivos de respaldo.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Visualización con tree</h3>
+                                <p>Usar utilidad tree para visualizar y validar la estructura completa de respaldos creada.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Identificación y Corrección de Errores</h3>
+                                <p>Detectar y corregir errores reales: typos en comandos, rutas incorrectas, permisos insuficientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE IMPLEMENTACIÓN -->
+                <section class="tarea-section">
+                    <h2>📸 Evidencia de Implementación</h2>
+
+                    <h3>Paso 1: Creación de Estructura de Respaldos</h3>
+                    <p>Crear el directorio principal Backups y sus subdirectorios separados por motor de base de datos:</p>
+                    <div class="codigo-block">
+                        <pre><code># Crear estructura de directorios
+mkdir -p Backups/MariaDB
+mkdir -p Backups/PostgreSQL
+
+# Instalar tree para visualización
+sudo dnf install tree -y
+
+# Visualizar estructura
+tree Backups/</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/estructura-directorios.png" alt="Estructura de directorios de respaldos" class="tarea-image">
+                        <p class="imagen-caption">Creación de la estructura de directorios para organizar respaldos por motor de base de datos</p>
+                    </div>
+
+                    <h3>Paso 2: Respaldo de MariaDB</h3>
+                    <p>Generar respaldo lógico de la base de datos Biblioteca en MariaDB. Se corrigió un typo inicial en el comando:</p>
+                    <div class="codigo-block">
+                        <pre><code># Intento fallido (nota el typo: mysqldum)
+mysqldum --user=biblio_user --password Biblioteca > Backups/MariaDB/respaldoBiblioteca.sql
+
+# Comando correcto
+mysqldump --user=biblio_user --password Biblioteca > Backups/MariaDB/respaldoBiblioteca.sql
+
+# Verificar que se creó el archivo
+ls -lh Backups/MariaDB/</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/respaldos-mariadb-postgresql.png" alt="Respaldos de MariaDB y PostgreSQL" class="tarea-image">
+                        <p class="imagen-caption">Proceso de generación de respaldos lógicos para MariaDB y PostgreSQL</p>
+                    </div>
+
+                    <h3>Paso 3: Respaldo de PostgreSQL</h3>
+                    <p>Cambiar al usuario postgres y ejecutar pg_dumpall para exportar el clúster completo:</p>
+                    <div class="codigo-block">
+                        <pre><code># Cambiar a usuario root
+sudo su -
+
+# Cambiar a usuario postgres
+su - postgres
+
+# Crear respaldo completo del clúster
+pg_dumpall -f /var/lib/postgresql/respladoBiblioteca.sql
+
+# Salir de postgres y volver a usuario normal
+exit
+exit</code></pre>
+                    </div>
+
+                    <h3>Paso 4: Gestión de Permisos y Propiedad</h3>
+                    <p>Listar archivos, adjustar permisos y corregir propietario del archivo PostgreSQL:</p>
+                    <div class="codigo-block">
+                        <pre><code># Listar archivos de respaldo de PostgreSQL
+ls -l
+
+# Ver detalles del archivo problemático (nombre incorrecto inicialmente)
+ls -l respaldoBiblioteca.sql
+
+# Ajustar permisos para lectura del usuario
+chmod u+r respaldoBiblioteca.sql
+
+# Verificar cambios
+ls -l respaldoBiblioteca.sql
+
+# Copiar archivo a directorio Backups
+sudo cp respaldoBiblioteca.sql Backups/PostgreSQL/
+
+# Cambiar propiedad del archivo
+cd Backups/PostgreSQL
+sudo chown eugenio_espeleta:eugenio_espeleta *
+
+# Verificar resultado final
+ls -l</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/permisos-propietarios.png" alt="Gestión de permisos y propietarios" class="tarea-image">
+                        <p class="imagen-caption">Corrección de permisos y cambio de propietarios en archivos de respaldos PostgreSQL</p>
+                    </div>
+
+                    <h3>Paso 5: Visualización Final de Estructura</h3>
+                    <p>Usar tree para visualizar la estructura completa de respaldos organizados por motor:</p>
+                    <div class="codigo-block">
+                        <pre><code># Mostrar estructura completa con tree
+tree Backups/
+
+# Resultado esperado:
+# Backups/
+# ├── MariaDB/
+# │   └── respaldoBiblioteca.sql
+# └── PostgreSQL/
+#     └── respaldoBiblioteca.sql</code></pre>
+                    </div>
+
+                    <h3>Comandos Útiles para Respaldos</h3>
+                    <div class="codigo-block">
+                        <pre><code>-- RESPALDO EN MariaDB
+mysqldump -u usuario -p nombre_base_datos > respaldo.sql
+mysqldump -u usuario -p --all-databases > respaldo_completo.sql
+
+-- RESPALDO EN PostgreSQL
+pg_dump -U usuario nombre_base_datos > respaldo.sql
+pg_dumpall -U usuario > respaldo_completo.sql
+
+-- RESTAURACIÓN EN MariaDB
+mysql -u usuario -p nombre_base_datos < respaldo.sql
+
+-- RESTAURACIÓN EN PostgreSQL
+psql -U usuario nombre_base_datos < respaldo.sql
+
+-- GESTIÓN DE PERMISOS
+chmod 600 respaldo.sql          # Solo propietario puede leer
+chmod 644 respaldo.sql          # Propietario lee/escribe, otros leen
+chown usuario:grupo respaldo.sql # Cambiar propietario y grupo
+
+-- COMPRIMIR RESPALDOS
+gzip respaldo.sql               # Crear respaldo.sql.gz
+gunzip respaldo.sql.gz          # Descomprimir
+
+-- VERIFICAR RESPALDO
+head -20 respaldo.sql           # Ver primeras líneas
+wc -l respaldo.sql              # Contar líneas
+file respaldo.sql               # Ver tipo de archivo</code></pre>
+                    </div>
+
+                    <div class="tarea-actions">
+                        <a href="backups.sh" class="btn btn-primario">📜 Descargar Script de Respaldos</a>
+                        <a href="tarea5.md" class="btn btn-primario">📄 Descargar Informe Detallado</a>
+                        <a href="evidencia_tree.txt" class="btn btn-primario">🌳 Ver Estructura Completa</a>
+                    </div>
+                </section>
+
+                <!-- CONCLUSIONES -->
+                <section class="tarea-section">
+                    <h2>📋 Conclusiones</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>📚 Aprendizajes Principales</h3>
+                            <p>He aprendido a generar respaldos lógicos de MariaDB y PostgreSQL, organizar archivos por motor de base de datos, y manejar correctamente permisos y propietarios en Linux. Estos son conceptos fundamentales para administración de sistemas.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>⚠️ Desafíos Encontrados</h3>
+                            <p>Los principales problemas fueron typos en nombres de comandos (mysqldum vs mysqldump), nombres de archivos mal escritos, y permisos insuficientes al intentar ver archivos propiedad del usuario postgres.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>🎯 Mejoras Futuras</h3>
+                            <p>Automatizar respaldos con cron, implementar rotación de respaldos antiguos, usar encriptación para proteger archivos, almacenar respaldos en ubicaciones remotas, y crear scripts de restauración validados.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTÓN VOLVER -->
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">← Volver a Parcial 1</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

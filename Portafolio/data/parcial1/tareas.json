@@ -103,6 +103,94 @@
         "entregables": "README + tarea5.html + backups.sh + README.md",
         "conclusiones": {"aprendizaje": "Generación de respaldos lógicos en ambos DBMS, organización de archivos por motor, gestión correcta de permisos y propietarios en Linux","problemas": "Typos en nombre de comandos (mysqldum vs mysqldump), permisos insuficientes para archivos PostgreSQL, nombres de directorios mal escritos","mejoras": "Automatizar respaldos con cron, implementar rotación de respaldos antiguos, usar encriptación para proteger archivos sensibles"}
       }
+    },
+    {
+      "id": 6,
+      "titulo": "Consultas y Stored Procedures en MariaDB (Biblioteca)",
+      "fecha": "2026-02-23",
+      "descripcion": "Consultas de inspección y CONCAT; verificación, diagnóstico de error 1064 y eliminación de un stored procedure.",
+      "estado": "completado",
+      "archivo": "tarea6/tarea6.html",
+      "secciones": {
+        "objetivo": "Explorar Biblioteca con consultas de inspección/salida formateada y administrar un procedure de forma segura.",
+        "conceptos": [
+          {"titulo": "SHOW TABLES y DESCRIBE", "descripcion": "Inspección de tablas y estructura interna"},
+          {"titulo": "CONCAT y alias", "descripcion": "Salida legible y presentable en resultados"},
+          {"titulo": "Stored Procedures", "descripcion": "Lógica SQL reutilizable administrada en el servidor"},
+          {"titulo": "Delimitadores y Error 1064", "descripcion": "Manejo correcto de // y diagnóstico de sintaxis"}
+        ],
+        "evidencia": [
+          "SHOW TABLES y DESC Alumnos",
+          "CONCAT con y sin alias",
+          "SHOW PROCEDURE STATUS con etiquetaAlumno",
+          "ERROR 1064 documentado",
+          "DROP PROCEDURE y verificación con Empty set"
+        ],
+        "entregables": "tarea6.html + usoStoredProceduresMariaDB.sql + carpeta images",
+        "conclusiones": {
+          "aprendizaje": "Inspección de estructura, formateo de salida SQL y administración de procedures con verificación previa.",
+          "problemas": "Apareció ERROR 1064 por tema de sintaxis/delimitador y se resolvió validando estado antes de ejecutar cambios.",
+          "mejoras": "Estandarizar scripts con DELIMITER y plantillas de verificación antes/después de cambios DDL."
+        }
+      }
+    },
+    {
+      "id": 7,
+      "titulo": "Índices, EXPLAIN y Stored Procedures en MariaDB",
+      "fecha": "2026-02-13",
+      "descripcion": "Optimización con índices, análisis de planes de ejecución y procedimientos almacenados con validación de parámetros.",
+      "estado": "completado",
+      "archivo": "tarea7/tarea7.html",
+      "secciones": {
+        "objetivo": "Aplicar optimización y automatización en Biblioteca con indexación, EXPLAIN y procedures parametrizados.",
+        "conceptos": [
+          {"titulo": "Índices", "descripcion": "Aceleración de filtros por columnas de uso frecuente"},
+          {"titulo": "EXPLAIN", "descripcion": "Inspección del plan de ejecución de consultas"},
+          {"titulo": "Stored Procedures", "descripcion": "Reutilización de lógica SQL con parámetros y validaciones"}
+        ],
+        "evidencia": [
+          "Exploración inicial de Biblioteca y tabla Libros",
+          "Índice en Libros(autor) y consulta filtrada",
+          "EXPLAIN en Prestamos y error 1061 por índice duplicado",
+          "Procedure buscarLibros con CALL",
+          "Procedure alumnosxGrado con validación y error 1318"
+        ],
+        "entregables": "tarea7.html + indice.sql + carpeta images",
+        "conclusiones": {
+          "aprendizaje": "Relación entre indexación, planes de ejecución y procedures para consultas robustas.",
+          "problemas": "Se observaron errores reales (1061 y 1318) durante pruebas, útiles para diagnóstico y depuración.",
+          "mejoras": "Comparar EXPLAIN en más escenarios y documentar métricas de rendimiento en tiempos de ejecución."
+        }
+      }
+    },
+    {
+      "id": 8,
+      "titulo": "Stored Procedures avanzados + Setup de Flask en Linux",
+      "fecha": "2026-02-17",
+      "descripcion": "Procedures con FIND_IN_SET y parámetros OUT, más preparación de entorno Python con pip y Flask.",
+      "estado": "completado",
+      "archivo": "tarea8/tarea8.html",
+      "secciones": {
+        "objetivo": "Implementar procedures reutilizables y preparar entorno base para integración Python-Flask.",
+        "conceptos": [
+          {"titulo": "DELIMITER", "descripcion": "Definición correcta de procedimientos con múltiples sentencias"},
+          {"titulo": "FIND_IN_SET", "descripcion": "Filtro dinámico por listas CSV"},
+          {"titulo": "Parámetros OUT", "descripcion": "Retorno de valores desde procedures"},
+          {"titulo": "pip y Flask", "descripcion": "Configuración mínima de entorno Python web"}
+        ],
+        "evidencia": [
+          "DESC Alumnos y contexto de base",
+          "buscarAlumnos con FIND_IN_SET y validación de llamada",
+          "contarAlumnos con OUT y lectura de @s",
+          "Instalación de python3-pip y Flask"
+        ],
+        "entregables": "tarea8.html + 17-feb.sql + carpeta images",
+        "conclusiones": {
+          "aprendizaje": "Uso de procedures parametrizados y retorno de datos con OUT, además de preparación del entorno Python para integración.",
+          "problemas": "Se validaron llamadas incorrectas por cantidad de argumentos como parte del diagnóstico normal.",
+          "mejoras": "Conectar procedures desde una API Flask para pruebas end-to-end."
+        }
+      }
     }
   ]
 }

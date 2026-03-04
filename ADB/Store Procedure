@@ -1,0 +1,21 @@
+IN--> recibir parametros
+IN--> conjunto de parametros
+FIND_IN_SET--> permite buscar datos en un conjunto de resultados --> OR
+
+1.- Crea un Store Procedure que reciba una lista de matriculas y muestre los datos de los alumnos, usa UN para recibir los parametros.
+
+DELIMITER //
+CREATE PROCEDURE buscarAlumnos(
+    IN p_lista varcahr(300)
+)
+
+BEGIN
+    SELECT matricula, nombre, grado
+    FROM Alumnos WHERE
+    FIND_IN_SET(matricula, p_lista) >0; 
+END //
+DELIMITER;
+
+------------------------------------
+
+OUT--> Mustra los resultados obtenidos de un queri, pero los almacena en una variable

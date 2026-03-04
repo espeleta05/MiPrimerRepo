@@ -1,0 +1,261 @@
+!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 3 - PostgreSQL en Google Cloud</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER - NavegaciÃ³n fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">â—ˆ</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>ðŸ—„ï¸ Tarea 3: PostgreSQL en Google Cloud</h1>
+                <p>InstalaciÃ³n y ConfiguraciÃ³n de PostgreSQL en MÃ¡quina Virtual</p>
+            </header>
+
+            <article class="tarea-content">
+                <!-- OBJETIVO -->
+                <section class="tarea-section">
+                    <h2>ðŸŽ¯ Objetivo</h2>
+                    <p>
+                        Instalar y configurar PostgreSQL (un sistema gestor de bases de datos relacional de cÃ³digo abierto) 
+                        en la mÃ¡quina virtual de Google Cloud. Se enfatiza la creaciÃ³n de usuarios, configuraciÃ³n de permisos, 
+                        diseÃ±o de esquemas de bases de datos y ejecuciÃ³n de comandos DDL y DML en PostgreSQL.
+                    </p>
+                </section>
+
+                <!-- CONCEPTOS CLAVE -->
+                <section class="tarea-section">
+                    <h2>ðŸ’¡ Conceptos Clave</h2>
+                    <div class="conceptos-grid">
+                        <div class="concepto-card">
+                            <h3>PostgreSQL</h3>
+                            <p>Sistema gestor de bases de datos relacional de cÃ³digo abierto muy poderoso. Ofrece caracterÃ­sticas avanzadas como herencia de tablas, tipos de datos personalizados y procedimientos almacenados.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>InstalaciÃ³n en Linux</h3>
+                            <p>Proceso de instalaciÃ³n de PostgreSQL en sistemas Linux (CentOS/RHEL) usando gestores de paquetes. Incluye configuraciÃ³n inicial y arranque del servicio.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Usuario PostgreSQL</h3>
+                            <p>CreaciÃ³n de usuarios y roles en PostgreSQL para controlar el acceso a las bases de datos. Cada usuario puede tener permisos especÃ­ficos sobre tablas y objetos.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>DDL (Data Definition Language)</h3>
+                            <p>Comandos para crear, modificar y eliminar estructuras de datos (CREATE TABLE, ALTER TABLE, DROP TABLE). Define el esquema de la base de datos.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>DML (Data Manipulation Language)</h3>
+                            <p>Comandos para insertar, actualizar y eliminar datos (INSERT, UPDATE, DELETE). Manipula el contenido de las tablas.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Psql - Cliente PostgreSQL</h3>
+                            <p>Herramienta de lÃ­nea de comandos interactiva para conectarse y gestionar bases de datos PostgreSQL. Permite ejecutar comandos SQL directamente.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE APRENDIZAJE -->
+                <section class="tarea-section">
+                    <h2>âœ“ Evidencia de Aprendizaje</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">âœ“</span>
+                            <div>
+                                <h3>InstalaciÃ³n de PostgreSQL</h3>
+                                <p>InstalaciÃ³n exitosa de PostgreSQL 12+ en la mÃ¡quina virtual de Google Cloud.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">âœ“</span>
+                            <div>
+                                <h3>ConfiguraciÃ³n del Servicio</h3>
+                                <p>Servicio PostgreSQL arrancado y configurado para iniciar automÃ¡ticamente en el boot.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">âœ“</span>
+                            <div>
+                                <h3>CreaciÃ³n de Usuarios</h3>
+                                <p>CreaciÃ³n de nuevos usuarios PostgreSQL con permisos especÃ­ficos para conexiÃ³n remota.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">âœ“</span>
+                            <div>
+                                <h3>DiseÃ±o de Esquema</h3>
+                                <p>CreaciÃ³n de tablas relacionales con integridad referencial y tipos de datos apropiados.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">âœ“</span>
+                            <div>
+                                <h3>EjecuciÃ³n de Comandos</h3>
+                                <p>Ejecutar comandos DDL, DML y consultas complejas en PostgreSQL.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE IMPLEMENTACIÃ“N -->
+                <section class="tarea-section">
+                    <h2>ðŸ“¸ Evidencia de ImplementaciÃ³n</h2>
+
+                    <h3>Paso 1: InstalaciÃ³n de PostgreSQL</h3>
+                    <p>Se instalÃ³ PostgreSQL en la mÃ¡quina virtual usando el gestor de paquetes yum. Este proceso incluye la descarga de repositorios oficiales y compilaciÃ³n de dependencias:</p>
+                    <div class="codigo-block">
+                        <pre><code># Actualizar sistema
+sudo yum update -y
+
+# Instalar repositorio PostgreSQL
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+# Instalar PostgreSQL 12
+sudo yum install -y postgresql12-server postgresql12-contrib
+
+# Inicializar la base de datos
+sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+
+# Iniciar el servicio
+sudo systemctl start postgresql-12
+sudo systemctl enable postgresql-12</code></pre>
+                    </div>
+
+                    <h3>Paso 2: ConfiguraciÃ³n de Usuario y ConexiÃ³n</h3>
+                    <p>DespuÃ©s de la instalaciÃ³n, se configurÃ³ el usuario PostgreSQL y se permitiÃ³ la conexiÃ³n remota:</p>
+                    <div class="imagen-container">
+                        <img src="images/postgres-instalacion.png" alt="InstalaciÃ³n y configuraciÃ³n de PostgreSQL" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: VerificaciÃ³n de instalaciÃ³n de PostgreSQL y estado del servicio</p>
+                    </div>
+
+                    <h3>Paso 3: CreaciÃ³n de Tablas Relacionales</h3>
+                    <p>Se crearon las mismas tablas que en MariaDB, pero adaptadas a la sintaxis y caracterÃ­sticas de PostgreSQL:</p>
+                    <div class="codigo-block">
+                        <pre><code>-- Crear tabla de usuarios
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    activo BOOLEAN DEFAULT TRUE
+);
+
+-- Crear tabla de productos
+CREATE TABLE productos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10, 2) NOT NULL,
+    usuario_id INTEGER NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- Crear Ã­ndices para optimizaciÃ³n
+CREATE INDEX idx_usuarios_email ON usuarios(email);
+CREATE INDEX idx_productos_usuario ON productos(usuario_id);
+
+-- Insertar datos de prueba
+INSERT INTO usuarios (nombre, email) VALUES 
+('Juan PÃ©rez', 'juan@example.com'),
+('MarÃ­a GarcÃ­a', 'maria@example.com');
+
+-- Consulta con JOIN
+SELECT u.nombre, COUNT(p.id) as cantidad_productos
+FROM usuarios u
+LEFT JOIN productos p ON u.id = p.usuario_id
+GROUP BY u.id, u.nombre;</code></pre>
+                    </div>
+
+                    <h3>Paso 4: ConexiÃ³n y Consultas</h3>
+                    <p>Acceso al cliente psql y ejecuciÃ³n de consultas directas a la base de datos:</p>
+                    <div class="imagen-container">
+                        <img src="images/postgres-conexion.png" alt="ConexiÃ³n a PostgreSQL y ejecuciÃ³n de comandos" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Cliente psql conectado y ejecutando consultas DDL/DML</p>
+                    </div>
+
+                    <h3>Paso 5: Resultados y ValidaciÃ³n</h3>
+                    <p>ValidaciÃ³n de tablas creadas, usuarios configurados e integridad de datos en PostgreSQL:</p>
+                    <div class="imagen-container">
+                        <img src="images/postgres-tablas.png" alt="Tablas y datos en PostgreSQL" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: VerificaciÃ³n de tablas creadas y resultados de consultas</p>
+                    </div>
+
+                    <div class="tarea-actions">
+                        <a href="postgres_commands.sql" class="btn btn-primario">ðŸ“¥ Descargar Comandos SQL</a>
+                        <a href="README.md" class="btn btn-primario">ðŸ“„ Descargar README</a>
+                    </div>
+                </section>
+
+                <!-- CONCLUSIONES -->
+                <section class="tarea-section">
+                    <h2>ðŸ“‹ Conclusiones</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>ðŸ“š Aprendizajes Principales</h3>
+                            <p>He aprendido a instalar y configurar PostgreSQL en Linux, crear y gestionar usuarios con permisos especÃ­ficos, diseÃ±ar esquemas de bases de datos relacionales con integridad referencial, y ejecutar consultas complejas usando DDL y DML en PostgreSQL.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>âš ï¸ DesafÃ­os Encontrados</h3>
+                            <p>La configuraciÃ³n de permisos de conexiÃ³n remota requerÃ­a modificar archivos de configuraciÃ³n (pg_hba.conf). Las diferencias sintÃ¡cticas entre MariaDB y PostgreSQL (como SERIAL en lugar de AUTO_INCREMENT) requirieron ajustes en los scripts SQL.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>ðŸŽ¯ Mejoras Futuras</h3>
+                            <p>Implementar replicaciÃ³n de PostgreSQL, configurar backup con pg_dump, explorar caracterÃ­sticas avanzadas como Window Functions y Common Table Expressions (CTEs), y aprender a optimizar consultas con EXPLAIN ANALYZE.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTÃ“N VOLVER -->
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">â† Volver a Parcial 1</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">Â© 2026 - Portafolio AcadÃ©mico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>
+

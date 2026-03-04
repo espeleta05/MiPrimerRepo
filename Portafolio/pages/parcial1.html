@@ -277,11 +277,29 @@
         // VARIABLES GLOBALES
         const TAREAS_KEY = 'parcial1_tareas';
         const TAREAS_JSON_URL = '../data/parcial1/tareas.json';
+        const TAREAS_FALLBACK = [
+            { id: 1, titulo: 'Configuración de Ubiquitous y Google Cloud', fecha: '2026-01-20', descripcion: 'Configuración inicial del servidor Ubiquitous y creación de máquina virtual en Google Cloud', estado: 'completado', archivo: 'tarea1/tarea1.html' },
+            { id: 2, titulo: 'DBMS en máquina virtual de Google Cloud', fecha: '2026-01-23', descripcion: 'Configurar MariaDB en la VM, crear usuarios y realizar respaldos', estado: 'completado', archivo: 'tarea2/tarea2.html' },
+            { id: 3, titulo: 'PostgreSQL en máquina virtual de Google Cloud', fecha: '2026-01-27', descripcion: 'Instalación y configuración de PostgreSQL en la VM, creación de tablas relacionales', estado: 'completado', archivo: 'tarea3/tarea3.html' },
+            { id: 4, titulo: 'Importación de Bases de Datos Externas', fecha: '2026-02-03', descripcion: 'Descarga e importación de archivos SQL desde fuentes externas, validación de integridad de datos', estado: 'completado', archivo: 'tarea4/tarea4.html' },
+            { id: 5, titulo: 'Respaldos de Bases de Datos: MariaDB y PostgreSQL', fecha: '2026-02-10', descripcion: 'Implementación de respaldos lógicos con mysqldump y pg_dumpall; organización y gestión de permisos.', estado: 'completado', archivo: 'tarea5/tarea5.html' },
+            { id: 6, titulo: 'Consultas y Stored Procedures en MariaDB (Biblioteca)', fecha: '2026-02-23', descripcion: 'Consultas de inspección y CONCAT; verificación, diagnóstico de error 1064 y eliminación de un stored procedure.', estado: 'completado', archivo: 'tarea6/tarea6.html' },
+            { id: 7, titulo: 'Índices, EXPLAIN y Stored Procedures en MariaDB', fecha: '2026-02-13', descripcion: 'Optimización con índices, análisis de planes de ejecución y procedimientos almacenados con validación de parámetros.', estado: 'completado', archivo: 'tarea7/tarea7.html' },
+            { id: 8, titulo: 'Stored Procedures avanzados + Setup de Flask en Linux', fecha: '2026-02-17', descripcion: 'Procedures con FIND_IN_SET y parámetros OUT, más preparación de entorno Python con pip y Flask.', estado: 'completado', archivo: 'tarea8/tarea8.html' }
+        ];
+        const TAREA8_OFICIAL = { id: 8, titulo: 'Stored Procedures avanzados + Setup de Flask en Linux', fecha: '2026-02-17', descripcion: 'Procedures con FIND_IN_SET y parámetros OUT, más preparación de entorno Python con pip y Flask.', estado: 'completado', archivo: 'tarea8/tarea8.html' };
+
+        function asegurarTarea8(lista) {
+            const tareas = Array.isArray(lista) ? [...lista] : [];
+            const existe = tareas.some(t => (t.archivo || '') === TAREA8_OFICIAL.archivo || Number(t.id) === 8);
+            if (!existe) tareas.push(TAREA8_OFICIAL);
+            return tareas;
+        }
         
         // CARGAR TAREAS AL INICIAR
         document.addEventListener('DOMContentLoaded', async function() {
-            await cargarTareasDesdeJSON();
-            cargarTareas();
+            const tareas = await cargarTareasDesdeJSON();
+            cargarTareas(tareas);
         });
         
         // CARGAR TAREAS DESDE JSON
@@ -289,39 +307,44 @@
             try {
                 const response = await fetch(TAREAS_JSON_URL);
                 if (!response.ok) {
-                    console.warn('No se encontró tareas.json:', TAREAS_JSON_URL);
-                    return;
+                    console.warn('No se encontró tareas.json, usando fallback:', TAREAS_JSON_URL);
+                    const tareasFinales = asegurarTarea8(TAREAS_FALLBACK);
+                    guardarTareas(tareasFinales);
+                    return tareasFinales;
                 }
                 
                 const datos = await response.json();
                 if (datos.parcial1 && datos.parcial1.length > 0) {
-                    // Verificar si ya existen tareas en localStorage
-                    const tareasExistentes = obtenerTareas();
-                    
-                    // Si no hay tareas locales, cargar las del JSON
-                    if (tareasExistentes.length === 0) {
-                        const tareasFormateadas = datos.parcial1.map(tarea => ({
-                            id: tarea.id || Date.now(),
-                            titulo: tarea.titulo,
-                            fecha: tarea.fecha,
-                            descripcion: tarea.descripcion,
-                            estado: tarea.estado,
-                            archivo: tarea.archivo,
-                            secciones: tarea.secciones
-                        }));
-                        
-                        guardarTareas(tareasFormateadas);
-                        console.log('✅ Tareas cargadas desde JSON:', tareasFormateadas);
-                    }
+                    const tareasFormateadas = datos.parcial1.map(tarea => ({
+                        id: tarea.id || Date.now(),
+                        titulo: tarea.titulo,
+                        fecha: tarea.fecha,
+                        descripcion: tarea.descripcion,
+                        estado: tarea.estado,
+                        archivo: tarea.archivo,
+                        secciones: tarea.secciones
+                    }));
+
+                    const tareasFinales = asegurarTarea8(tareasFormateadas);
+                    guardarTareas(tareasFinales);
+                    console.log('✅ Tareas sincronizadas desde JSON:', tareasFinales);
+                    return tareasFinales;
                 }
+
+                const tareasFinales = asegurarTarea8(TAREAS_FALLBACK);
+                guardarTareas(tareasFinales);
+                return tareasFinales;
             } catch (error) {
                 console.error('Error al cargar tareas.json:', error);
+                const tareasFinales = asegurarTarea8(TAREAS_FALLBACK);
+                guardarTareas(tareasFinales);
+                return tareasFinales;
             }
         }
         
         // CARGAR Y MOSTRAR TAREAS
-        function cargarTareas() {
-            const tareas = obtenerTareas();
+        function cargarTareas(tareasInput) {
+            const tareas = asegurarTarea8(Array.isArray(tareasInput) ? tareasInput : obtenerTareas());
             const contenedor = document.getElementById('listaTareas');
             const sinTareas = document.getElementById('sinTareas');
             
@@ -369,7 +392,7 @@
                 <p class="tarea-desc">${tarea.descripcion || 'Sin descripción'}</p>
                 <div class="tarea-meta">
                     <span class="tarea-estado ${estadoClase}">${estadoTexto}</span>
-                    <a href="../tasks/parcial1/${tarea.archivo}" class="ver-detalles" target="_blank">
+                    <a href="../tasks/parcial1/${tarea.archivo}" class="ver-detalles">
                         Ver detalles →
                     </a>
                 </div>
@@ -380,19 +403,24 @@
         
         // OBTENER TAREAS DESDE localStorage
         function obtenerTareas() {
-            const datos = localStorage.getItem(TAREAS_KEY);
-            return datos ? JSON.parse(datos) : [];
+            try {
+                const datos = localStorage.getItem(TAREAS_KEY);
+                return datos ? JSON.parse(datos) : [];
+            } catch (error) {
+                console.warn('localStorage inválido, usando fallback en memoria');
+                return [...TAREAS_FALLBACK];
+            }
         }
         
         // GUARDAR TAREAS EN localStorage
         function guardarTareas(tareas) {
-            localStorage.setItem(TAREAS_KEY, JSON.stringify(tareas));
+            try {
+                localStorage.setItem(TAREAS_KEY, JSON.stringify(tareas));
+            } catch (error) {
+                console.warn('No se pudo guardar en localStorage, continuando en memoria');
+            }
         }
 
-        // Limpiar caché al cargar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            localStorage.removeItem(TAREAS_KEY);
-        });
     </script>
 
     <!-- Scripts JavaScript -->

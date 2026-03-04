@@ -85,7 +85,7 @@
                                 <div class="card-stats">
                                     <span class="stat">
                                         <span class="stat-icon">📚</span>
-                                        <span class="stat-text">Tareas: 5</span>
+                                        <span class="stat-text" id="counterParcial1">Tareas: 8</span>
                                     </span>
                                 </div>
                             </div>
@@ -241,6 +241,13 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const target = document.getElementById('counterParcial1');
+            if (target) target.textContent = 'Tareas: 8';
+        });
+    </script>
 
     <!-- Scripts JavaScript -->
     <script src="scripts/main.js"></script>

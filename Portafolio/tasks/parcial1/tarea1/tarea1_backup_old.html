@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 1 - Ubiquitous y Google Cloud</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <!-- HEADER - Navegación fija (consistente con el resto del portafolio) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>📚 Tarea 1: Ubiquitous y Google Cloud</h1>
+                <p>Configuración de Servidores Remotos e Infraestructura en la Nube</p>
+            </header>
+
+            <article class="tarea-content">
+                <!-- OBJETIVO -->
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo</h2>
+                    <p>
+                        Comprender cómo acceder y usar Ubiquitous (servidor preconfigurado) y configurar una primera 
+                        máquina virtual en Google Cloud Platform (GCP) con CentOS e instalación de MariaDB para bases de datos.
+                    </p>
+                </section>
+
+                <!-- CONCEPTOS CLAVE -->
+                <section class="tarea-section">
+                    <h2>💡 Conceptos Clave</h2>
+                    <div class="conceptos-grid">
+                        <div class="concepto-card">
+                            <h3>Ubiquitous</h3>
+                            <p>Servidor preconfigurado proporcionado por la institución. Permite acceso SSH con autenticación mediante matrícula universitaria.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Google Cloud Platform</h3>
+                            <p>Plataforma de computación en la nube de Google que proporciona máquinas virtuales, almacenamiento, redes y más.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>SSH (Secure Shell)</h3>
+                            <p>Protocolo de seguridad criptográfico para acceso remoto cifrado a servidores con encriptación end-to-end.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>Máquina Virtual (VM)</h3>
+                            <p>Emulación de software de una computadora física. Permite ejecutar un sistema operativo completo dentro de otro.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>MariaDB</h3>
+                            <p>Sistema de gestión de bases de datos relacional de código abierto. Fork de MySQL que mejora compatibilidad y rendimiento.</p>
+                        </div>
+                        <div class="concepto-card">
+                            <h3>CentOS</h3>
+                            <p>Sistema operativo Linux basado en Red Hat Enterprise Linux (RHEL). Estable y utilizado en servidores empresariales.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE APRENDIZAJE -->
+                <section class="tarea-section">
+                    <h2>✓ Evidencia de Aprendizaje</h2>
+                    <div class="evidencia-grid">
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Acceso SSH a Ubiquitous</h3>
+                                <p>Conexión exitosa y navegación en el servidor remoto mediante línea de comandos.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Creación de Máquina Virtual</h3>
+                                <p>Instancia de VM creada y configurada correctamente en Google Cloud Platform.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Instalación de CentOS</h3>
+                                <p>Sistema operativo Linux instalado y configurado en la máquina virtual.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Instalación de MariaDB</h3>
+                                <p>Servicio de base de datos activo y funcionando correctamente en la VM.</p>
+                            </div>
+                        </div>
+                        <div class="evidencia-item">
+                            <span class="evidencia-check">✓</span>
+                            <div>
+                                <h3>Configuración de Red</h3>
+                                <p>Conectividad y configuración de red completada para acceso remoto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EVIDENCIA DE IMPLEMENTACIÓN -->
+                <section class="tarea-section">
+                    <h2>📸 Evidencia de Implementación</h2>
+
+                    <h3>Carpetas en Ubiquitous</h3>
+                    <p>Estructura de directorios y archivos creados en el servidor Ubiquitous mediante acceso SSH:</p>
+                    <div class="imagen-container">
+                        <img src="images/ubiquitous-carpetas.png" alt="Carpetas en Ubiquitous" class="tarea-image">
+                        <p class="imagen-caption">Acceso SSH a ubiquitous.udem.edu.mx mostrando la estructura de archivos HTML creados</p>
+                    </div>
+
+                    <h3>Creación de Máquina Virtual en Google Cloud</h3>
+                    <p>Instancia de VM "maquina03" configurada y ejecutándose en Google Cloud Platform:</p>
+                    <div class="imagen-container">
+                        <img src="images/google-cloud-vm.png" alt="Máquina virtual en Google Cloud" class="tarea-image">
+                        <p class="imagen-caption">VM instances en GCP - maquina03 activa en us-central1-f con IP interna 10.128.0.2</p>
+                    </div>
+
+                    <h3>Instalación y Activación de MariaDB</h3>
+                    <p>Servicio de MariaDB versión 10.11 ejecutándose correctamente en la máquina virtual:</p>
+                    <div class="imagen-container">
+                        <img src="images/mariadb-instalacion.png" alt="MariaDB activo" class="tarea-image">
+                        <p class="imagen-caption">Estado del servicio mariadb.service - Active (running) con memoria en uso</p>
+                    </div>
+                </section>
+
+                <!-- CONCLUSIONES -->
+                <section class="tarea-section">
+                    <h2>📋 Conclusiones</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>📚 Aprendizajes Principales</h3>
+                            <p>He adquirido competencias en acceso remoto SSH, creación de máquinas virtuales en Google Cloud, instalación de sistemas operativos Linux y bases de datos MariaDB, así como conceptos fundamentales de infraestructura en la nube.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>⚠️ Problemas Encontrados</h3>
+                            <p>Inicialmente la máquina virtual se configuró incorrectamente, impidiendo la instalación de MariaDB debido a una configuración de repositorios defectuosa. La solución fue crear una nueva instancia con parámetros correctos.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>🎯 Áreas de Mejora</h3>
+                            <p>Profundizar en scripting bash, explorar opciones de seguridad avanzada, aprender infraestructura como código (IaC) con Terraform, y optimizar rendimiento de bases de datos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTÓN VOLVER -->
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial1.html" class="btn btn-primario">← Volver a Parcial 1</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Académico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

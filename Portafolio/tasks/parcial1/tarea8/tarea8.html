@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 8 - Stored Procedures avanzados y Setup Flask</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+    <style>
+        .rubrica-badge { display: inline-block; background: linear-gradient(135deg, #7b2cbf 0%, #00d4ff 100%); color: white; padding: 8px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 20px; }
+        .meta-info { display: flex; gap: 1rem; flex-wrap: wrap; margin: 10px 0 20px; }
+        .meta-pill { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.35); color: #b8c5d6; padding: 6px 12px; border-radius: 999px; font-size: 0.9rem; }
+        .table-of-contents { background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .table-of-contents ul { margin: 10px 0 0 18px; }
+        .table-of-contents a { color: #00d4ff; }
+        .faq-section { background: rgba(123, 44, 191, 0.05); padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .faq-item { margin: 15px 0; }
+        .faq-item summary { cursor: pointer; font-weight: bold; color: #00d4ff; padding: 10px; background: rgba(0, 212, 255, 0.1); border-radius: 5px; margin-bottom: 10px; }
+        .faq-item summary:hover { background: rgba(0, 212, 255, 0.2); }
+        .faq-item p { padding: 10px 15px; margin-left: 20px; background: rgba(184, 197, 214, 0.1); border-radius: 5px; }
+        .evidencia-grid { display: block; margin-top: 18px; }
+        .evidencia-card { background: rgba(123, 44, 191, 0.08); border: 1px solid rgba(123, 44, 191, 0.3); border-radius: 10px; padding: 16px; max-width: 980px; margin: 0 auto 24px; }
+        .evidencia-card img { display: block; width: 100%; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.35); margin: 12px 0 14px; }
+        .evidencia-card h4 { margin: 0 0 8px; color: #00d4ff; }
+        .resources { background: rgba(0, 255, 136, 0.08); border-left: 4px solid #00ff88; padding: 16px; border-radius: 8px; margin-top: 14px; }
+        .references-section { background: rgba(123, 44, 191, 0.1); border-left: 4px solid #7b2cbf; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .reference { margin: 12px 0; padding-left: 20px; text-align: justify; font-size: 0.95em; line-height: 1.6; }
+        .version-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .version-table th, .version-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 212, 255, 0.3); }
+        .version-table th { background: rgba(0, 212, 255, 0.2); color: #00d4ff; font-weight: bold; }
+        .bitacora-section { background: rgba(0, 255, 136, 0.1); border-left: 4px solid #00ff88; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .bitacora-item { margin: 12px 0; padding: 10px; background: rgba(0, 255, 136, 0.05); border-radius: 5px; }
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+        .tag { background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); color: #b8c5d6; padding: 5px 10px; border-radius: 999px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link active">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../index.html" class="btn-volver">← Volver al inicio</a>
+
+            <article class="tarea-card" style="margin-top: 20px; padding: 28px;">
+                <span class="rubrica-badge">📚 Parcial 1 · SQL Procedural + Entorno</span>
+                <h1>Tarea 08: Stored Procedures avanzados + Setup de Flask en Linux</h1>
+                <div class="meta-info">
+                    <span class="meta-pill">📅 17 Febrero 2026</span>
+                    <span class="meta-pill">🎯 Tipo: SQL Procedural + Entorno</span>
+                    <span class="meta-pill">🗃️ Base: Biblioteca</span>
+                </div>
+
+                <section class="tarea-section table-of-contents">
+                    <h2>Índice</h2>
+                    <ul>
+                        <li><a href="#objetivo">1. Objetivo</a></li>
+                        <li><a href="#contexto">2. Contexto del Ejercicio</a></li>
+                        <li><a href="#conceptos">3. Conceptos Técnicos</a></li>
+                        <li><a href="#desarrollo">4. Desarrollo</a></li>
+                        <li><a href="#evidencias">5. Evidencias y Entregables</a></li>
+                        <li><a href="#conclusiones">6. Conclusiones y Reflexión Técnica</a></li>
+                        <li><a href="#integridad">7. Autenticidad e Integridad Académica</a></li>
+                        <li><a href="#faq">8. Preguntas Frecuentes</a></li>
+                        <li><a href="#referencias">9. Referencias APA</a></li>
+                        <li><a href="#versiones">10. Historial de Versiones</a></li>
+                        <li><a href="#bitacora">11. Bitácora de Defensa Oral</a></li>
+                    </ul>
+                </section>
+
+                <section class="tarea-section" id="objetivo">
+                    <h2>1. Objetivo</h2>
+                    <p>Implementar y validar procedimientos almacenados en MariaDB para consultas parametrizadas con listas CSV y para retorno de resultados con parámetro <strong>OUT</strong>. Además, preparar el entorno base de Python en Linux con instalación de <strong>pip</strong> y <strong>Flask</strong>.</p>
+                </section>
+
+                <section class="tarea-section" id="contexto">
+                    <h2>2. Contexto del Ejercicio</h2>
+                    <p>La práctica se desarrolló con el usuario <strong>biblio_user</strong> sobre la base <strong>Biblioteca</strong>. Se revisó la tabla <strong>Alumnos</strong>, se comparó una consulta manual vs un procedure reutilizable, y se probó un procedimiento con salida mediante variable de sesión. Al final se configuró el entorno de Python para pasos posteriores de integración.</p>
+                </section>
+
+                <section class="tarea-section" id="conceptos">
+                    <h2>3. Conceptos Técnicos</h2>
+                    <h3>DELIMITER</h3>
+                    <p>Se usa para definir bloques de procedimientos sin que MariaDB termine la sentencia al primer <code>;</code>. Se cambia temporalmente y luego se restaura.</p>
+
+                    <h3>FIND_IN_SET</h3>
+                    <p><code>FIND_IN_SET(valor, lista_csv)</code> permite validar si un valor está dentro de una lista separada por comas, útil para filtros dinámicos con un solo parámetro.</p>
+
+                    <h3>Parámetros OUT</h3>
+                    <p>Con un parámetro <code>OUT</code>, un procedure puede regresar un valor al cliente. En esta actividad se utilizó para obtener el total de registros de <strong>Alumnos</strong>.</p>
+
+                    <h3>pip y Flask</h3>
+                    <p><code>pip</code> gestiona paquetes de Python. Tras instalar <code>python3-pip</code> en Linux, se añadió <code>Flask</code> para habilitar la base de un backend web.</p>
+                </section>
+
+                <section class="tarea-section" id="desarrollo">
+                    <h2>4. Desarrollo</h2>
+
+                    <h3>4.1 Selección de base y revisión de tabla</h3>
+                    <pre><code>USE Biblioteca;
+
+DESC Alumnos;</code></pre>
+
+                    <h3>4.2 Consulta tradicional por matrículas específicas</h3>
+                    <pre><code>SELECT nombre, grado
+FROM Alumnos
+WHERE matricula = 1001
+   OR matricula = 1005
+   OR matricula = 1002;</code></pre>
+
+                    <h3>4.3 Procedure buscarAlumnos con lista CSV (FIND_IN_SET)</h3>
+                    <pre><code>DELIMITER //
+
+CREATE PROCEDURE buscarAlumnos(
+  IN p_lista VARCHAR(300)
+)
+BEGIN
+  SELECT nombre, matricula, grado
+  FROM Alumnos
+  WHERE FIND_IN_SET(matricula, p_lista) > 0;
+END //
+
+DELIMITER ;
+
+CALL buscarAlumnos('1001,1005,1002');</code></pre>
+                    <p>También se documentó la llamada con número incorrecto de argumentos (error 1318), seguida por la ejecución correcta con un solo parámetro CSV.</p>
+
+                    <h3>4.4 Conteo de alumnos y procedure contarAlumnos con OUT</h3>
+                    <pre><code>SELECT COUNT(*) FROM Alumnos;
+
+DELIMITER //
+
+CREATE PROCEDURE contarAlumnos(
+  OUT p_contar INT
+)
+BEGIN
+  SELECT COUNT(*) INTO p_contar FROM Alumnos;
+END //
+
+DELIMITER ;
+
+CALL contarAlumnos(@s);
+SELECT @s;</code></pre>
+
+                    <h3>4.5 Preparación de entorno Python: pip + Flask</h3>
+                    <pre><code>whereis python
+python --version
+
+pip --version
+sudo dnf install python3-pip -y
+pip --version
+
+mkdir -p Proyectos/App01
+cd Proyectos/App01
+
+pip install flask</code></pre>
+                </section>
+
+                <section class="tarea-section" id="evidencias">
+                    <h2>5. Evidencias y Entregables</h2>
+                    <ul>
+                        <li>DESC de <strong>Alumnos</strong> y estructura validada.</li>
+                        <li>Procedure <code>buscarAlumnos</code> con <code>FIND_IN_SET</code> y validación de llamada.</li>
+                        <li>Procedure <code>contarAlumnos</code> con parámetro <code>OUT</code> y recuperación con <code>@s</code>.</li>
+                        <li>Instalación de <code>python3-pip</code> y <code>Flask</code> en Linux.</li>
+                    </ul>
+
+                    <div class="evidencia-grid">
+                        <div class="evidencia-card">
+                            <h4>Evidence 1</h4>
+                            <img src="images/img1.png" alt="Selección de base y descripción de tabla Alumnos">
+                            <p>Selección de base, descripción de <strong>Alumnos</strong> y preparación del contexto SQL.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 2</h4>
+                            <img src="images/img2.png" alt="Stored procedures con FIND_IN_SET y parámetros OUT">
+                            <p>Creación/ejecución de procedures con <code>FIND_IN_SET</code> y recuperación de valor mediante parámetro <code>OUT</code>.</p>
+                        </div>
+                        <div class="evidencia-card">
+                            <h4>Evidence 3</h4>
+                            <img src="images/img3.png" alt="Instalación de pip y Flask en Linux">
+                            <p>Verificación de Python, instalación de <code>python3-pip</code> y posterior instalación de <code>Flask</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="resources">
+                        <strong>Archivo SQL de evidencia:</strong>
+                        <a href="17-feb.sql" download>Descargar 17-feb.sql</a>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="conclusiones">
+                    <h2>6. Conclusiones y Reflexión Técnica</h2>
+                    <p>Se consolidó el uso de procedimientos almacenados para resolver consultas repetitivas y devolver resultados estructurados al cliente SQL. El uso de listas CSV y parámetros <strong>OUT</strong> redujo repetición y mejoró reutilización. En paralelo, dejar Python con <strong>pip</strong> y <strong>Flask</strong> instalado prepara el camino para integrar la base con servicios web.</p>
+                </section>
+
+                <section class="tarea-section" id="integridad">
+                    <h2>7. Autenticidad e Integridad Académica</h2>
+                    <p>Declaro que las operaciones presentadas fueron ejecutadas en un entorno real de Linux con MariaDB y que las evidencias incluyen tanto resultados correctos como validaciones de error durante la práctica.</p>
+                    <div class="tags">
+                        <span class="tag">MariaDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Stored Procedures</span>
+                        <span class="tag">FIND_IN_SET</span>
+                        <span class="tag">OUT</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                    </div>
+                </section>
+
+                <section class="tarea-section" id="faq">
+                    <h2>8. Preguntas Frecuentes</h2>
+                    <div class="faq-section">
+                        <details class="faq-item">
+                            <summary>¿Por qué usar FIND_IN_SET en lugar de muchos OR?</summary>
+                            <p>Porque permite recibir una lista dinámica en un solo parámetro y evita reescribir la consulta cada vez que cambia el conjunto de matrículas.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Qué beneficio aporta un parámetro OUT?</summary>
+                            <p>Permite regresar resultados agregados (por ejemplo conteos) para usarlos después en variables de sesión.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>¿Cómo validar que Flask quedó instalado?</summary>
+                            <p>Ejecutando <code>pip show flask</code> o importándolo desde Python con <code>python -c "import flask"</code>.</p>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="references-section" id="referencias">
+                    <h2>9. Referencias APA</h2>
+                    <div class="reference">1. MariaDB Foundation. (2026). CREATE PROCEDURE. Retrieved from https://mariadb.com/kb/en/create-procedure/</div>
+                    <div class="reference">2. MariaDB Foundation. (2026). FIND_IN_SET. Retrieved from https://mariadb.com/kb/en/find_in_set/</div>
+                    <div class="reference">3. Python Software Foundation. (2026). pip documentation. Retrieved from https://pip.pypa.io/</div>
+                    <div class="reference">4. Pallets. (2026). Flask documentation. Retrieved from https://flask.palletsprojects.com/</div>
+                </section>
+
+                <section class="tarea-section" id="versiones">
+                    <h2>10. Historial de Versiones</h2>
+                    <table class="version-table">
+                        <tr><th>Versión</th><th>Fecha</th><th>Cambios</th><th>Autor</th></tr>
+                        <tr><td>v1.0</td><td>2026-02-25</td><td>Creación de tarea con evidencias reales y script SQL.</td><td>Eugenio E.</td></tr>
+                    </table>
+                </section>
+
+                <section class="bitacora-section" id="bitacora">
+                    <h2>11. Bitácora de Defensa Oral</h2>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Qué mejora principal aporta buscarAlumnos con CSV?<br>
+                        <strong>Respuesta:</strong> Evita consultas rígidas y permite filtrar múltiples matrículas con un solo parámetro dinámico.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Qué valida contarAlumnos con OUT?<br>
+                        <strong>Respuesta:</strong> Que un procedure puede devolver valores escalares útiles para reportes o decisiones de lógica posterior.
+                    </div>
+                    <div class="bitacora-item">
+                        <strong>Pregunta:</strong> ¿Por qué preparar Flask en esta etapa?<br>
+                        <strong>Respuesta:</strong> Porque habilita la siguiente fase: exponer consultas/procedures desde una API en Python.
+                    </div>
+                </section>
+
+                <p style="margin-top: 30px;">
+                    <a href="../../../pages/parcial1.html" class="btn-volver">← Volver a Parcial 1</a>
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2026 Portafolio Académico</p>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>
