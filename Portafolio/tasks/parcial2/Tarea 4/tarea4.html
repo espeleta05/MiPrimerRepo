@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tarea 4 - AppBase, MariaDB y Jinja</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../../../styles/main.css">
+	<link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+	<header class="main-header">
+		<div class="container">
+			<div class="logo">
+				<span class="logo-icon">◈</span>
+				<span class="logo-text">EUGENIO ESPELETA</span>
+			</div>
+			<nav class="main-nav">
+				<a href="../../../index.html" class="nav-link">Inicio</a>
+				<a href="../../../pages/parcial1.html" class="nav-link">Parcial 1</a>
+				<a href="../../../pages/parcial2.html" class="nav-link active">Parcial 2</a>
+				<a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+				<a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+				<a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+			</nav>
+			<button class="menu-toggle" id="menuToggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</header>
+
+	<main class="main-content">
+		<div class="container">
+			<header class="page-header">
+				<h1>📦 Tarea 4: AppBase, conexión MariaDB y tabla con Jinja</h1>
+				<p>Descarga y despliegue de proyecto base Flask, consulta de alumnos y renderizado dinámico</p>
+			</header>
+
+			<article class="tarea-content">
+				<section class="tarea-section">
+					<h2>🎯 Objetivo de la actividad</h2>
+					<p>
+						Descargar y ejecutar un proyecto base de Flask (AppBase), integrarlo con MariaDB y crear la ruta
+						<code>/alumnos</code> para consultar registros con <code>DictCursor</code>. Finalmente, mostrar los datos
+						en una plantilla HTML con Jinja recorriendo filas en una tabla.
+					</p>
+				</section>
+
+				<section class="tarea-section">
+					<h2>⬇️ Preparación de AppBase</h2>
+					<p>Se subió <code>AppBase.zip</code> a la VM y se preparó para trabajar en el directorio de proyectos.</p>
+					<div class="imagen-container">
+						<img src="Images/img2.png" alt="Carga de archivo AppBase.zip" class="tarea-image">
+						<p class="imagen-caption">Figura 1: Transferencia de AppBase.zip a la máquina virtual.</p>
+					</div>
+					<div class="codigo-block">
+<pre><code>mv AppBase Proyectos/
+sudo dnf install unzip -y
+unzip AppBase.zip</code></pre>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img4.png" alt="Descompresión de AppBase.zip" class="tarea-image">
+						<p class="imagen-caption">Figura 2: Estructura extraída de AppBase con app.py, templates y static.</p>
+					</div>
+				</section>
+
+				<section class="tarea-section">
+					<h2>▶️ Primera ejecución y estructura</h2>
+					<div class="codigo-block">
+<pre><code>chmod 700 AppBase -R
+tree AppBase
+
+export FLASK_APP=app.py
+flask run --host=0.0.0.0</code></pre>
+					</div>
+					<p>
+						Con esta ejecución se valida que AppBase arranca correctamente y presenta menú en la vista principal.
+					</p>
+				</section>
+
+				<section class="tarea-section">
+					<h2>🔐 Configuración de conexión a MariaDB</h2>
+					<p>Se agregaron importaciones, conexión y parámetros de acceso en <code>app.py</code>.</p>
+					<div class="imagen-container">
+						<img src="Images/img11.png" alt="Configuración Flask MySQL en app.py" class="tarea-image">
+						<p class="imagen-caption">Figura 3: Integración de <code>flask_mysqldb</code> y variables de configuración.</p>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img12.png" alt="Validación de tablas en MariaDB" class="tarea-image">
+						<p class="imagen-caption">Figura 4: Verificación de tablas existentes dentro de la base Biblioteca.</p>
+					</div>
+				</section>
+
+				<section class="tarea-section">
+					<h2>🧾 Ruta <code>/alumnos</code> con DictCursor</h2>
+					<p>
+						Después de validar la consulta SQL en MariaDB, se implementó la ruta para traer alumnos ordenados por matrícula.
+					</p>
+					<div class="codigo-block">
+<pre><code>@app.route('/alumnos')
+def obtenerAlumnos():
+	cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+	cur.execute("SELECT matricula, nombre, grado FROM Alumnos ORDER BY matricula;")
+	alumnos = cur.fetchall()
+	cur.close()
+	return render_template('alumnos.html', alumnos=alumnos)</code></pre>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img15.png" alt="Ruta alumnos y consulta SQL en Flask" class="tarea-image">
+						<p class="imagen-caption">Figura 5: Implementación de <code>/alumnos</code> usando cursor tipo diccionario.</p>
+					</div>
+				</section>
+
+				<section class="tarea-section">
+					<h2>🧩 Edición de plantilla <code>alumnos.html</code></h2>
+					<p>Se ajustó el menú y la estructura de tabla para mostrar los datos recibidos desde Flask.</p>
+					<div class="imagen-container">
+						<img src="Images/img16.png" alt="Plantilla alumnos con menú y estilos" class="tarea-image">
+						<p class="imagen-caption">Figura 6: Encabezado de plantilla con enlaces y estilos estáticos.</p>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img18.png" alt="Encabezados de tabla en alumnos.html" class="tarea-image">
+						<p class="imagen-caption">Figura 7: Construcción de encabezados para matrícula, nombre y grado.</p>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img20.png" alt="Bucle Jinja para recorrer alumnos" class="tarea-image">
+						<p class="imagen-caption">Figura 8: Bucle Jinja para iterar registros y renderizar cada fila.</p>
+					</div>
+					<div class="imagen-container">
+						<img src="Images/img22.png" alt="Plantilla final con tabla y Jinja" class="tarea-image">
+						<p class="imagen-caption">Figura 9: Vista de la tabla final en la plantilla <code>alumnos.html</code>.</p>
+					</div>
+				</section>
+
+				<section class="tarea-section">
+					<h2>📘 Aprendizajes</h2>
+					<div class="conclusiones-grid">
+						<div class="conclusion-card">
+							<h3>Gestión de proyecto base</h3>
+							<p>Se practicó carga, permisos y descompresión de un proyecto Flask listo para extender.</p>
+						</div>
+						<div class="conclusion-card">
+							<h3>Datos dinámicos en Flask</h3>
+							<p>Se consolidó el flujo completo consulta SQL → cursor → plantilla con renderizado dinámico.</p>
+						</div>
+						<div class="conclusion-card">
+							<h3>Uso de Jinja en tablas</h3>
+							<p>Se utilizó <code>for</code>, condicionales y variables de contexto para desplegar resultados de forma clara.</p>
+						</div>
+					</div>
+				</section>
+
+				<div class="tarea-actions">
+					<a href="../../../pages/parcial2.html" class="btn btn-primario">← Volver a Parcial 2</a>
+				</div>
+			</article>
+		</div>
+	</main>
+
+	<footer class="main-footer">
+		<div class="container">
+			<div class="footer-content">
+				<p class="footer-text">© 2026 - Portafolio Académico | Eugenio Espeleta</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="../../../scripts/main.js"></script>
+	<script src="../../../scripts/animations.js"></script>
+</body>
+</html>

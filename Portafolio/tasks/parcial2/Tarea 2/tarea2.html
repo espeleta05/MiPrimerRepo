@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 - Menu navegable con Flask y Jinja</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link active">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>🧭 Tarea 2: Pagina navegable con Flask, Jinja y CSS</h1>
+                <p>Implementacion de rutas Home/Image, menu compartido y estilos estaticos con <code>url_for()</code></p>
+            </header>
+
+            <article class="tarea-content">
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo de la actividad</h2>
+                    <p>
+                        Construir una pagina web navegable con multiples rutas en Flask, creando un menu para moverse entre Home e Images.
+                        Ademas, aplicar Jinja para separar presentacion y logica, y enlazar estilos CSS desde la carpeta <code>static</code>
+                        usando <code>url_for()</code> para rutas dinamicas y limpias.
+                    </p>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🖼️ Agregar pagina de imagenes</h2>
+                    <p>
+                        Se creo la vista <code>imagenes.html</code> y se inserto una imagen publica con la etiqueta <code>img</code>.
+                        Esto permite ampliar la app mas alla del contenido de <code>landing.html</code>.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>&lt;img src="url.jpg"&gt;</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img1.png" alt="Creacion de imagenes.html con etiqueta img" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Archivo <code>imagenes.html</code> con insercion de una imagen mediante URL.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🧭 Menu navegable entre rutas</h2>
+                    <p>
+                        Se agrego un menu en <code>landing.html</code> y se replico en <code>imagenes.html</code> para mantener navegacion consistente
+                        entre la ruta principal y la ruta de imagenes.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>&lt;!-- Inicio de menu --&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/img"&gt;Image&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- Fin de menu --&gt;</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img2.png" alt="Menu con enlaces Home e Images" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Estructura del menu HTML para las rutas <code>/</code> y <code>/img</code>.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🎨 Estilos CSS en carpeta static</h2>
+                    <p>
+                        Para aplicar estilo, se creo la carpeta <code>static/css</code> y el archivo <code>styles.css</code> con formato de menu,
+                        margenes y estado <code>:hover</code>.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>mkdir static
+cd static
+mkdir css
+cd css
+vi styles.css</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img4.png" alt="Contenido del archivo styles.css" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: Reglas CSS para menu horizontal y estilos base de la pagina.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🧠 Jinja y url_for para archivos estaticos</h2>
+                    <p>
+                        Se uso Jinja en las plantillas para enlazar CSS de forma correcta y dinamica desde Flask,
+                        evitando rutas fijas y mejorando mantenimiento del proyecto.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>&lt;link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"&gt;</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img5.png" alt="Uso de url_for en landing.html" class="tarea-image">
+                        <p class="imagen-caption">Figura 4: Vinculacion del CSS con Jinja usando <code>url_for('static', ...)</code>.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>📘 Aprendizajes</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>Navegacion por rutas</h3>
+                            <p>Se comprendio como definir rutas Flask y conectarlas con enlaces para una experiencia navegable.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Separacion de responsabilidades</h3>
+                            <p>Se reforzo el uso de templates para separar la logica Python del HTML de presentacion.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Uso profesional de estaticos</h3>
+                            <p>Con <code>url_for()</code> se enlazan recursos estaticos de forma dinamica y portable dentro de Flask.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial2.html" class="btn btn-primario">← Volver a Parcial 2</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Academico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

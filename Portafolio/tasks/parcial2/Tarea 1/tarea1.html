@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 1 - Despliegue Flask en Servidor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link active">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>🐍 Tarea 1: Despliegue de Flask en VM (App01, App02, App03)</h1>
+                <p>Escalamiento de una app Flask desde texto plano hasta contenido multimedia con acceso externo</p>
+            </header>
+
+            <article class="tarea-content">
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo de la actividad</h2>
+                    <p>
+                        Aprender a desplegar aplicaciones web creadas con Flask en un entorno de servidor real, configurar reglas de firewall
+                        para habilitar acceso externo y desarrollar tres versiones de una misma app: App01, App02 y App03.
+                        Tambien se practico la gestion de procesos en Linux para liberar puertos ocupados y reiniciar el servidor
+                        correctamente en nuevas sesiones.
+                    </p>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>⚙️ Configuracion inicial (App01)</h2>
+                    <p>Se creo el proyecto y el primer archivo con una ruta basica:</p>
+                    <div class="codigo-block">
+<pre><code>cd Proyectos/
+mkdir App01
+cd App01
+vi app.py
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def principal():
+    return 'hola, este es mi texto'</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/Captura de pantalla 2026-03-17 090946.png" alt="Codigo base de Flask en App01" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Codigo inicial de App01 devolviendo texto plano.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🌐 Variable FLASK_APP y ejecucion</h2>
+                    <p>Para ejecutar Flask se definio la variable de entorno y luego se levanto el servidor escuchando en todas las interfaces:</p>
+                    <div class="codigo-block">
+<pre><code>export FLASK_APP=app.py
+echo $FLASK_APP
+flask run --host=0.0.0.0</code></pre>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🔥 Regla de firewall</h2>
+                    <p>
+                        Se habilito el puerto TCP 5000 para trafico de entrada en Google Cloud con una regla tipo ingress,
+                        permitiendo acceso externo a la aplicacion.
+                    </p>
+                    <div class="imagen-container">
+                        <img src="images/Captura de pantalla 2026-03-17 103657.png" alt="Regla de firewall tcp 5000" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: Regla de firewall permitiendo tcp:5000.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🧟 Procesos que bloquean el puerto</h2>
+                    <p>Cuando el puerto 5000 quedo ocupado, se identificaron procesos de Flask y se liberaron con kill:</p>
+                    <div class="codigo-block">
+<pre><code>ps -ef | grep flask
+kill -9 [PID]</code></pre>
+                    </div>
+                    <p>Con esto se pudo reiniciar la app sin conflicto de puerto.</p>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🧩 Evolucion App01 → App02</h2>
+                    <p>Se copio App01 para crear App02 y se agrego HTML en la respuesta:</p>
+                    <div class="codigo-block">
+<pre><code>cp -fR App01 App02
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def principal():
+    return '<h1><font color="pink">hola, este es mi texto</font></h1>'</code></pre>
+                    </div>
+                    <p>Diferencia principal: App01 muestra texto plano, App02 renderiza HTML con formato.</p>
+                    <div class="imagen-container">
+                        <img src="images/img9.png" alt="Codigo de App02 con HTML embebido" class="tarea-image">
+                        <p class="imagen-caption">Figura 4: App02 devolviendo encabezado HTML con color.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🎬 App03 con templates, mapa y video</h2>
+                    <p>En App03 se separo presentacion usando templates y render_template:</p>
+                    <div class="codigo-block">
+<pre><code>mkdir templates
+cd templates
+vi landing.html
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def principal():
+    return render_template('landing.html')
+
+@app.route('/img')
+def imagenes():
+    return render_template('imagenes.html')</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/img12.png" alt="Codigo Flask con render_template en App03" class="tarea-image">
+                        <p class="imagen-caption">Figura 5: App03 usando render_template para servir vistas HTML.</p>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/img13.png" alt="Archivo landing.html creado en vi" class="tarea-image">
+                        <p class="imagen-caption">Figura 6: Creacion de landing.html en el editor vi.</p>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/img14.png" alt="HTML con iframe de Google Maps y YouTube" class="tarea-image">
+                        <p class="imagen-caption">Figura 7: Integracion de mapa y video mediante iframes.</p>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="images/img16.png" alt="Resultado de insercion de video" class="tarea-image">
+                        <p class="imagen-caption">Figura 8: Evidencia del iframe de video en la vista.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>📘 Aprendizajes</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>Servidor Flask en VM</h3>
+                            <p>Se practico el despliegue con <code>flask run --host=0.0.0.0</code> y el flujo de reinicio al abrir nueva sesion.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Red y seguridad</h3>
+                            <p>Se entendio la relacion entre aplicacion y red, abriendo el puerto 5000 en firewall para acceso externo.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Escalamiento de la app</h3>
+                            <p>Se evoluciono de texto plano a HTML y luego a templates con contenido multimedia, separando logica y presentacion.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial2.html" class="btn btn-primario">← Volver a Parcial 2</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Academico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>

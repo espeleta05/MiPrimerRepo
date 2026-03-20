@@ -145,10 +145,62 @@
         let editingTaskId = null;
 
         document.addEventListener('DOMContentLoaded', () => {
+            bootstrapParcial2Tasks();
             loadTasks();
             initModalControls();
             updateStats();
         });
+
+        // Sembrar tarea base de Parcial 2 si aún no existe en localStorage
+        function bootstrapParcial2Tasks() {
+            const currentTasks = TaskManager.getTasks(PARCIAL_ID);
+            const defaults = [
+                {
+                    id: 2001,
+                    title: 'Despliegue de Flask en VM (App01, App02, App03)',
+                    description: 'Configuración de Flask, firewall, procesos y escalamiento de una app básica hasta incluir mapa y video.',
+                    date: '2026-03-17T10:00:00.000Z',
+                    status: 'completed',
+                    file: '../tasks/parcial2/Tarea%201/tarea1.html'
+                },
+                {
+                    id: 2002,
+                    title: 'Menu navegable con Jinja y CSS estático',
+                    description: 'Rutas Home/Image, uso de plantillas Jinja y enlace de estilos con url_for en Flask.',
+                    date: '2026-03-20T10:00:00.000Z',
+                    status: 'completed',
+                    file: '../tasks/parcial2/Tarea%202/tarea2.html'
+                },
+                {
+                    id: 2003,
+                    title: 'Preparación de entorno para Flask + MariaDB',
+                    description: 'Instalación de python-devel, gcc y Development Tools; configuración de acceso y manejo de conexiones.',
+                    date: '2026-03-20T12:00:00.000Z',
+                    status: 'completed',
+                    file: '../tasks/parcial2/Tarea%203/tarea3.html'
+                },
+                {
+                    id: 2004,
+                    title: 'AppBase + consulta /alumnos con Jinja',
+                    description: 'Carga de AppBase.zip, conexión a MariaDB, consulta con DictCursor y renderizado en tabla HTML.',
+                    date: '2026-03-20T14:00:00.000Z',
+                    status: 'completed',
+                    file: '../tasks/parcial2/Tarea%204/tarea4.html'
+                }
+            ];
+
+            const mergedTasks = [...currentTasks];
+            defaults.forEach(defaultTask => {
+                const alreadyExists = mergedTasks.some(task => task.id === defaultTask.id || task.file === defaultTask.file);
+                if (!alreadyExists) {
+                    mergedTasks.push(defaultTask);
+                }
+            });
+
+            TaskManager.tasks[PARCIAL_ID] = mergedTasks;
+
+            TaskManager.save();
+        }
 
         // Cargar y mostrar tareas
         function loadTasks() {
@@ -189,8 +241,9 @@
                 'pending': 'Pendiente'
             };
             
-            // NUEVO: Convertimos el índice a número de tarea (001, 002, 003)
+            // Fallback: si no hay archivo explícito, usar consecutivo 001, 002, 003
             const taskNumber = String(index + 1).padStart(3, '0');
+            const detailLink = task.file || `tareas/parcial2/${taskNumber}.html`;
             
             card.innerHTML = `
                 <div class="task-card-header">
@@ -226,7 +279,7 @@
                     </span>
                 </div>
                 <!-- ENLACE NUEVO: apunta a tareas/parcial2/001.html -->
-                <a href="tareas/parcial2/${taskNumber}.html" class="task-view-link">
+                <a href="${detailLink}" class="task-view-link">
                     Ver detalles →
                 </a>
             `;

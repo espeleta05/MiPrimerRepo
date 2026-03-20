@@ -34,7 +34,7 @@ int main(){
         cout<<"El resultado de la division es:"<<div(numero1,numero2);
         break;
         default:
-        cout<<"Ingrese un operador valido";
+        cout<<"Ingrese un operador valido"
     }
     
     return 0;    

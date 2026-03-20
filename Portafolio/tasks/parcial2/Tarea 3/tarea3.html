@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 3 - Preparacion de entorno Flask + MariaDB</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/futuristic.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">EUGENIO ESPELETA</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../../index.html" class="nav-link">Inicio</a>
+                <a href="../../../pages/parcial1.html" class="nav-link">Parcial 1</a>
+                <a href="../../../pages/parcial2.html" class="nav-link active">Parcial 2</a>
+                <a href="../../../pages/parcial3.html" class="nav-link">Parcial 3</a>
+                <a href="../../../pages/proyecto.html" class="nav-link">Proyecto</a>
+                <a href="../../../pages/hobbies.html" class="nav-link">Hobbies</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>🛠️ Tarea 3: Preparacion del entorno para Flask + MariaDB</h1>
+                <p>Instalacion de herramientas de compilacion y configuracion inicial de acceso a base de datos</p>
+            </header>
+
+            <article class="tarea-content">
+                <section class="tarea-section">
+                    <h2>🎯 Objetivo de la actividad</h2>
+                    <p>
+                        Preparar la maquina virtual para conectar aplicaciones Flask con MariaDB, instalando dependencias de desarrollo
+                        como <code>python-devel</code>, <code>gcc</code> y el grupo <code>Development Tools</code>. Tambien se aplico
+                        configuracion de credenciales en Flask y buenas practicas para cerrar conexiones y evitar saturacion de MariaDB.
+                    </p>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>📦 Creacion de App04 desde App03</h2>
+                    <p>
+                        Se creo una nueva version del proyecto para continuar desarrollo sin alterar una app ya estable.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>cp -fR App03 App04</code></pre>
+                    </div>
+                    <p>
+                        <code>cp</code> copia archivos/directorios, <code>-f</code> fuerza la sobrescritura y <code>-R</code> copia de forma recursiva.
+                    </p>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>⚙️ Instalacion de python-devel y compiladores</h2>
+                    <p>
+                        Para soportar paquetes que compilan extensiones en C, se instalaron componentes de desarrollo de Python
+                        y herramientas del sistema.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>sudo dnf install python-devel -y
+sudo dnf install gcc* -y
+sudo dnf groupinstall "Development Tools" -y</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img2 (1).png" alt="Instalacion de python-devel" class="tarea-image">
+                        <p class="imagen-caption">Figura 1: Instalacion de <code>python-devel</code> y dependencias relacionadas.</p>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img3.png" alt="Instalacion de Development Tools" class="tarea-image">
+                        <p class="imagen-caption">Figura 2: Proceso de instalacion/actualizacion de herramientas de compilacion.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🔐 Configuracion de acceso a MariaDB en Flask</h2>
+                    <p>
+                        Se agrego la libreria <code>flask_mysqldb</code>, se inicializo <code>MySQL(app)</code> y se definieron
+                        las credenciales de acceso (host, usuario, password y base de datos).
+                    </p>
+                    <div class="codigo-block">
+<pre><code>from flask import Flask, render_template
+from flask_mysqldb import MySQL
+
+app = Flask(__name__)
+mysql = MySQL(app)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'biblio_user'
+app.config['MYSQL_PASSWORD'] = '666'
+app.config['MYSQL_DB'] = 'Biblioteca'</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img6.png" alt="Importacion de MySQL y configuracion inicial" class="tarea-image">
+                        <p class="imagen-caption">Figura 3: Integracion de <code>flask_mysqldb</code> y configuracion inicial en <code>app.py</code>.</p>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img4.png" alt="Variables de configuracion MYSQL" class="tarea-image">
+                        <p class="imagen-caption">Figura 4: Definicion de parametros de conexion para MariaDB.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>🧾 Cursor y cierre de conexiones</h2>
+                    <p>
+                        Se creo un cursor para ejecutar consultas SQL. Tambien se reforzo la importancia de cerrar conexiones luego de usarlas
+                        para evitar conexiones durmientes y alcanzar el limite maximo del servidor.
+                    </p>
+                    <div class="codigo-block">
+<pre><code>@app.route('/')
+def principal():
+    cur = mysql.connection.cursor()
+    cur.callproc()
+    cur.close()
+    mysql.connection.close()
+    return render_template('landing.html')</code></pre>
+                    </div>
+                    <div class="imagen-container">
+                        <img src="Images/img7.png" alt="Creacion de cursor en Flask" class="tarea-image">
+                        <p class="imagen-caption">Figura 5: Uso de cursor para ejecutar operaciones sobre MariaDB.</p>
+                    </div>
+                </section>
+
+                <section class="tarea-section">
+                    <h2>📘 Aprendizajes</h2>
+                    <div class="conclusiones-grid">
+                        <div class="conclusion-card">
+                            <h3>Entorno de desarrollo listo</h3>
+                            <p>Se preparo la VM para compilar e instalar paquetes Python que requieren componentes nativos.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Conexion Flask + MariaDB</h3>
+                            <p>Se aplico configuracion de credenciales y estructura base para interactuar con base de datos desde Flask.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <h3>Buenas practicas de recursos</h3>
+                            <p>Cerrar cursores y conexiones evita saturacion de MariaDB y mejora estabilidad de la aplicacion.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tarea-actions">
+                    <a href="../../../pages/parcial2.html" class="btn btn-primario">← Volver a Parcial 2</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 - Portafolio Academico | Eugenio Espeleta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/main.js"></script>
+    <script src="../../../scripts/animations.js"></script>
+</body>
+</html>
