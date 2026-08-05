@@ -1,0 +1,20 @@
+MongoDB es una base de datos NoSQL de código abierto, orientada a documentos, diseñada para ofrecer alta escalabilidad, flexibilidad y rendimiento. Almacena información en estructuras flexibles similares a JSON (BSON), lo que permite gestionar datos no estructurados o semiestructurados sin necesidad de un esquema predefinido
+
+
+tablas = coleccione
+DB=DB
+
+Personas(
+    id int primary key,
+    nombre varchar(50),
+    edad int,
+    activo vool
+    generado enum('S','N')
+);
+
+Personas{
+    id: 1,
+    nombre: "Juan",
+    edad: 30,
+    
+};
